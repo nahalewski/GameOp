@@ -85,6 +85,16 @@ Check(r.Files.Count == 1 && File.ReadAllText(r.Files[0]).Contains("upscale_multi
 var rac = db.Games.First(g => g.Emulator == "pcsx2" && g.Title.StartsWith("Ratchet"));
 Check(db.BuildSettings("pcsx2", Tier.Max, z1e, rac)["EmuCore/Speedhacks"]?["EECycleRate"]?.GetValue<int>() == 1, "PCSX2 tierSettings merged (R&C EECycleRate)");
 
+var dod = db.Games.First(g => g.Emulator == "pcsx2" && g.Ids.Contains("SLUS-21180"));
+Check(dod.Ids.Contains("SLUS-21362") && TierInfo.All.All(t => db.BuildSettings("pcsx2", t, z1, dod)["EmuCore/GS"]?["accurate_blending_unit"]?.GetValue<int>() == 2),
+    "Onimusha DoD: both discs, blending Medium on every level (even Z1)");
+var war = db.Games.First(g => g.Emulator == "pcsx2" && g.Ids.Contains("SLUS-20018"));
+Check(db.BuildSettings("pcsx2", Tier.Max, z1e, war)["EmuCore/GS"]?["texture_preloading"]?.GetValue<int>() == 1, "Onimusha Warlords: partial texture preload");
+Check(db.Games.Any(g => g.Emulator == "pcsx2" && g.Ids.Contains("SCUS-97471")), "Genji (SCUS-97471) present");
+File.WriteAllText(Path.Combine(p2, "gamesettings", "SLUS-21180_12345678.ini"), "");
+r = pcsx2.ApplyGame(dod, db.BuildSettings("pcsx2", Tier.Balanced, z1e, dod));
+Check(r.Files.Count == 1 && File.ReadAllText(r.Files[0]).Contains("accurate_blending_unit = 2"), "Onimusha DoD per-game file written");
+
 // ── Dolphin (portable) ──
 var dol = Path.Combine(root, "dolphin");
 Directory.CreateDirectory(Path.Combine(dol, "User", "Config"));

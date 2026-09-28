@@ -42,7 +42,7 @@ Both are self-contained (no .NET install needed), 64-bit, Windows 10 2004 / Wind
 - **Weaker GPUs:** the 4-CU Z1 and the Z2 A automatically get lower resolution scales at Performance and Max Out.
 - **Applying a level** can also write every detected emulator's global graphics settings in one click.
 
-### Per-game settings database (137 games, 8 emulator families)
+### Per-game settings database (143 games, 8 emulator families)
 - **Contents:** games are sourced from official emulator sources:
   - RPCS3 wiki + live compatibility API: 32 PS3 games
   - PCSX2 GameIndex + wiki: 31 PS2 games

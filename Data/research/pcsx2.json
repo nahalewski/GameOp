@@ -516,6 +516,126 @@
       "tierSettings": {},
       "notes": "No active known issues; GameIndex auto-applies blending level 3, HPO and a COP2 timing patch.",
       "source": "https://wiki.pcsx2.net/Ape_Escape_2"
+    },
+    {
+      "title": "Genji: Dawn of the Samurai",
+      "ids": [
+        "SCUS-97471",
+        "SCES-53328",
+        "SCPS-15095",
+        "SCPS-19318",
+        "SCKA-20052",
+        "SCKA-20104",
+        "SCAJ-20134"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Playable",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "Rated Playable (compat 5). PCSX2 automatically applies Native Scaling (Normal) to align the backgrounds when upscaling, so no manual fixes are needed. Keep Manual Hardware Renderer Fixes off so that fix stays active.",
+      "source": "https://github.com/PCSX2/pcsx2/blob/master/bin/resources/GameIndex.yaml"
+    },
+    {
+      "title": "Onimusha: Warlords",
+      "ids": [
+        "SLUS-20018",
+        "SLES-50247",
+        "SLPM-65010",
+        "SLPM-66501",
+        "SLPM-74206",
+        "SLPM-67507"
+      ],
+      "demand": "light",
+      "recommendedTier": "balanced",
+      "compatibility": "Playable",
+      "settings": {
+        "EmuCore/GS": {
+          "texture_preloading": 1
+        }
+      },
+      "tierSettings": {},
+      "notes": "GameIndex uses Partial texture preloading because the game 'performs much better' with it, and applies a software-renderer FMV fix automatically. The PAL release (SLES-50247) also gets an automatic EE cycle-rate change so FMVs play correctly.",
+      "source": "https://github.com/PCSX2/pcsx2/blob/master/bin/resources/GameIndex.yaml"
+    },
+    {
+      "title": "Onimusha 2: Samurai's Destiny",
+      "ids": [
+        "SLUS-20393",
+        "SLES-50978",
+        "SLPM-65100",
+        "SLPM-65101",
+        "SLPM-66504",
+        "SLPM-67518"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Playable",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "Rated Playable. PCSX2 automatically applies Half-Pixel Offset and Native Scaling (Aggressive) to fix post-processing when upscaling, and Round Sprite on the Japanese releases to fix text.",
+      "source": "https://github.com/PCSX2/pcsx2/blob/master/bin/resources/GameIndex.yaml"
+    },
+    {
+      "title": "Onimusha 3: Demon Siege",
+      "ids": [
+        "SLUS-20694",
+        "SLES-51914",
+        "SLPM-65413",
+        "SLKA-25093"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Playable",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "Rated Playable. PCSX2 automatically sets VU clamp mode Extra+Preserve Sign so enemies appear correctly, disables partial invalidation to fix textureless graphics, and applies half-pixel offset, native scaling and bilinear upscale fixes for upscaling.",
+      "source": "https://github.com/PCSX2/pcsx2/blob/master/bin/resources/GameIndex.yaml"
+    },
+    {
+      "title": "Onimusha: Blade Warriors",
+      "ids": [
+        "SLUS-20710",
+        "SLES-51913",
+        "SLPM-65411"
+      ],
+      "demand": "light",
+      "recommendedTier": "balanced",
+      "compatibility": "Playable",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "Rated Playable with no special fixes. It shares a memory-card filter with Onimusha 3, so both games' saves show on the same card.",
+      "source": "https://github.com/PCSX2/pcsx2/blob/master/bin/resources/GameIndex.yaml"
+    },
+    {
+      "title": "Onimusha: Dawn of Dreams",
+      "ids": [
+        "SLUS-21180",
+        "SLUS-21362",
+        "SLES-82038",
+        "SLES-82039",
+        "SLPM-66275",
+        "SLPM-66276",
+        "SLPM-74232",
+        "SLPM-74233",
+        "SLPM-74251",
+        "SLPM-74252",
+        "SCKA-20086",
+        "SCKA-20087",
+        "SLKA-25453",
+        "SLKA-25454"
+      ],
+      "demand": "heavy",
+      "recommendedTier": "performance",
+      "compatibility": "Playable",
+      "settings": {
+        "EmuCore/GS": {
+          "accurate_blending_unit": 2
+        }
+      },
+      "tierSettings": {},
+      "notes": "Two discs; both are covered. GameIndex recommends blending accuracy Medium (it improves brightness), so GameOp keeps Medium at every level even though it costs some GPU time. PCSX2 also applies half-pixel offset, native scaling and bilinear upscale fixes automatically.",
+      "source": "https://github.com/PCSX2/pcsx2/blob/master/bin/resources/GameIndex.yaml"
     }
   ]
 }

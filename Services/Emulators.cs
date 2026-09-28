@@ -80,7 +80,8 @@ public sealed partial class Pcsx2Adapter : EmulatorAdapter
     public override ApplyResult ApplyGame(GameEntry game, JsonObject settings)
     {
         RequireRoot();
-        if (_crcs.Count == 0) ScanInstalledIds().ToList();
+        // Rescan if the game isn't known yet (new ISOs or gamesettings files since the last scan).
+        if (!game.Ids.Any(_crcs.ContainsKey)) ScanInstalledIds().ToList();
         var result = ApplyResult.Empty();
         foreach (var serial in game.Ids)
         {
