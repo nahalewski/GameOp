@@ -1,0 +1,219 @@
+{
+  "emulator": "cemu",
+  "games": [
+    {
+      "title": "The Legend of Zelda: Breath of the Wild",
+      "ids": [
+        "00050000101C9300",
+        "00050000101C9400",
+        "00050000101C9500"
+      ],
+      "demand": "heavy",
+      "recommendedTier": "performance",
+      "compatibility": "Perfect",
+      "settings": {
+        "Graphics": {
+          "disableGPUFence": "false",
+          "accurateShaderMul": "true"
+        }
+      },
+      "tierSettings": {},
+      "notes": "Shipped profile forces accurate shader multiplication. For Vulkan 'Error -4' crashes the wiki suggests Single-core recompiler, at a big performance cost.",
+      "source": "https://github.com/cemu-project/Cemu/tree/main/bin/gameProfiles/default"
+    },
+    {
+      "title": "Mario Kart 8",
+      "ids": [
+        "000500001010EB00",
+        "000500001010EC00",
+        "000500001010ED00"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Perfect",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "Wiki recommends CPU mode Auto/Multi-core recompiler and Vulkan with Async Compile to avoid shader stutter.",
+      "source": "https://wiki.cemu.info/wiki/Mario_Kart_8"
+    },
+    {
+      "title": "Super Smash Bros. for Wii U",
+      "ids": [
+        "0005000010110E00",
+        "0005000010144F00",
+        "0005000010145000"
+      ],
+      "demand": "heavy",
+      "recommendedTier": "performance",
+      "compatibility": "Perfect",
+      "settings": {
+        "CPU": {
+          "cpuMode": "Singlecore-Recompiler"
+        },
+        "Graphics": {
+          "streamoutBufferCacheSize": 48
+        }
+      },
+      "tierSettings": {},
+      "notes": "Shipped profile forces Single-core recompiler (multi-core crashes randomly since 1.22.0), so it is CPU-bound; enable Async Compile.",
+      "source": "https://github.com/cemu-project/Cemu/tree/main/bin/gameProfiles/default"
+    },
+    {
+      "title": "Splatoon",
+      "ids": [
+        "0005000010162B00",
+        "0005000010176900",
+        "0005000010176A00"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Playable",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "Runs with defaults; use Vulkan since OpenGL can break wall painting.",
+      "source": "https://wiki.cemu.info/wiki/Splatoon"
+    },
+    {
+      "title": "Super Mario 3D World",
+      "ids": [
+        "0005000010106100",
+        "0005000010145C00",
+        "0005000010145D00"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Runs",
+      "settings": {
+        "Graphics": {
+          "accurateShaderMul": "false"
+        }
+      },
+      "tierSettings": {},
+      "notes": "Shipped profile disables accurate shader multiplication; wiki recommends Multi-core recompiler and Async Compile on Vulkan.",
+      "source": "https://github.com/cemu-project/Cemu/tree/main/bin/gameProfiles/default"
+    },
+    {
+      "title": "Xenoblade Chronicles X",
+      "ids": [
+        "0005000010116100",
+        "00050000101C4C00",
+        "00050000101C4D00"
+      ],
+      "demand": "heavy",
+      "recommendedTier": "performance",
+      "compatibility": "Playable",
+      "settings": {
+        "CPU": {
+          "cpuMode": "Singlecore-Recompiler"
+        },
+        "Graphics": {
+          "accurateShaderMul": "false"
+        }
+      },
+      "tierSettings": {},
+      "notes": "Shipped profile forces Single-core recompiler, so it is heavily CPU-bound; a bloom-reduction graphic pack helps on Vulkan.",
+      "source": "https://github.com/cemu-project/Cemu/tree/main/bin/gameProfiles/default"
+    },
+    {
+      "title": "Pikmin 3",
+      "ids": [
+        "000500001012BC00",
+        "000500001012BD00",
+        "000500001012BE00"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Playable",
+      "settings": {
+        "Graphics": {
+          "extendedTextureReadback": "true"
+        }
+      },
+      "tierSettings": {},
+      "notes": "Shipped profile enables extended texture readback; otherwise defaults.",
+      "source": "https://github.com/cemu-project/Cemu/tree/main/bin/gameProfiles/default"
+    },
+    {
+      "title": "The Legend of Zelda: The Wind Waker HD",
+      "ids": [
+        "0005000010185400",
+        "0005000010143500",
+        "0005000010143600"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Perfect",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "No profile overrides; runs with defaults.",
+      "source": "https://wiki.cemu.info/wiki/The_Legend_of_Zelda:_The_Wind_Waker_HD"
+    },
+    {
+      "title": "The Legend of Zelda: Twilight Princess HD",
+      "ids": [
+        "0005000E1019C800",
+        "000500001019E500",
+        "000500001019E600"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Perfect",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "No profile overrides; runs with defaults.",
+      "source": "https://wiki.cemu.info/wiki/The_Legend_of_Zelda:_Twilight_Princess_HD"
+    },
+    {
+      "title": "Donkey Kong Country: Tropical Freeze",
+      "ids": [
+        "0005000010144800",
+        "0005000010137F00",
+        "0005000010138300"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Perfect",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "No profile overrides; runs with defaults.",
+      "source": "https://wiki.cemu.info/wiki/Donkey_Kong_Country:_Tropical_Freeze"
+    },
+    {
+      "title": "Hyrule Warriors",
+      "ids": [
+        "000500C01017CD00",
+        "000500001017D800",
+        "000500001017D900"
+      ],
+      "demand": "heavy",
+      "recommendedTier": "performance",
+      "compatibility": "Perfect",
+      "settings": {
+        "General": {
+          "useRDTSC": "false"
+        }
+      },
+      "tierSettings": {},
+      "notes": "Shipped profile disables RDTSC timing; large enemy counts make it demanding.",
+      "source": "https://github.com/cemu-project/Cemu/tree/main/bin/gameProfiles/default"
+    },
+    {
+      "title": "Monster Hunter 3 Ultimate",
+      "ids": [
+        "0005000010118300",
+        "0005000010117200"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Perfect",
+      "settings": {
+        "Graphics": {
+          "streamoutBufferCacheSize": 48
+        }
+      },
+      "tierSettings": {},
+      "notes": "Shipped profile enlarges the streamout buffer cache.",
+      "source": "https://github.com/cemu-project/Cemu/tree/main/bin/gameProfiles/default"
+    }
+  ]
+}

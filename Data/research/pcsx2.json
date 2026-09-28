@@ -1,0 +1,521 @@
+{
+  "emulator": "pcsx2",
+  "games": [
+    {
+      "title": "Shadow of the Colossus",
+      "ids": [
+        "SCUS-97472",
+        "SCES-53326"
+      ],
+      "demand": "heavy",
+      "recommendedTier": "performance",
+      "compatibility": "Playable",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "One of the heaviest PS2 titles (EE/VU bound); GameIndex auto-sets blending level 4, HPO and native scaling. Wiki testers report EE overclock (130%) breaks physics and causes slowdowns, so leave EE Cycle Rate at 100% or lower, not higher.",
+      "source": "https://wiki.pcsx2.net/Shadow_of_the_Colossus"
+    },
+    {
+      "title": "ICO",
+      "ids": [
+        "SCUS-97113",
+        "SCES-50760"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Playable",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "GameIndex auto-applies clamp modes and post-processing fixes. Wiki lists brief lag in the three Yorda cage cutscenes with no known workaround.",
+      "source": "https://wiki.pcsx2.net/ICO"
+    },
+    {
+      "title": "Metal Gear Solid 2: Sons of Liberty",
+      "ids": [
+        "SLUS-20144",
+        "SLES-50383",
+        "SLES-50384",
+        "SLES-50385",
+        "SLUS-20554",
+        "SLES-82009"
+      ],
+      "demand": "heavy",
+      "recommendedTier": "performance",
+      "compatibility": "Playable",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "Wiki calls it quite GS heavy, with slowdowns mostly in cutscenes. Ocelot/Fatman skin colour needs Blending Accuracy High (GameIndex recommends level 3), which costs a lot of GPU.",
+      "source": "https://wiki.pcsx2.net/Metal_Gear_Solid_2:_Sons_of_Liberty"
+    },
+    {
+      "title": "Metal Gear Solid 3: Snake Eater",
+      "ids": [
+        "SLUS-20915",
+        "SLES-82013",
+        "SLES-82024",
+        "SLES-82026",
+        "SLES-82032",
+        "SLUS-21359",
+        "SLUS-21243",
+        "SLUS-21360",
+        "SLES-82042"
+      ],
+      "demand": "heavy",
+      "recommendedTier": "performance",
+      "compatibility": "Playable",
+      "settings": {},
+      "tierSettings": {
+        "battery": {
+          "EmuCore/Speedhacks": {
+            "EECycleSkip": 1
+          }
+        },
+        "balanced": {
+          "EmuCore/Speedhacks": {
+            "EECycleSkip": 1
+          }
+        }
+      },
+      "notes": "Heavy cutscenes can run at 50-100% speed. A wiki tester found EE Cycle Skip at Mild Underclock removed almost all lag. High blending accuracy slows the game down.",
+      "source": "https://wiki.pcsx2.net/Metal_Gear_Solid_3:_Snake_Eater"
+    },
+    {
+      "title": "Gran Turismo 3: A-Spec",
+      "ids": [
+        "SCUS-97102",
+        "SCUS-97512",
+        "SCES-50294",
+        "PBPX-95503"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Playable",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "GameIndex auto-applies HPO, auto flush and a GSC fix. Wiki reports slight slowdowns on city and night tracks.",
+      "source": "https://wiki.pcsx2.net/Gran_Turismo_3:_A-Spec"
+    },
+    {
+      "title": "Gran Turismo 4",
+      "ids": [
+        "SCUS-97328",
+        "SCES-51719",
+        "SCUS-97563"
+      ],
+      "demand": "heavy",
+      "recommendedTier": "performance",
+      "compatibility": "Playable",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "Heavy on both EE and GS, with slowdowns on city courses and in license tests. Wiki says EE cyclerate changes can speed up races but slow down the video-backed menus; blending accuracy should be at least Basic (GameIndex recommends 3).",
+      "source": "https://wiki.pcsx2.net/Gran_Turismo_4"
+    },
+    {
+      "title": "God of War",
+      "ids": [
+        "SCUS-97399",
+        "SCES-51533",
+        "SCES-53133"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Playable",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "Wiki testers needed MTVU (vuThread) to hold 60fps in heavy battles. VU Cycle Stealing gives a big speedup but makes Kratos blink.",
+      "source": "https://wiki.pcsx2.net/God_of_War"
+    },
+    {
+      "title": "God of War II",
+      "ids": [
+        "SCUS-97481",
+        "SCES-54206"
+      ],
+      "demand": "heavy",
+      "recommendedTier": "performance",
+      "compatibility": "Playable",
+      "settings": {},
+      "tierSettings": {
+        "battery": {
+          "EmuCore/GS": {
+            "accurate_blending_unit": 1
+          }
+        }
+      },
+      "notes": "Demanding. Wiki reports FPS drops when Blending Accuracy is above Basic. If lines follow Kratos at 1080p or higher, set Round Sprite to Off.",
+      "source": "https://wiki.pcsx2.net/God_of_War_II"
+    },
+    {
+      "title": "Kingdom Hearts",
+      "ids": [
+        "SLUS-20370",
+        "SCES-50967",
+        "SCES-50968",
+        "SCES-50969",
+        "SCES-50970",
+        "SCES-50971",
+        "SLPS-25197",
+        "SLPS-25198",
+        "SLPM-66123"
+      ],
+      "demand": "light",
+      "recommendedTier": "battery",
+      "compatibility": "Playable",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "Runs easily. Includes the JP Final Mix serials; GameIndex auto-sets native scaling for DOF (Round Sprite on Final Mix). Floor flashing when upscaling is a known non-issue that native resolution avoids.",
+      "source": "https://wiki.pcsx2.net/Kingdom_Hearts"
+    },
+    {
+      "title": "Kingdom Hearts II",
+      "ids": [
+        "SLUS-21005",
+        "SLES-54114",
+        "SLES-54232",
+        "SLES-54233",
+        "SLES-54234",
+        "SLES-54235",
+        "SLPM-66675",
+        "SLPM-55020"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Playable",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "Includes the JP Final Mix+ serials. Wiki reports minimal slowdown in some areas; GameIndex auto-applies auto flush, Round Sprite, HPO and native scaling (Final Mix+ also gets blending level 4).",
+      "source": "https://wiki.pcsx2.net/Kingdom_Hearts_II"
+    },
+    {
+      "title": "Final Fantasy X",
+      "ids": [
+        "SLUS-20312",
+        "SCES-50490",
+        "SCES-50491",
+        "SCES-50492",
+        "SCES-50493",
+        "SCES-50494"
+      ],
+      "demand": "light",
+      "recommendedTier": "balanced",
+      "compatibility": "Playable",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "Easy to emulate. Wiki advises against combining EE cyclerate and VU cycle stealing because it causes false FPS and slowdowns. GameIndex auto-applies round/clamp modes and blending level 4.",
+      "source": "https://wiki.pcsx2.net/Final_Fantasy_X"
+    },
+    {
+      "title": "Final Fantasy X-2",
+      "ids": [
+        "SLUS-20672",
+        "SLES-51815",
+        "SLES-51816",
+        "SLES-51817",
+        "SLES-51818",
+        "SLES-51819"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Playable",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "Somewhat more demanding than FFX per the wiki; full speed up to 4x scaling, with menu slowdown at 5x and above.",
+      "source": "https://wiki.pcsx2.net/Final_Fantasy_X-2"
+    },
+    {
+      "title": "Final Fantasy XII",
+      "ids": [
+        "SLUS-20963",
+        "SLUS-21475",
+        "SLES-54354",
+        "SLES-54355",
+        "SLES-54356",
+        "SLES-54357",
+        "SLES-54358"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Playable",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "Wiki notes EE cyclerate changes can make FMVs skip if set too high, and VU cycle stealing has no effect. GameIndex auto-fixes bloom.",
+      "source": "https://wiki.pcsx2.net/Final_Fantasy_XII"
+    },
+    {
+      "title": "Silent Hill 2",
+      "ids": [
+        "SLUS-20228",
+        "SLES-50382",
+        "SLES-51156"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Playable",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "GameIndex auto-sets EE Cycle Rate +1 (fixes FMV hangs) and blending level 4. Don't override the EE cycle rate for this game.",
+      "source": "https://wiki.pcsx2.net/Silent_Hill_2"
+    },
+    {
+      "title": "Silent Hill 3",
+      "ids": [
+        "SLUS-20622",
+        "SLES-51434"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Playable",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "Needs at least Medium blending for correct effects; GameIndex now enforces a minimum blending level of 4 and fixes FMV field order.",
+      "source": "https://wiki.pcsx2.net/Silent_Hill_3"
+    },
+    {
+      "title": "Shin Megami Tensei: Persona 3 FES",
+      "ids": [
+        "SLUS-21621",
+        "SLES-55354"
+      ],
+      "demand": "light",
+      "recommendedTier": "battery",
+      "compatibility": "Playable",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "Light game. Minimap misalignment is a known minor issue in hardware mode.",
+      "source": "https://wiki.pcsx2.net/Shin_Megami_Tensei:_Persona_3_FES"
+    },
+    {
+      "title": "Shin Megami Tensei: Persona 4",
+      "ids": [
+        "SLUS-21782",
+        "SLES-55474"
+      ],
+      "demand": "light",
+      "recommendedTier": "balanced",
+      "compatibility": "Playable",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "Mostly light, but random battles and boss fights can dip to around 40fps per the wiki. GameIndex auto-applies VU clamp and post-processing fixes.",
+      "source": "https://wiki.pcsx2.net/Shin_Megami_Tensei:_Persona_4"
+    },
+    {
+      "title": "Ratchet & Clank",
+      "ids": [
+        "SCUS-97199",
+        "SCES-50916"
+      ],
+      "demand": "heavy",
+      "recommendedTier": "performance",
+      "compatibility": "Playable",
+      "settings": {},
+      "tierSettings": {
+        "performance": {
+          "EmuCore/Speedhacks": {
+            "EECycleRate": 1
+          }
+        },
+        "max": {
+          "EmuCore/Speedhacks": {
+            "EECycleRate": 1
+          }
+        }
+      },
+      "notes": "EE heavy. Wiki reports EE Cycle Rate 130% fixes almost all slowdowns at the cost of higher CPU/GPU load; -1 (75%) triggers the game's internal frameskip instead.",
+      "source": "https://wiki.pcsx2.net/Ratchet_%26_Clank"
+    },
+    {
+      "title": "Jak and Daxter: The Precursor Legacy",
+      "ids": [
+        "SCUS-97124",
+        "SCES-50361",
+        "SCES-50614"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Playable",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "Runs well with minor slowdown. GameIndex auto-sets blending level 3 and CPU sprite render fixes.",
+      "source": "https://wiki.pcsx2.net/Jak_and_Daxter:_The_Precursor_Legacy"
+    },
+    {
+      "title": "Jak II",
+      "ids": [
+        "SCUS-97265",
+        "SCUS-97509",
+        "SCES-51608"
+      ],
+      "demand": "heavy",
+      "recommendedTier": "performance",
+      "compatibility": "Playable",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "Wiki: very demanding, and it speeds physics up during lag. The listed workaround is any combination of EE cyclerate and VU cycle stealing, but no single value is confirmed. Greatest Hits v2.01 has a stretched finger bug; prefer v1.00.",
+      "source": "https://wiki.pcsx2.net/Jak_II"
+    },
+    {
+      "title": "Jak 3",
+      "ids": [
+        "SCUS-97330",
+        "SCUS-97516",
+        "SCES-52460"
+      ],
+      "demand": "heavy",
+      "recommendedTier": "performance",
+      "compatibility": "Playable",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "Demanding with slowdowns in some sections. Wiki says disabling Instant VU1 fixes the trailing burner flames in the intro cutscene.",
+      "source": "https://wiki.pcsx2.net/Jak_3"
+    },
+    {
+      "title": "Sly Cooper and the Thievius Raccoonus",
+      "ids": [
+        "SCUS-97198",
+        "SCES-50917"
+      ],
+      "demand": "light",
+      "recommendedTier": "battery",
+      "compatibility": "Playable",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "Occasional lag in a few levels. Wiki says EE Cyclerate -3 fixes the lag but stutters FMVs, so it isn't recommended.",
+      "source": "https://wiki.pcsx2.net/Sly_Cooper_and_the_Thievius_Raccoonus"
+    },
+    {
+      "title": "Okami",
+      "ids": [
+        "SLUS-21115",
+        "SLES-54439"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Playable",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "Very minor slowdown in large maps. Wiki notes a cloudy image when upscaling (a non-issue); GameIndex auto-applies HPO and native scaling.",
+      "source": "https://wiki.pcsx2.net/Okami"
+    },
+    {
+      "title": "Devil May Cry 3: Dante's Awakening",
+      "ids": [
+        "SLUS-20964",
+        "SLES-53038",
+        "SLUS-21361",
+        "SLES-54186"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Playable",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "Some effects cause moderate slowdown, and high internal resolutions cause big slowdowns in menus. GameIndex auto-fixes the Mission 18 door and post effects.",
+      "source": "https://wiki.pcsx2.net/Devil_May_Cry_3:_Dante%27s_Awakening"
+    },
+    {
+      "title": "Resident Evil 4",
+      "ids": [
+        "SLUS-21134",
+        "SLES-53702",
+        "SLES-53756"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Playable",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "No active known issues; GameIndex auto-sets HPO to fix blurriness.",
+      "source": "https://wiki.pcsx2.net/Resident_Evil_4"
+    },
+    {
+      "title": "Burnout 3: Takedown",
+      "ids": [
+        "SLUS-21050",
+        "SLES-52584",
+        "SLES-52585"
+      ],
+      "demand": "heavy",
+      "recommendedTier": "performance",
+      "compatibility": "Playable",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "Wiki: very CPU and GPU intensive. GameIndex applies many GS fixes (blending 3, target CLUT, native scaling), so keep upscaling modest on handhelds.",
+      "source": "https://wiki.pcsx2.net/Burnout_3:_Takedown"
+    },
+    {
+      "title": "Need for Speed: Underground 2",
+      "ids": [
+        "SLUS-21065",
+        "SLES-52725"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Playable",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "Wiki: constant full speed needed max VU Cycle Stealing (causes slight audio crackle). GameIndex enables draw buffering for performance.",
+      "source": "https://wiki.pcsx2.net/Need_for_Speed:_Underground_2"
+    },
+    {
+      "title": "Grand Theft Auto: San Andreas",
+      "ids": [
+        "SLUS-20946",
+        "SLES-52541",
+        "SLES-52927"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Playable",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "GameIndex auto-applies EE clamp (mission freeze fix), blending level 2 and post-processing fixes. Keep upscaling modest.",
+      "source": "https://wiki.pcsx2.net/Grand_Theft_Auto:_San_Andreas"
+    },
+    {
+      "title": "Tekken 5",
+      "ids": [
+        "SLUS-21059",
+        "SCES-53202"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Playable",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "Wiki: demanding, varies by stage, and EE/VU speedhacks can cause slowdowns. Progressive-scan mode has stage rendering and shake issues on NTSC.",
+      "source": "https://wiki.pcsx2.net/Tekken_5"
+    },
+    {
+      "title": "Dragon Quest VIII: Journey of the Cursed King",
+      "ids": [
+        "SLUS-21207",
+        "SLES-53974"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Playable",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "Can be demanding. Wiki recommends no manual hardware hacks; GameIndex already applies CPU sprite render and native scaling fixes.",
+      "source": "https://wiki.pcsx2.net/Dragon_Quest_VIII:_Journey_of_the_Cursed_King"
+    },
+    {
+      "title": "Ape Escape 2",
+      "ids": [
+        "SLUS-20685",
+        "SCES-50885",
+        "SCES-51102",
+        "SCES-51103",
+        "SCES-51104",
+        "SCES-51105"
+      ],
+      "demand": "light",
+      "recommendedTier": "battery",
+      "compatibility": "Playable",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "No active known issues; GameIndex auto-applies blending level 3, HPO and a COP2 timing patch.",
+      "source": "https://wiki.pcsx2.net/Ape_Escape_2"
+    }
+  ]
+}

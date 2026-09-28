@@ -1,0 +1,24 @@
+<Page x:Class="GameOp.Pages.TweaksPage" Foreground="{DynamicResource TextFillColorPrimaryBrush}" ScrollViewer.CanContentScroll="False"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      Title="System Tweaks">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="24,12,24,24">
+            <TextBlock Text="System Tweaks" FontSize="28" FontWeight="SemiBold" />
+            <TextBlock Style="{StaticResource Caption}" Margin="0,2,0,0"
+                       Text="Windows settings that matter for gaming on a handheld. Turning a switch off puts back the value you had before GameOp changed it." />
+
+            <TextBlock Text="Windows" Style="{StaticResource SectionHeader}" />
+            <StackPanel x:Name="WindowsTweaks" />
+
+            <TextBlock Text="Switched with each performance level" Style="{StaticResource SectionHeader}" />
+            <StackPanel x:Name="TierTweaks" />
+
+            <TextBlock Text="Recommended by hand" Style="{StaticResource SectionHeader}" />
+            <ui:Card Padding="20">
+                <StackPanel x:Name="Tips" />
+            </ui:Card>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

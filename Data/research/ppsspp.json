@@ -1,0 +1,254 @@
+{
+  "emulator": "ppsspp",
+  "games": [
+    {
+      "title": "Grand Theft Auto: Liberty City Stories",
+      "ids": [
+        "ULUS10041",
+        "ULES00151",
+        "ULES00182",
+        "ULJM05255",
+        "ULJM05359",
+        "ULJM05885",
+        "NPJH50825"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Unverified",
+      "settings": {
+        "Graphics": {
+          "SkipBufferEffects": false
+        }
+      },
+      "tierSettings": {},
+      "notes": "compat.ini flags RequireBufferedRendering (never enable Skip Buffer Effects); a sprite border fix is auto-applied.",
+      "source": "https://github.com/hrydgard/ppsspp/blob/master/assets/compat.ini"
+    },
+    {
+      "title": "Grand Theft Auto: Vice City Stories",
+      "ids": [
+        "ULUS10160",
+        "ULES00502",
+        "ULES00503",
+        "ULJM05297",
+        "ULJM05395",
+        "ULJM05884",
+        "NPJH50827"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Unverified",
+      "settings": {
+        "Graphics": {
+          "SkipBufferEffects": false
+        }
+      },
+      "tierSettings": {},
+      "notes": "Requires buffered rendering; sprite border fix is auto-applied by PPSSPP.",
+      "source": "https://github.com/hrydgard/ppsspp/blob/master/assets/compat.ini"
+    },
+    {
+      "title": "God of War: Chains of Olympus",
+      "ids": [
+        "UCUS98653",
+        "UCES00842",
+        "UCAS40198",
+        "ULJM05438",
+        "ULJM05348",
+        "UCKS45084",
+        "NPUG80325",
+        "NPEG00023",
+        "NPHG00027",
+        "NPHG00028",
+        "NPJH50170"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Unverified",
+      "settings": {
+        "Graphics": {
+          "SkipBufferEffects": false
+        }
+      },
+      "tierSettings": {},
+      "notes": "Requires buffered rendering; PPSSPP auto-applies a 60 fps framerate hack and rotated-analog fix.",
+      "source": "https://github.com/hrydgard/ppsspp/blob/master/assets/compat.ini"
+    },
+    {
+      "title": "God of War: Ghost of Sparta",
+      "ids": [
+        "UCUS98737",
+        "UCES01401",
+        "UCES01473",
+        "UCAS40323",
+        "UCJS10114",
+        "NPHG00092",
+        "NPEG00044",
+        "NPEG00045",
+        "NPJG00120",
+        "NPUG80508"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Unverified",
+      "settings": {
+        "Graphics": {
+          "SkipBufferEffects": false
+        },
+        "CPU": {
+          "CPUSpeed": 0
+        }
+      },
+      "tierSettings": {},
+      "notes": "Requires buffered rendering and the default emulated CPU clock (RequireDefaultCPUClock).",
+      "source": "https://github.com/hrydgard/ppsspp/blob/master/assets/compat.ini"
+    },
+    {
+      "title": "Metal Gear Solid: Peace Walker",
+      "ids": [
+        "ULUS10509",
+        "ULES01372",
+        "ULJM08038",
+        "NPJH50045",
+        "ULJM05630"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Unverified",
+      "settings": {
+        "Graphics": {
+          "SkipBufferEffects": false
+        }
+      },
+      "tierSettings": {},
+      "notes": "Requires buffered rendering (Skip Buffer Effects off).",
+      "source": "https://github.com/hrydgard/ppsspp/blob/master/assets/compat.ini"
+    },
+    {
+      "title": "Tekken 6",
+      "ids": [
+        "ULUS10466",
+        "ULES01376",
+        "ULJS00224",
+        "NPUH10047",
+        "ULAS42214",
+        "ULJS19054",
+        "NPJH50184"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Unverified",
+      "settings": {
+        "CPU": {
+          "CPUSpeed": 0
+        }
+      },
+      "tierSettings": {},
+      "notes": "Requires the default emulated CPU clock; PPSSPP also auto-applies a 60 fps cap and more accurate VMMUL (fixes leg shaking).",
+      "source": "https://github.com/hrydgard/ppsspp/blob/master/assets/compat.ini"
+    },
+    {
+      "title": "Monster Hunter Freedom Unite",
+      "ids": [
+        "ULUS10391",
+        "ULES01213"
+      ],
+      "demand": "light",
+      "recommendedTier": "battery",
+      "compatibility": "Unverified",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "Listed under SaveStatesNotRecommended: use in-game saves rather than save states.",
+      "source": "https://github.com/hrydgard/ppsspp/blob/master/assets/compat.ini"
+    },
+    {
+      "title": "Monster Hunter Freedom 2",
+      "ids": [
+        "ULUS10266",
+        "ULES00851"
+      ],
+      "demand": "light",
+      "recommendedTier": "battery",
+      "compatibility": "Unverified",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "Listed under SaveStatesNotRecommended: use in-game saves rather than save states.",
+      "source": "https://github.com/hrydgard/ppsspp/blob/master/assets/compat.ini"
+    },
+    {
+      "title": "Daxter",
+      "ids": [
+        "UCUS98618",
+        "UCUS98654",
+        "UCES00044",
+        "NPUG80329",
+        "NPEG00025",
+        "UCKS45025"
+      ],
+      "demand": "light",
+      "recommendedTier": "balanced",
+      "compatibility": "Unverified",
+      "settings": {
+        "Graphics": {
+          "SkipBufferEffects": false
+        }
+      },
+      "tierSettings": {},
+      "notes": "Requires buffered rendering; rotated-analog-stick fix is auto-applied.",
+      "source": "https://github.com/hrydgard/ppsspp/blob/master/assets/compat.ini"
+    },
+    {
+      "title": "Burnout Dominator",
+      "ids": [
+        "ULUS10236",
+        "ULES00750",
+        "ULJM05242",
+        "ULJM05371",
+        "NPJH50304",
+        "ULES00703",
+        "ULAS42095"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Unverified",
+      "settings": {
+        "Graphics": {
+          "SkipBufferEffects": false
+        }
+      },
+      "tierSettings": {},
+      "notes": "Requires buffered rendering; lens-flare effects are auto-rendered at lower resolution.",
+      "source": "https://github.com/hrydgard/ppsspp/blob/master/assets/compat.ini"
+    },
+    {
+      "title": "WipEout Pure",
+      "ids": [
+        "UCUS98612",
+        "UCES00001",
+        "UCJS10007",
+        "NPJG00059"
+      ],
+      "demand": "light",
+      "recommendedTier": "battery",
+      "compatibility": "Unverified",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "No user overrides needed; PPSSPP auto-applies lower-res effects and software depth raster for the sun lens flare.",
+      "source": "https://github.com/hrydgard/ppsspp/blob/master/assets/compat.ini"
+    },
+    {
+      "title": "Crisis Core: Final Fantasy VII",
+      "ids": [
+        "ULUS10336",
+        "ULES01044"
+      ],
+      "demand": "light",
+      "recommendedTier": "battery",
+      "compatibility": "Unverified",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "No entries in compat.ini; runs with default settings.",
+      "source": "https://github.com/hrydgard/ppsspp/blob/master/assets/compat.ini"
+    }
+  ]
+}

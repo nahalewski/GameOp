@@ -1,0 +1,316 @@
+{
+  "emulator": "dolphin",
+  "games": [
+    {
+      "title": "Super Smash Bros. Melee",
+      "ids": [
+        "GALE01",
+        "GALP01",
+        "GALJ01"
+      ],
+      "demand": "light",
+      "recommendedTier": "battery",
+      "compatibility": "Unverified",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "Dolphin's shipped profile only adds a Gecko trophy-viewer code and stereoscopy convergence; no accuracy overrides needed.",
+      "source": "https://github.com/dolphin-emu/dolphin/blob/master/Data/Sys/GameSettings/GAL.ini"
+    },
+    {
+      "title": "The Legend of Zelda: The Wind Waker",
+      "ids": [
+        "GZLE01",
+        "GZLP01",
+        "GZLJ01"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Unverified",
+      "settings": {
+        "Video_Hacks": {
+          "EFBAccessEnable": true,
+          "EFBToTextureEnable": false,
+          "VISkip": false
+        },
+        "Video_Enhancements": {
+          "ArbitraryMipmapDetection": true
+        }
+      },
+      "tierSettings": {},
+      "notes": "Needs EFB access and EFB copies to RAM (Pictograph, light effects); Dolphin applies these automatically.",
+      "source": "https://github.com/dolphin-emu/dolphin/blob/master/Data/Sys/GameSettings/GZL.ini"
+    },
+    {
+      "title": "Super Mario Sunshine",
+      "ids": [
+        "GMSE01",
+        "GMSP01",
+        "GMSJ01"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Unverified",
+      "settings": {
+        "Video": {
+          "PerfQueriesEnable": true
+        },
+        "Video_Hacks": {
+          "EFBToTextureEnable": false,
+          "EFBAccessEnable": true,
+          "MissingColorValue": "0x00000000"
+        },
+        "Video_Enhancements": {
+          "ForceTextureFiltering": 0,
+          "ArbitraryMipmapDetection": true
+        }
+      },
+      "tierSettings": {},
+      "notes": "Needs EFB copies to RAM, EFB access and perf queries (goop, sun); forced texture filtering is disabled to avoid artifacts.",
+      "source": "https://github.com/dolphin-emu/dolphin/blob/master/Data/Sys/GameSettings/GMS.ini"
+    },
+    {
+      "title": "Mario Kart: Double Dash!!",
+      "ids": [
+        "GM4E01",
+        "GM4P01",
+        "GM4J01"
+      ],
+      "demand": "light",
+      "recommendedTier": "battery",
+      "compatibility": "Unverified",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "No accuracy overrides in Dolphin's shipped profile (stereoscopy only).",
+      "source": "https://github.com/dolphin-emu/dolphin/blob/master/Data/Sys/GameSettings/GM4.ini"
+    },
+    {
+      "title": "Metroid Prime",
+      "ids": [
+        "GM8E01",
+        "GM8P01",
+        "GM8J01"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Unverified",
+      "settings": {
+        "Video_Settings": {
+          "SafeTextureCacheColorSamples": 512,
+          "SuggestedAspectRatio": 2,
+          "CPUCull": true
+        }
+      },
+      "tierSettings": {},
+      "notes": "Uses Medium (512) texture cache accuracy and CPU culling; keep other defaults.",
+      "source": "https://github.com/dolphin-emu/dolphin/blob/master/Data/Sys/GameSettings/GM8.ini"
+    },
+    {
+      "title": "Super Mario Galaxy",
+      "ids": [
+        "RMGE01",
+        "RMGP01",
+        "RMGJ01",
+        "RMGK01"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Unverified",
+      "settings": {
+        "Video_Hacks": {
+          "EFBAccessEnable": true,
+          "EFBAccessDeferInvalidation": true
+        },
+        "Video_Enhancements": {
+          "ArbitraryMipmapDetection": true
+        }
+      },
+      "tierSettings": {},
+      "notes": "EFB access is required (Star Bit pointer interaction); deferred invalidation keeps it fast.",
+      "source": "https://github.com/dolphin-emu/dolphin/blob/master/Data/Sys/GameSettings/RMG.ini"
+    },
+    {
+      "title": "Super Mario Galaxy 2",
+      "ids": [
+        "SB4E01",
+        "SB4P01",
+        "SB4J01",
+        "SB4K01"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Unverified",
+      "settings": {
+        "Video_Hacks": {
+          "EFBAccessEnable": true,
+          "EFBAccessDeferInvalidation": true
+        },
+        "Video_Enhancements": {
+          "ArbitraryMipmapDetection": true
+        }
+      },
+      "tierSettings": {},
+      "notes": "Same EFB access requirements as the first Galaxy.",
+      "source": "https://github.com/dolphin-emu/dolphin/blob/master/Data/Sys/GameSettings/SB4.ini"
+    },
+    {
+      "title": "Super Smash Bros. Brawl",
+      "ids": [
+        "RSBE01",
+        "RSBP01",
+        "RSBJ01",
+        "RSBK01"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Unverified",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "No accuracy overrides in Dolphin's shipped profile (stereoscopy only).",
+      "source": "https://github.com/dolphin-emu/dolphin/blob/master/Data/Sys/GameSettings/RSB.ini"
+    },
+    {
+      "title": "The Legend of Zelda: Skyward Sword",
+      "ids": [
+        "SOUE01",
+        "SOUP01",
+        "SOUJ01",
+        "SOUK01"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Unverified",
+      "settings": {
+        "Video_Hacks": {
+          "EFBAccessEnable": true,
+          "EFBEmulateFormatChanges": true
+        },
+        "Video_Enhancements": {
+          "ArbitraryMipmapDetection": true
+        }
+      },
+      "tierSettings": {},
+      "notes": "Needs EFB access and EFB format-change emulation; motion controls are the main hurdle on a handheld.",
+      "source": "https://github.com/dolphin-emu/dolphin/blob/master/Data/Sys/GameSettings/SOU.ini"
+    },
+    {
+      "title": "Mario Kart Wii",
+      "ids": [
+        "RMCE01",
+        "RMCP01",
+        "RMCJ01",
+        "RMCK01"
+      ],
+      "demand": "light",
+      "recommendedTier": "battery",
+      "compatibility": "Unverified",
+      "settings": {
+        "Video_Hacks": {
+          "EFBEmulateFormatChanges": true
+        },
+        "Video_Settings": {
+          "MSAA": 0
+        }
+      },
+      "tierSettings": {},
+      "notes": "Dolphin forces EFB format-change emulation and disables MSAA for this game.",
+      "source": "https://github.com/dolphin-emu/dolphin/blob/master/Data/Sys/GameSettings/RMC.ini"
+    },
+    {
+      "title": "Paper Mario: The Thousand-Year Door",
+      "ids": [
+        "G8ME01",
+        "G8MP01",
+        "G8MJ01"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Unverified",
+      "settings": {
+        "Video_Hacks": {
+          "EFBToTextureEnable": false,
+          "BBoxEnable": true,
+          "ImmediateXFBEnable": false,
+          "DeferEFBCopies": false
+        }
+      },
+      "tierSettings": {},
+      "notes": "Requires bounding-box emulation (GPU-costly) and EFB copies to RAM; keep these on or effects and menus break.",
+      "source": "https://github.com/dolphin-emu/dolphin/blob/master/Data/Sys/GameSettings/G8M.ini"
+    },
+    {
+      "title": "F-Zero GX",
+      "ids": [
+        "GFZE8P",
+        "GFZP8P",
+        "GFZJ8P"
+      ],
+      "demand": "heavy",
+      "recommendedTier": "performance",
+      "compatibility": "Unverified",
+      "settings": {
+        "Core": {
+          "FPRF": true,
+          "CPUThread": false
+        },
+        "Video_Hacks": {
+          "EFBAccessTileSize": 0
+        }
+      },
+      "tierSettings": {},
+      "notes": "Dolphin disables dual core (CPUThread) and enables FPRF for accuracy, making it CPU-bound; use the performance tier.",
+      "source": "https://github.com/dolphin-emu/dolphin/blob/master/Data/Sys/GameSettings/GFZ.ini"
+    },
+    {
+      "title": "The Legend of Zelda: Twilight Princess (GameCube)",
+      "ids": [
+        "GZ2E01",
+        "GZ2P01",
+        "GZ2J01"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Unverified",
+      "settings": {
+        "Video_Hacks": {
+          "VISkip": false
+        },
+        "Video_Settings": {
+          "CPUCull": true
+        },
+        "Video_Enhancements": {
+          "ArbitraryMipmapDetection": true
+        }
+      },
+      "tierSettings": {},
+      "notes": "VI skip disabled and CPU culling enabled by Dolphin's shipped profile.",
+      "source": "https://github.com/dolphin-emu/dolphin/blob/master/Data/Sys/GameSettings/GZ2.ini"
+    },
+    {
+      "title": "The Legend of Zelda: Twilight Princess (Wii)",
+      "ids": [
+        "RZDE01",
+        "RZDP01",
+        "RZDJ01",
+        "RZDK01"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Unverified",
+      "settings": {
+        "Video_Hacks": {
+          "EFBAccessEnable": true,
+          "VISkip": false
+        },
+        "Video_Settings": {
+          "CPUCull": true
+        },
+        "Video_Enhancements": {
+          "ArbitraryMipmapDetection": true
+        }
+      },
+      "tierSettings": {},
+      "notes": "Wii version additionally needs EFB access.",
+      "source": "https://github.com/dolphin-emu/dolphin/blob/master/Data/Sys/GameSettings/RZD.ini"
+    }
+  ]
+}

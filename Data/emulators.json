@@ -1,0 +1,156 @@
+{
+  "_comment": "Tier baselines per emulator. 'settings' uses the emulator's native config keys ({section: {key: value}}). 'lowGpu' is merged on top for Ryzen Z1 (740M) and Z2 A. Game entries in gamedb.json are merged on top of these.",
+  "emulators": [
+    {
+      "id": "pcsx2",
+      "name": "PCSX2",
+      "system": "PlayStation 2",
+      "tiers": {
+        "battery": {
+          "settings": {
+            "EmuCore/GS": { "Renderer": 14, "upscale_multiplier": 1, "MaxAnisotropy": 0, "accurate_blending_unit": 1, "texture_preloading": 2, "VsyncEnable": false },
+            "EmuCore/Speedhacks": { "vuThread": true, "vu1Instant": true }
+          }
+        },
+        "balanced": {
+          "settings": {
+            "EmuCore/GS": { "Renderer": 14, "upscale_multiplier": 2, "MaxAnisotropy": 4, "accurate_blending_unit": 1, "texture_preloading": 2, "VsyncEnable": false },
+            "EmuCore/Speedhacks": { "vuThread": true, "vu1Instant": true }
+          }
+        },
+        "performance": {
+          "settings": {
+            "EmuCore/GS": { "Renderer": 14, "upscale_multiplier": 3, "MaxAnisotropy": 8, "accurate_blending_unit": 1, "texture_preloading": 2, "VsyncEnable": false },
+            "EmuCore/Speedhacks": { "vuThread": true, "vu1Instant": true }
+          },
+          "lowGpu": { "EmuCore/GS": { "upscale_multiplier": 2, "MaxAnisotropy": 4 } }
+        },
+        "max": {
+          "settings": {
+            "EmuCore/GS": { "Renderer": 14, "upscale_multiplier": 4, "MaxAnisotropy": 16, "accurate_blending_unit": 2, "texture_preloading": 2, "VsyncEnable": true },
+            "EmuCore/Speedhacks": { "vuThread": true, "vu1Instant": true }
+          },
+          "lowGpu": { "EmuCore/GS": { "upscale_multiplier": 3, "MaxAnisotropy": 8, "accurate_blending_unit": 1 } }
+        }
+      }
+    },
+    {
+      "id": "rpcs3",
+      "name": "RPCS3",
+      "system": "PlayStation 3",
+      "tiers": {
+        "battery": {
+          "settings": {
+            "Core": { "PPU Decoder": "Recompiler (LLVM)", "SPU Decoder": "Recompiler (LLVM)", "Preferred SPU Threads": 0 },
+            "Video": { "Renderer": "Vulkan", "Resolution Scale": 100, "Anisotropic Filter Override": 0, "Shader Mode": "Async Shader Recompiler", "Multithreaded RSX": false, "VSync": false }
+          }
+        },
+        "balanced": {
+          "settings": {
+            "Core": { "PPU Decoder": "Recompiler (LLVM)", "SPU Decoder": "Recompiler (LLVM)", "Preferred SPU Threads": 0 },
+            "Video": { "Renderer": "Vulkan", "Resolution Scale": 100, "Anisotropic Filter Override": 4, "Shader Mode": "Async Shader Recompiler", "VSync": false }
+          }
+        },
+        "performance": {
+          "settings": {
+            "Core": { "PPU Decoder": "Recompiler (LLVM)", "SPU Decoder": "Recompiler (LLVM)", "Preferred SPU Threads": 0 },
+            "Video": { "Renderer": "Vulkan", "Resolution Scale": 150, "Anisotropic Filter Override": 8, "Shader Mode": "Async Shader Recompiler", "VSync": false }
+          },
+          "lowGpu": { "Video": { "Resolution Scale": 100, "Anisotropic Filter Override": 4 } }
+        },
+        "max": {
+          "settings": {
+            "Core": { "PPU Decoder": "Recompiler (LLVM)", "SPU Decoder": "Recompiler (LLVM)", "Preferred SPU Threads": 0 },
+            "Video": { "Renderer": "Vulkan", "Resolution Scale": 200, "Anisotropic Filter Override": 16, "Shader Mode": "Async Shader Recompiler", "VSync": true }
+          },
+          "lowGpu": { "Video": { "Resolution Scale": 150, "Anisotropic Filter Override": 8 } }
+        }
+      }
+    },
+    {
+      "id": "duckstation",
+      "name": "DuckStation",
+      "system": "PlayStation",
+      "tiers": {
+        "battery": { "settings": { "GPU": { "Renderer": "Vulkan", "ResolutionScale": 2, "TextureFilter": "Nearest", "PGXPEnable": true } } },
+        "balanced": { "settings": { "GPU": { "Renderer": "Vulkan", "ResolutionScale": 3, "TextureFilter": "Nearest", "PGXPEnable": true } } },
+        "performance": { "settings": { "GPU": { "Renderer": "Vulkan", "ResolutionScale": 5, "TextureFilter": "Bilinear", "PGXPEnable": true } } },
+        "max": {
+          "settings": { "GPU": { "Renderer": "Vulkan", "ResolutionScale": 8, "TextureFilter": "xBRBinAlias", "PGXPEnable": true } },
+          "lowGpu": { "GPU": { "ResolutionScale": 5, "TextureFilter": "Bilinear" } }
+        }
+      }
+    },
+    {
+      "id": "ppsspp",
+      "name": "PPSSPP",
+      "system": "PSP",
+      "tiers": {
+        "battery": { "settings": { "Graphics": { "GraphicsBackend": "3 (VULKAN)", "InternalResolution": 2, "AnisotropyLevel": 0, "FrameSkip": 0 } } },
+        "balanced": { "settings": { "Graphics": { "GraphicsBackend": "3 (VULKAN)", "InternalResolution": 3, "AnisotropyLevel": 2, "FrameSkip": 0 } } },
+        "performance": { "settings": { "Graphics": { "GraphicsBackend": "3 (VULKAN)", "InternalResolution": 4, "AnisotropyLevel": 3, "FrameSkip": 0 } } },
+        "max": {
+          "settings": { "Graphics": { "GraphicsBackend": "3 (VULKAN)", "InternalResolution": 6, "AnisotropyLevel": 4, "FrameSkip": 0 } },
+          "lowGpu": { "Graphics": { "InternalResolution": 4, "AnisotropyLevel": 3 } }
+        }
+      }
+    },
+    {
+      "id": "dolphin",
+      "name": "Dolphin",
+      "system": "GameCube / Wii",
+      "tiers": {
+        "battery": { "settings": { "Core": { "GFXBackend": "Vulkan", "CPUThread": true }, "Video_Settings": { "InternalResolution": 1, "ShaderCompilationMode": 2, "WaitForShadersBeforeStarting": true }, "Video_Enhancements": { "MaxAnisotropy": 0 } } },
+        "balanced": { "settings": { "Core": { "GFXBackend": "Vulkan", "CPUThread": true }, "Video_Settings": { "InternalResolution": 2, "ShaderCompilationMode": 2, "WaitForShadersBeforeStarting": true }, "Video_Enhancements": { "MaxAnisotropy": 1 } } },
+        "performance": {
+          "settings": { "Core": { "GFXBackend": "Vulkan", "CPUThread": true }, "Video_Settings": { "InternalResolution": 3, "ShaderCompilationMode": 2, "WaitForShadersBeforeStarting": true }, "Video_Enhancements": { "MaxAnisotropy": 2 } },
+          "lowGpu": { "Video_Settings": { "InternalResolution": 2 }, "Video_Enhancements": { "MaxAnisotropy": 1 } }
+        },
+        "max": {
+          "settings": { "Core": { "GFXBackend": "Vulkan", "CPUThread": true }, "Video_Settings": { "InternalResolution": 4, "ShaderCompilationMode": 2, "WaitForShadersBeforeStarting": true }, "Video_Enhancements": { "MaxAnisotropy": 4 } },
+          "lowGpu": { "Video_Settings": { "InternalResolution": 3 }, "Video_Enhancements": { "MaxAnisotropy": 2 } }
+        }
+      }
+    },
+    {
+      "id": "cemu",
+      "name": "Cemu",
+      "system": "Wii U",
+      "tiers": {
+        "battery": { "settings": { "Graphic": { "api": 1, "AsyncCompile": true, "VSync": 0 } } },
+        "balanced": { "settings": { "Graphic": { "api": 1, "AsyncCompile": true, "VSync": 0 } } },
+        "performance": { "settings": { "Graphic": { "api": 1, "AsyncCompile": true, "VSync": 0 } } },
+        "max": { "settings": { "Graphic": { "api": 1, "AsyncCompile": true, "VSync": 1 } } }
+      }
+    },
+    {
+      "id": "xenia",
+      "name": "Xenia Canary",
+      "system": "Xbox 360",
+      "tiers": {
+        "battery": { "settings": { "GPU": { "gpu": "d3d12", "draw_resolution_scale_x": 1, "draw_resolution_scale_y": 1 } } },
+        "balanced": { "settings": { "GPU": { "gpu": "d3d12", "draw_resolution_scale_x": 1, "draw_resolution_scale_y": 1 } } },
+        "performance": { "settings": { "GPU": { "gpu": "d3d12", "draw_resolution_scale_x": 1, "draw_resolution_scale_y": 1 } } },
+        "max": {
+          "settings": { "GPU": { "gpu": "d3d12", "draw_resolution_scale_x": 2, "draw_resolution_scale_y": 2 } },
+          "lowGpu": { "GPU": { "draw_resolution_scale_x": 1, "draw_resolution_scale_y": 1 } }
+        }
+      }
+    },
+    {
+      "id": "switch",
+      "name": "Switch (Ryujinx / Eden / Citron / Sudachi)",
+      "system": "Nintendo Switch",
+      "_comment": "Neutral vocabulary, mapped to each Switch emulator's native keys by the app.",
+      "tiers": {
+        "battery": { "settings": { "switch": { "resolutionScale": 1, "docked": false, "asyncShaders": true, "gpuAccuracy": "normal", "anisotropy": 0 } } },
+        "balanced": { "settings": { "switch": { "resolutionScale": 1, "docked": false, "asyncShaders": true, "gpuAccuracy": "normal", "anisotropy": 4 } } },
+        "performance": { "settings": { "switch": { "resolutionScale": 1, "docked": true, "asyncShaders": true, "gpuAccuracy": "normal", "anisotropy": 8 } } },
+        "max": {
+          "settings": { "switch": { "resolutionScale": 2, "docked": true, "asyncShaders": true, "gpuAccuracy": "high", "anisotropy": 16 } },
+          "lowGpu": { "switch": { "resolutionScale": 1, "gpuAccuracy": "normal" } }
+        }
+      }
+    }
+  ]
+}

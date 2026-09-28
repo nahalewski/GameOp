@@ -1,0 +1,240 @@
+{
+  "emulator": "duckstation",
+  "games": [
+    {
+      "title": "Final Fantasy VII",
+      "ids": [
+        "SCUS-94163",
+        "SCUS-94164",
+        "SCUS-94165",
+        "SCES-00867",
+        "SCES-10867",
+        "SCES-20867",
+        "SCES-00868",
+        "SCES-10868",
+        "SCES-20868",
+        "SCES-00869",
+        "SCES-10869",
+        "SCES-20869",
+        "SCES-00900",
+        "SCES-10900",
+        "SCES-20900"
+      ],
+      "demand": "light",
+      "recommendedTier": "battery",
+      "compatibility": "NoIssues",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "No user settings needed. DuckStation's gamedb disables widescreen and sprite texture filtering because they break the pre-rendered backgrounds.",
+      "source": "https://raw.githubusercontent.com/stenzek/duckstation/master/data/resources/gamedb.yaml"
+    },
+    {
+      "title": "Final Fantasy VIII",
+      "ids": [
+        "SLUS-00892",
+        "SLUS-00908",
+        "SLUS-00909",
+        "SLUS-00910",
+        "SCES-02080",
+        "SCES-12080",
+        "SCES-22080",
+        "SCES-32080",
+        "SLES-02081",
+        "SLES-12081",
+        "SLES-22081",
+        "SLES-32081",
+        "SLES-02082",
+        "SLES-12082",
+        "SLES-22082",
+        "SLES-32082",
+        "SLES-02083",
+        "SLES-12083",
+        "SLES-22083",
+        "SLES-32083",
+        "SLES-02084",
+        "SLES-12084",
+        "SLES-22084",
+        "SLES-32084"
+      ],
+      "demand": "light",
+      "recommendedTier": "battery",
+      "compatibility": "NoIssues",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "The gamedb auto-limits CD-ROM speedup during FMVs and disables widescreen/scaled interlacing. Don't force CD read speedup for this game.",
+      "source": "https://raw.githubusercontent.com/stenzek/duckstation/master/data/resources/gamedb.yaml"
+    },
+    {
+      "title": "Final Fantasy IX",
+      "ids": [
+        "SLUS-01251",
+        "SLUS-01295",
+        "SLUS-01296",
+        "SLUS-01297",
+        "SLES-02965",
+        "SLES-12965",
+        "SLES-22965",
+        "SLES-32965",
+        "SLES-02966",
+        "SLES-12966",
+        "SLES-22966",
+        "SLES-32966",
+        "SLES-02967",
+        "SLES-12967",
+        "SLES-22967",
+        "SLES-32967",
+        "SLES-02968",
+        "SLES-12968",
+        "SLES-22968",
+        "SLES-32968",
+        "SLES-02969",
+        "SLES-12969",
+        "SLES-22969",
+        "SLES-32969"
+      ],
+      "demand": "light",
+      "recommendedTier": "battery",
+      "compatibility": "NoIssues",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "No user settings needed; widescreen hack is disabled by the gamedb.",
+      "source": "https://raw.githubusercontent.com/stenzek/duckstation/master/data/resources/gamedb.yaml"
+    },
+    {
+      "title": "Metal Gear Solid",
+      "ids": [
+        "SLUS-00594",
+        "SLUS-00776",
+        "SLES-01370",
+        "SLES-11370",
+        "SLES-01506",
+        "SLES-11506",
+        "SLES-01507",
+        "SLES-11507",
+        "SLES-01508",
+        "SLES-11508",
+        "SLES-01734",
+        "SLES-11734"
+      ],
+      "demand": "light",
+      "recommendedTier": "battery",
+      "compatibility": "NoIssues",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "The gamedb forces PGXP CPU mode when PGXP is on (more CPU cost, still light on Z1) and caps CD speedup, since the game crashes at high read speedup.",
+      "source": "https://raw.githubusercontent.com/stenzek/duckstation/master/data/resources/gamedb.yaml"
+    },
+    {
+      "title": "Crash Bandicoot",
+      "ids": [
+        "SCUS-94900",
+        "SCES-00344"
+      ],
+      "demand": "light",
+      "recommendedTier": "battery",
+      "compatibility": "NoIssues",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "No user settings needed; the gamedb forces rounded texture coordinates for upscaling.",
+      "source": "https://raw.githubusercontent.com/stenzek/duckstation/master/data/resources/gamedb.yaml"
+    },
+    {
+      "title": "Spyro the Dragon",
+      "ids": [
+        "SCUS-94228",
+        "SCES-01438"
+      ],
+      "demand": "light",
+      "recommendedTier": "battery",
+      "compatibility": "NoIssues",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "When PGXP is on, the gamedb forces PGXP CPU mode and disables PGXP culling to avoid geometry corruption near portals.",
+      "source": "https://raw.githubusercontent.com/stenzek/duckstation/master/data/resources/gamedb.yaml"
+    },
+    {
+      "title": "Gran Turismo 2",
+      "ids": [
+        "SCUS-94455",
+        "SCUS-94488",
+        "SCES-02380",
+        "SCES-12380"
+      ],
+      "demand": "light",
+      "recommendedTier": "battery",
+      "compatibility": "NoIssues",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "No issues and no per-game settings needed.",
+      "source": "https://raw.githubusercontent.com/stenzek/duckstation/master/data/resources/gamedb.yaml"
+    },
+    {
+      "title": "Resident Evil 2",
+      "ids": [
+        "SLUS-00421",
+        "SLUS-00592",
+        "SLUS-00748",
+        "SLUS-00756",
+        "SLES-00972",
+        "SLES-10972",
+        "SLES-00973",
+        "SLES-10973",
+        "SLES-00974",
+        "SLES-10974",
+        "SLES-00975",
+        "SLES-10975",
+        "SLES-00976",
+        "SLES-10976"
+      ],
+      "demand": "light",
+      "recommendedTier": "battery",
+      "compatibility": "NoIssues",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "The gamedb caps CD speedup (the game hangs on boot and at doors otherwise), forces the recompiler ICache and disables widescreen.",
+      "source": "https://raw.githubusercontent.com/stenzek/duckstation/master/data/resources/gamedb.yaml"
+    },
+    {
+      "title": "Castlevania: Symphony of the Night",
+      "ids": [
+        "SLUS-00067",
+        "SLES-00524"
+      ],
+      "demand": "light",
+      "recommendedTier": "battery",
+      "compatibility": "NoIssues",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "The gamedb caps CD read speedup (hangs on the first load otherwise) and disables widescreen, which breaks sprite alignment.",
+      "source": "https://raw.githubusercontent.com/stenzek/duckstation/master/data/resources/gamedb.yaml"
+    },
+    {
+      "title": "Tekken 3",
+      "ids": [
+        "SLUS-00402",
+        "SCES-01237"
+      ],
+      "demand": "light",
+      "recommendedTier": "battery",
+      "compatibility": "NoIssues",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "The gamedb forces PGXP CPU mode and a PGXP tolerance of 3 to fix spiky polygons, and disables auto analog mode.",
+      "source": "https://raw.githubusercontent.com/stenzek/duckstation/master/data/resources/gamedb.yaml"
+    },
+    {
+      "title": "Silent Hill",
+      "ids": [
+        "SLUS-00707",
+        "SLES-01514"
+      ],
+      "demand": "light",
+      "recommendedTier": "battery",
+      "compatibility": "NoIssues",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "The gamedb forces the recompiler ICache. No user settings needed.",
+      "source": "https://raw.githubusercontent.com/stenzek/duckstation/master/data/resources/gamedb.yaml"
+    }
+  ]
+}

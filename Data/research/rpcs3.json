@@ -1,0 +1,839 @@
+{
+  "emulator": "rpcs3",
+  "games": [
+    {
+      "title": "Demon's Souls",
+      "ids": [
+        "BLUS30443",
+        "BLES00932",
+        "BCJS30022",
+        "BCAS20071",
+        "NPEB01202",
+        "NPUB30910",
+        "NPJA00102"
+      ],
+      "demand": "heavy",
+      "recommendedTier": "performance",
+      "compatibility": "Playable",
+      "settings": {
+        "Video": {
+          "Write Color Buffers": true,
+          "Minimum Scalable Dimension": 640
+        }
+      },
+      "tierSettings": {},
+      "notes": "Enable the 'Unlock FPS' patch. On CPUs under 8 cores/16 threads the wiki suggests Max SPURS Threads = 3 (Advanced tab); the in-game FPS counter is unreliable due to frame duplication.",
+      "source": "https://wiki.rpcs3.net/index.php?title=Demon%27s_Souls"
+    },
+    {
+      "title": "Persona 5",
+      "ids": [
+        "BLUS31604",
+        "BLES02247",
+        "BLJM61346",
+        "NPEB02436",
+        "NPJB00769",
+        "NPUB31848"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Playable",
+      "settings": {
+        "Video": {
+          "Write Color Buffers": true,
+          "Resolution Scale": 100
+        }
+      },
+      "tierSettings": {},
+      "notes": "Use only integer resolution scales (100/200/300%). On weak hardware (e.g. Steam Deck) the wiki suggests Max SPURS Threads = 4 and trying SPU thread values 1-3; keep frame limit at 30 to avoid palace soft-locks.",
+      "source": "https://wiki.rpcs3.net/index.php?title=Persona_5"
+    },
+    {
+      "title": "Red Dead Redemption",
+      "ids": [
+        "BLUS30418",
+        "BLES00680",
+        "BLJM60265",
+        "BLKS20202",
+        "NPEB00833",
+        "NPUB30638",
+        "NPHB00465",
+        "BLES01294",
+        "BLUS30758",
+        "BLJM60403",
+        "BLAS50382",
+        "BLKS20315",
+        "NPJB00504"
+      ],
+      "demand": "extreme",
+      "recommendedTier": "max",
+      "compatibility": "Ingame",
+      "settings": {
+        "Core": {
+          "Sleep Timers Accuracy": "As Host"
+        },
+        "Video": {
+          "Write Color Buffers": true,
+          "MSAA": "Disabled",
+          "Relaxed ZCULL Sync": true,
+          "Accurate ZCULL stats": false
+        }
+      },
+      "tierSettings": {},
+      "notes": "Do not install game updates - they lower performance significantly. Very CPU heavy; expect sub-30fps on handheld APUs.",
+      "source": "https://wiki.rpcs3.net/index.php?title=Red_Dead_Redemption"
+    },
+    {
+      "title": "Metal Gear Solid 4: Guns of the Patriots",
+      "ids": [
+        "BLUS30109",
+        "BLES00246",
+        "BLJM67001",
+        "NPEB02182",
+        "NPUB31633",
+        "NPJB00698"
+      ],
+      "demand": "extreme",
+      "recommendedTier": "max",
+      "compatibility": "Ingame",
+      "settings": {
+        "Core": {
+          "Accurate RSX reservation access": true
+        },
+        "Video": {
+          "Write Color Buffers": true,
+          "Frame limit": "PS3 Native",
+          "Relaxed ZCULL Sync": true,
+          "Accurate ZCULL stats": false
+        }
+      },
+      "tierSettings": {},
+      "notes": "Wiki also requires libvdec.sprx in Firmware libraries (LLE) for FMVs and the canary 'Crash fix' patch; the game is very unstable without it.",
+      "source": "https://wiki.rpcs3.net/index.php?title=Metal_Gear_Solid_4:_Guns_of_the_Patriots"
+    },
+    {
+      "title": "God of War III",
+      "ids": [
+        "BCUS98111",
+        "BCES00510",
+        "BCES00799",
+        "BCKS15003",
+        "BCAS25003",
+        "BCJS37001"
+      ],
+      "demand": "extreme",
+      "recommendedTier": "max",
+      "compatibility": "Ingame",
+      "settings": {
+        "Core": {
+          "SPU Block Size": "Mega"
+        },
+        "Video": {
+          "Write Color Buffers": true,
+          "Minimum Scalable Dimension": 160,
+          "Vulkan": {
+            "Asynchronous Texture Streaming 2": true
+          }
+        }
+      },
+      "tierSettings": {},
+      "notes": "Enable the 'Disable MLAA' and 'Disable SPU MLAA' patches for performance. Hardware requirement is very high.",
+      "source": "https://wiki.rpcs3.net/index.php?title=God_of_War_III"
+    },
+    {
+      "title": "God of War: Ascension",
+      "ids": [
+        "BCUS98232",
+        "BCES01741",
+        "BCES01742",
+        "BCJS37008",
+        "BCAS25016",
+        "NPEA00445",
+        "NPUA80918",
+        "NPHA80258",
+        "NPJA00094"
+      ],
+      "demand": "extreme",
+      "recommendedTier": "max",
+      "compatibility": "Ingame",
+      "settings": {
+        "Core": {
+          "Accurate RSX reservation access": true,
+          "Sleep Timers Accuracy": "As Host"
+        },
+        "Video": {
+          "Write Color Buffers": true,
+          "Relaxed ZCULL Sync": false,
+          "Accurate ZCULL stats": false
+        }
+      },
+      "tierSettings": {},
+      "notes": "The 'Disable MLAA' patch is mandatory (black screen without it). Do not use Relaxed ZCULL.",
+      "source": "https://wiki.rpcs3.net/index.php?title=God_of_War:_Ascension"
+    },
+    {
+      "title": "God of War Collection",
+      "ids": [
+        "BCUS98229",
+        "BCES00791",
+        "BCES00800",
+        "BLJM60200",
+        "NPJA00066",
+        "NPEA00255",
+        "NPUA80490",
+        "NPHA80104",
+        "NPJA00061",
+        "NPEA00256",
+        "NPUA80491",
+        "NPJA00062",
+        "NPHA80105"
+      ],
+      "demand": "medium",
+      "recommendedTier": "performance",
+      "compatibility": "Playable",
+      "settings": {
+        "Video": {
+          "Frame limit": "60"
+        }
+      },
+      "tierSettings": {},
+      "notes": "Game speed is tied to 60 FPS, so a locked 60 is needed to avoid slowdown.",
+      "source": "https://wiki.rpcs3.net/index.php?title=God_of_War:_Collection"
+    },
+    {
+      "title": "Uncharted: Drake's Fortune",
+      "ids": [
+        "BCUS98103",
+        "BCES00065",
+        "BCJS30015",
+        "BCAS20024",
+        "NPEA00363",
+        "NPUA80697",
+        "NPHA80193"
+      ],
+      "demand": "heavy",
+      "recommendedTier": "performance",
+      "compatibility": "Ingame",
+      "settings": {
+        "Core": {
+          "SPU Block Size": "Mega"
+        },
+        "Video": {
+          "Write Color Buffers": true,
+          "MSAA": "Disabled",
+          "Minimum Scalable Dimension": 160,
+          "Relaxed ZCULL Sync": false,
+          "Accurate ZCULL stats": false
+        }
+      },
+      "tierSettings": {},
+      "notes": "Wiki also suggests Write Depth Buffer (if smoke clips through objects) and 'Emulate Special Depth Comparison' (fixes offscreen Z-fighting) in the Advanced tab.",
+      "source": "https://wiki.rpcs3.net/index.php?title=Uncharted:_Drake%27s_Fortune"
+    },
+    {
+      "title": "Uncharted 2: Among Thieves",
+      "ids": [
+        "BCUS98123",
+        "BCES00509",
+        "BCES00727",
+        "BCES00757",
+        "BCJS30035",
+        "BCAS20097",
+        "BCKS10086",
+        "NPEA00364",
+        "NPEA00365",
+        "NPEA00369",
+        "NPUA80698",
+        "NPHA80194"
+      ],
+      "demand": "extreme",
+      "recommendedTier": "max",
+      "compatibility": "Ingame",
+      "settings": {
+        "Video": {
+          "Write Color Buffers": true,
+          "Read Depth Buffer": true,
+          "Anisotropic Filter Override": 0,
+          "Minimum Scalable Dimension": 160,
+          "Vulkan": {
+            "Asynchronous Texture Streaming 2": true
+          }
+        }
+      },
+      "tierSettings": {},
+      "notes": "Enable 'Disable Mesh Trimming' and 'Enable GPU Lighting' patches; only use 'Disable SPU Post-processing' when upscaling. Read Depth Buffer is only needed with async texture streaming.",
+      "source": "https://wiki.rpcs3.net/index.php?title=Uncharted_2:_Among_Thieves"
+    },
+    {
+      "title": "Uncharted 3: Drake's Deception",
+      "ids": [
+        "BCUS98233",
+        "BCES01175",
+        "BCES01176",
+        "BCJS37004",
+        "BCAS25009",
+        "BCUS99086",
+        "BCES01670",
+        "BCES01692",
+        "BCAS25014",
+        "NPEA00422",
+        "NPUA80858"
+      ],
+      "demand": "extreme",
+      "recommendedTier": "max",
+      "compatibility": "Ingame",
+      "settings": {
+        "Core": {
+          "Accurate RSX reservation access": true
+        },
+        "Video": {
+          "Write Color Buffers": true,
+          "Read Color Buffers": true,
+          "Handle RSX Memory Tiling": true,
+          "Multithreaded RSX": true,
+          "Resolution Scale": 100,
+          "Relaxed ZCULL Sync": false,
+          "Accurate ZCULL stats": true,
+          "Vulkan": {
+            "Asynchronous Texture Streaming 2": true
+          }
+        }
+      },
+      "tierSettings": {},
+      "notes": "ZCULL must be Precise. Enable the MLAA/mesh trimming/GPU lighting patches; with patches, Read Color Buffers and memory tiling are not needed.",
+      "source": "https://wiki.rpcs3.net/index.php?title=Uncharted_3:_Drake%27s_Deception"
+    },
+    {
+      "title": "The Last of Us",
+      "ids": [
+        "BCUS98174",
+        "BCES01584",
+        "BCES01585",
+        "BCJS37010",
+        "BCAS20270",
+        "NPEA00435",
+        "NPUA80960",
+        "NPHA80243",
+        "NPJA00096",
+        "NPEA00521",
+        "NPUA81175"
+      ],
+      "demand": "extreme",
+      "recommendedTier": "max",
+      "compatibility": "Ingame",
+      "settings": {
+        "Core": {
+          "Accurate RSX reservation access": true
+        },
+        "Video": {
+          "Frame limit": "60",
+          "Resolution Scale": 100,
+          "Minimum Scalable Dimension": 1,
+          "Write Color Buffers": true,
+          "Read Color Buffers": true,
+          "Handle RSX Memory Tiling": true,
+          "Relaxed ZCULL Sync": true,
+          "Accurate ZCULL stats": false
+        }
+      },
+      "tierSettings": {},
+      "notes": "Requires a strong CPU plus the 'Disable in-built MLAA' and bug-fix patches for serviceable performance; Relaxed ZCULL may break the flashlight.",
+      "source": "https://wiki.rpcs3.net/index.php?title=The_Last_of_Us"
+    },
+    {
+      "title": "Gran Turismo 5",
+      "ids": [
+        "BCUS98114",
+        "BCES00569",
+        "BCAS20108",
+        "BCJS30001"
+      ],
+      "demand": "extreme",
+      "recommendedTier": "max",
+      "compatibility": "Ingame",
+      "settings": {
+        "Core": {
+          "SPU Block Size": "Mega",
+          "Accurate RSX reservation access": true,
+          "Sleep Timers Accuracy": "As Host"
+        },
+        "Video": {
+          "Disable ZCull Occlusion Queries": true
+        }
+      },
+      "tierSettings": {},
+      "notes": "Buying cars can crash with the SPU LLVM recompiler; ASMJIT or accurate xfloat avoids it. Updates past 2.00 are heavier on the CPU.",
+      "source": "https://wiki.rpcs3.net/index.php?title=Gran_Turismo_5"
+    },
+    {
+      "title": "Gran Turismo 6",
+      "ids": [
+        "BCUS98296",
+        "BCES01893",
+        "BCES01977",
+        "BCJS37016",
+        "BCAS25018",
+        "BCUS99247",
+        "NPEA00502",
+        "NPUA81049",
+        "NPHA80269",
+        "NPJA00113"
+      ],
+      "demand": "extreme",
+      "recommendedTier": "max",
+      "compatibility": "Ingame",
+      "settings": {
+        "Core": {
+          "Accurate RSX reservation access": true
+        },
+        "Video": {
+          "Write Color Buffers": true,
+          "Read Color Buffers": true,
+          "Disable ZCull Occlusion Queries": true
+        }
+      },
+      "tierSettings": {},
+      "notes": "Do not update past 1.05. On 1.05 and below the wiki alternatively suggests Force CPU Blit with Write/Read Color Buffers off for higher FPS (less lighting).",
+      "source": "https://wiki.rpcs3.net/index.php?title=Gran_Turismo_6"
+    },
+    {
+      "title": "Ni no Kuni: Wrath of the White Witch",
+      "ids": [
+        "BLUS30947",
+        "BLES01555",
+        "NPEB01158",
+        "NPUB30932",
+        "BLJS10150",
+        "BLJS10185",
+        "NPJB00238"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Playable",
+      "settings": {
+        "Video": {
+          "Anisotropic Filter Override": 16,
+          "Vblank Rate": 120
+        }
+      },
+      "tierSettings": {},
+      "notes": "Vblank 120 is for 60fps play; 16x AF can make some 2D UI elements display incorrectly.",
+      "source": "https://wiki.rpcs3.net/index.php?title=Ni_no_Kuni:_Wrath_of_the_White_Witch"
+    },
+    {
+      "title": "Yakuza 3",
+      "ids": [
+        "BLUS30494",
+        "BLES00834",
+        "BLJM60132"
+      ],
+      "demand": "heavy",
+      "recommendedTier": "performance",
+      "compatibility": "Ingame",
+      "settings": {
+        "Core": {
+          "SPU Block Size": "Mega",
+          "RSX FIFO Accuracy": "Atomic"
+        },
+        "Video": {
+          "Minimum Scalable Dimension": 512
+        }
+      },
+      "tierSettings": {},
+      "notes": "Random crashes without log output are a known issue. AMD Windows drivers can show rainbow patterns on faces in some cutscenes.",
+      "source": "https://wiki.rpcs3.net/index.php?title=Yakuza_3"
+    },
+    {
+      "title": "Yakuza 4",
+      "ids": [
+        "BLUS30643",
+        "BLES01081",
+        "BLJM60208",
+        "NPEB02036",
+        "NPUB31510"
+      ],
+      "demand": "heavy",
+      "recommendedTier": "performance",
+      "compatibility": "Ingame",
+      "settings": {
+        "Video": {
+          "Minimum Scalable Dimension": 512
+        }
+      },
+      "tierSettings": {},
+      "notes": "Random crashes without log output are a known issue.",
+      "source": "https://wiki.rpcs3.net/index.php?title=Yakuza_4"
+    },
+    {
+      "title": "Yakuza 5",
+      "ids": [
+        "BLJM60489",
+        "NPEB02228",
+        "NPUB31658"
+      ],
+      "demand": "heavy",
+      "recommendedTier": "performance",
+      "compatibility": "Ingame",
+      "settings": {
+        "Core": {
+          "Sleep Timers Accuracy": "As Host"
+        },
+        "Video": {
+          "Minimum Scalable Dimension": 512,
+          "Force CPU Blit": true
+        }
+      },
+      "tierSettings": {},
+      "notes": "A SPU MLAA removal patch is available (does not work at exactly 100% resolution scale). Random crashes are a known issue.",
+      "source": "https://wiki.rpcs3.net/index.php?title=Yakuza_5"
+    },
+    {
+      "title": "Dragon's Crown",
+      "ids": [
+        "BLUS30767",
+        "BLES01950",
+        "BLJM61041",
+        "BCAS20298",
+        "NPEB01836",
+        "NPUB31235"
+      ],
+      "demand": "light",
+      "recommendedTier": "battery",
+      "compatibility": "Playable",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "No non-default settings recommended; minor black lines on some backdrops.",
+      "source": "https://wiki.rpcs3.net/index.php?title=Dragon%27s_Crown"
+    },
+    {
+      "title": "Ratchet & Clank Future: Tools of Destruction",
+      "ids": [
+        "BCUS98127",
+        "BCES00052",
+        "BCJS30014",
+        "NPEA00452",
+        "NPUA80965"
+      ],
+      "demand": "heavy",
+      "recommendedTier": "performance",
+      "compatibility": "Ingame",
+      "settings": {
+        "Core": {
+          "SPU Block Size": "Mega"
+        },
+        "Video": {
+          "Frame limit": "60",
+          "MSAA": "Disabled",
+          "Multithreaded RSX": false,
+          "Relaxed ZCULL Sync": false,
+          "Accurate ZCULL stats": false,
+          "Vulkan": {
+            "Asynchronous Texture Streaming 2": false
+          }
+        }
+      },
+      "tierSettings": {},
+      "notes": "Use English (US) system language to avoid missing audio. Frame limit 60 helps if Decryptor puzzles don't work.",
+      "source": "https://wiki.rpcs3.net/index.php?title=Ratchet_%26_Clank_Future:_Tools_of_Destruction"
+    },
+    {
+      "title": "Ratchet & Clank Future: A Crack in Time",
+      "ids": [
+        "BCUS98124",
+        "BCES00511",
+        "BCES00726",
+        "BCES00748",
+        "NPEA00453",
+        "NPUA80966"
+      ],
+      "demand": "heavy",
+      "recommendedTier": "performance",
+      "compatibility": "Ingame",
+      "settings": {
+        "Video": {
+          "MSAA": "Auto",
+          "Read Color Buffers": true,
+          "Vulkan": {
+            "Asynchronous Texture Streaming 2": false
+          }
+        }
+      },
+      "tierSettings": {},
+      "notes": "Anti-aliasing must stay on Auto or the whole screen pixelates. RYNO V causes heavy FPS drops.",
+      "source": "https://wiki.rpcs3.net/index.php?title=Ratchet_%26_Clank_Future:_A_Crack_in_Time"
+    },
+    {
+      "title": "Skate 3",
+      "ids": [
+        "BLUS30464",
+        "BLES00760",
+        "BLJM60296"
+      ],
+      "demand": "heavy",
+      "recommendedTier": "performance",
+      "compatibility": "Playable",
+      "settings": {
+        "Video": {
+          "MSAA": "Disabled",
+          "Write Color Buffers": true,
+          "Vblank Rate": 120
+        }
+      },
+      "tierSettings": {},
+      "notes": "On CPUs with fewer than 12 threads the wiki suggests trying Preferred SPU Threads 1, 2 or 3 to fix choppy audio or slow-motion physics.",
+      "source": "https://wiki.rpcs3.net/index.php?title=Skate_3"
+    },
+    {
+      "title": "Resistance: Fall of Man",
+      "ids": [
+        "BCUS98107",
+        "BCES00001",
+        "BCJS30003",
+        "NPEA00430"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Playable",
+      "settings": {
+        "Video": {
+          "Minimum Scalable Dimension": 80
+        }
+      },
+      "tierSettings": {},
+      "notes": "Vblank Rate 120 plus the 'Unlock FPS' patch allows 60fps (above 150Hz breaks Bullseye trap physics).",
+      "source": "https://wiki.rpcs3.net/index.php?title=Resistance:_Fall_of_Man"
+    },
+    {
+      "title": "Killzone 2",
+      "ids": [
+        "BCUS98116",
+        "BCES00081",
+        "BCJS30032",
+        "BCAS20066"
+      ],
+      "demand": "extreme",
+      "recommendedTier": "max",
+      "compatibility": "Ingame",
+      "settings": {
+        "Core": {
+          "SPU Block Size": "Mega"
+        },
+        "Video": {
+          "Write Color Buffers": true,
+          "Multithreaded RSX": false,
+          "Relaxed ZCULL Sync": true,
+          "Accurate ZCULL stats": false,
+          "Vulkan": {
+            "Asynchronous Texture Streaming 2": false
+          }
+        }
+      },
+      "tierSettings": {},
+      "notes": "Write Color Buffers is only needed without the 'Disable Post Processing on SPU' patch. Sixaxis required in places; Vblank 120 enables 60fps.",
+      "source": "https://wiki.rpcs3.net/index.php?title=Killzone_2"
+    },
+    {
+      "title": "Killzone 3",
+      "ids": [
+        "BCUS98234",
+        "BCES01007"
+      ],
+      "demand": "extreme",
+      "recommendedTier": "max",
+      "compatibility": "Ingame",
+      "settings": {
+        "Core": {
+          "SPU Block Size": "Mega"
+        },
+        "Video": {
+          "Write Color Buffers": true,
+          "Vblank Rate": 120,
+          "Relaxed ZCULL Sync": true,
+          "Accurate ZCULL stats": false,
+          "Vulkan": {
+            "Asynchronous Texture Streaming 2": false
+          }
+        }
+      },
+      "tierSettings": {},
+      "notes": "Write Color Buffers is only needed without the MLAA patch. Some elements bug out at high framerates.",
+      "source": "https://wiki.rpcs3.net/index.php?title=Killzone_3"
+    },
+    {
+      "title": "LittleBigPlanet",
+      "ids": [
+        "BCUS98148",
+        "BCES00141",
+        "NPEA00241",
+        "NPUA80472",
+        "BCUS98208",
+        "BCES00611",
+        "BCAS20078"
+      ],
+      "demand": "heavy",
+      "recommendedTier": "performance",
+      "compatibility": "Playable",
+      "settings": {
+        "Video": {
+          "Anisotropic Filter Override": 0,
+          "MSAA": "Auto",
+          "Minimum Scalable Dimension": 128,
+          "Write Color Buffers": true
+        }
+      },
+      "tierSettings": {},
+      "notes": "Update to at least v1.21 to avoid infinite loading. Water levels may freeze after a while.",
+      "source": "https://wiki.rpcs3.net/index.php?title=LittleBigPlanet"
+    },
+    {
+      "title": "Heavenly Sword",
+      "ids": [
+        "BCUS98132",
+        "BCES00078",
+        "BCAS20016"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Playable",
+      "settings": {
+        "Video": {
+          "MSAA": "Disabled"
+        }
+      },
+      "tierSettings": {},
+      "notes": "Disabling anti-aliasing avoids VRAM-related crashes in picture-in-picture scenes, especially with resolution scaling.",
+      "source": "https://wiki.rpcs3.net/index.php?title=Heavenly_Sword"
+    },
+    {
+      "title": "Valkyria Chronicles",
+      "ids": [
+        "BLUS30196",
+        "BLES00372",
+        "BLJM60063"
+      ],
+      "demand": "light",
+      "recommendedTier": "battery",
+      "compatibility": "Playable",
+      "settings": {
+        "Video": {
+          "Frame limit": "PS3 Native"
+        }
+      },
+      "tierSettings": {},
+      "notes": "PS3 Native frame limit removes tearing during cutscenes and intros.",
+      "source": "https://wiki.rpcs3.net/index.php?title=Valkyria_Chronicles"
+    },
+    {
+      "title": "Tales of Xillia",
+      "ids": [
+        "BLUS31006",
+        "BLES01815",
+        "BLJS10120",
+        "NPEB01310",
+        "NPUB31136"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Playable",
+      "settings": {
+        "Core": {
+          "PPU Threads": 1
+        },
+        "Video": {
+          "Frame limit": "PS3 Native"
+        }
+      },
+      "tierSettings": {},
+      "notes": "PPU Threads 1 (config.yml only) fixes missing music/SFX. Leave frame limit Off instead if using the 60 FPS patch; don't skip the Bamco logos.",
+      "source": "https://wiki.rpcs3.net/index.php?title=Tales_of_Xillia"
+    },
+    {
+      "title": "Tales of Graces f",
+      "ids": [
+        "BLUS30903",
+        "BLES01617",
+        "NPUB31133"
+      ],
+      "demand": "light",
+      "recommendedTier": "battery",
+      "compatibility": "Playable",
+      "settings": {
+        "Video": {
+          "Frame limit": "PS3 Native"
+        }
+      },
+      "tierSettings": {},
+      "notes": "PS3 Native frame limit lets the game switch between its 60fps combat and 30fps field caps.",
+      "source": "https://wiki.rpcs3.net/index.php?title=Tales_of_Graces_f"
+    },
+    {
+      "title": "Catherine",
+      "ids": [
+        "BLUS30428",
+        "BLES01459",
+        "BLJM60215",
+        "NPEB00875",
+        "NPUB30698"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Playable",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "No non-default settings recommended.",
+      "source": "https://wiki.rpcs3.net/index.php?title=Catherine"
+    },
+    {
+      "title": "Minecraft: PlayStation 3 Edition",
+      "ids": [
+        "BLUS31426",
+        "BLES01976",
+        "NPEB01899",
+        "NPUB31419",
+        "NPJB00549"
+      ],
+      "demand": "light",
+      "recommendedTier": "battery",
+      "compatibility": "Playable",
+      "settings": {
+        "Video": {
+          "Frame limit": "Off",
+          "Anisotropic Filter Override": 0,
+          "Multithreaded RSX": true
+        }
+      },
+      "tierSettings": {},
+      "notes": "Menus are tied to 60fps; avoid changing the frame limiter while the game runs. Split-screen lobby creation can crash.",
+      "source": "https://wiki.rpcs3.net/index.php?title=Minecraft"
+    },
+    {
+      "title": "Dark Souls",
+      "ids": [
+        "BLUS30782",
+        "BLES01396",
+        "BLES01402",
+        "BLES01765",
+        "BLJM60517"
+      ],
+      "demand": "heavy",
+      "recommendedTier": "performance",
+      "compatibility": "Playable",
+      "settings": {
+        "Core": {
+          "Accurate RSX reservation access": true
+        },
+        "Video": {
+          "Write Color Buffers": true,
+          "Relaxed ZCULL Sync": true,
+          "Accurate ZCULL stats": false,
+          "Vulkan": {
+            "Asynchronous Texture Streaming 2": true
+          }
+        }
+      },
+      "tierSettings": {},
+      "notes": "Write Color Buffers fixes the game appearing too dark; Accurate RSX reservation access may prevent random freezes.",
+      "source": "https://wiki.rpcs3.net/index.php?title=Dark_Souls"
+    }
+  ]
+}

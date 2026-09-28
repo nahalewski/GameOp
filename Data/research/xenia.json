@@ -1,0 +1,195 @@
+{
+  "emulator": "xenia",
+  "games": [
+    {
+      "title": "Halo 3",
+      "ids": [
+        "4D5307E6"
+      ],
+      "demand": "extreme",
+      "recommendedTier": "max",
+      "compatibility": "Playable",
+      "settings": {
+        "GPU": {
+          "occlusion_query": "fast",
+          "readback_resolve": "fast"
+        }
+      },
+      "tierSettings": {},
+      "notes": "Tester finished it with occlusion_query and readback_resolve set to fast; fast occlusion queries fix unoccluded lens flares.",
+      "source": "https://github.com/xenia-canary/game-compatibility/issues/214"
+    },
+    {
+      "title": "Halo 3: ODST",
+      "ids": [
+        "4D530877"
+      ],
+      "demand": "extreme",
+      "recommendedTier": "max",
+      "compatibility": "Playable",
+      "settings": {
+        "GPU": {
+          "occlusion_query": "fast",
+          "readback_resolve": "full"
+        }
+      },
+      "tierSettings": {},
+      "notes": "Tester on a ROG Xbox Ally X finished it with readback_resolve=full (fixes over-brightness) and occlusion_query=fast. ROV fixes decal flicker but is slow and crash-prone on AMD.",
+      "source": "https://github.com/xenia-canary/game-compatibility/issues/215"
+    },
+    {
+      "title": "Halo: Reach",
+      "ids": [
+        "4D53085B"
+      ],
+      "demand": "extreme",
+      "recommendedTier": "max",
+      "compatibility": "Playable",
+      "settings": {
+        "GPU": {
+          "occlusion_query": "fast",
+          "readback_resolve": "full"
+        }
+      },
+      "tierSettings": {},
+      "notes": "readback_resolve=full avoids text corruption and brightness issues; leave query_occlusion_sample_lower_threshold at default to avoid AO flicker.",
+      "source": "https://github.com/xenia-canary/game-compatibility/issues/981"
+    },
+    {
+      "title": "Red Dead Redemption",
+      "ids": [
+        "5454082B"
+      ],
+      "demand": "extreme",
+      "recommendedTier": "max",
+      "compatibility": "Playable",
+      "settings": {
+        "GPU": {
+          "occlusion_query": "fast"
+        }
+      },
+      "tierSettings": {},
+      "notes": "occlusion_query=fast fixes unoccluded lens flares; a tester also capped FPS with framerate_limit. Ragdoll physics may differ at higher FPS.",
+      "source": "https://github.com/xenia-canary/game-compatibility/issues/129"
+    },
+    {
+      "title": "Gears of War",
+      "ids": [
+        "4D5307D5"
+      ],
+      "demand": "heavy",
+      "recommendedTier": "performance",
+      "compatibility": "Playable",
+      "settings": {
+        "GPU": {
+          "occlusion_query": "fast"
+        }
+      },
+      "tierSettings": {},
+      "notes": "Use D3D12 (report says Vulkan still unstable). depth_bias_shader_offset=true fixed blood pools on NVIDIA but may not work on AMD.",
+      "source": "https://github.com/xenia-canary/game-compatibility/issues/44"
+    },
+    {
+      "title": "Gears of War 2",
+      "ids": [
+        "4D53082D"
+      ],
+      "demand": "heavy",
+      "recommendedTier": "performance",
+      "compatibility": "Playable",
+      "settings": {
+        "GPU": {
+          "occlusion_query": "strict"
+        }
+      },
+      "tierSettings": {},
+      "notes": "Maintainers recommend occlusion_query=strict for lens flares; the Black Shading Fix patch fixes black character textures.",
+      "source": "https://github.com/xenia-canary/game-compatibility/issues/46"
+    },
+    {
+      "title": "Forza Horizon",
+      "ids": [
+        "4D5309C9"
+      ],
+      "demand": "extreme",
+      "recommendedTier": "max",
+      "compatibility": "Playable",
+      "settings": {
+        "GPU": {
+          "readback_resolve": "fast"
+        },
+        "Storage": {
+          "mount_cache": true
+        }
+      },
+      "tierSettings": {},
+      "notes": "Tagged requires_mount_cache; readback_resolve=fast fixes green/purple car artifacts when upscaling. Stay at 1x (720p) scale on the Ally.",
+      "source": "https://github.com/xenia-canary/game-compatibility/issues/30"
+    },
+    {
+      "title": "Skate 3",
+      "ids": [
+        "454108E6"
+      ],
+      "demand": "heavy",
+      "recommendedTier": "performance",
+      "compatibility": "Playable",
+      "settings": {
+        "APU": {
+          "xma_decoder": "old",
+          "use_dedicated_xma_thread": false
+        }
+      },
+      "tierSettings": {},
+      "notes": "xma_decoder=old and disabling the dedicated XMA thread fixed audio cut-out freezes; readback_resolve=fast fixes billboard photos (Edge build).",
+      "source": "https://github.com/xenia-canary/game-compatibility/issues/349"
+    },
+    {
+      "title": "Lost Odyssey",
+      "ids": [
+        "4D5307FA"
+      ],
+      "demand": "heavy",
+      "recommendedTier": "performance",
+      "compatibility": "Gameplay",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "Character lighting flicker is fixed by ROV/FSI or the Character Lighting Fix patch; ROV is costly and can crash AMD shader compilers, so prefer the patch.",
+      "source": "https://github.com/xenia-canary/game-compatibility/issues/4"
+    },
+    {
+      "title": "Ninja Gaiden II",
+      "ids": [
+        "544307D5"
+      ],
+      "demand": "heavy",
+      "recommendedTier": "performance",
+      "compatibility": "Playable",
+      "settings": {
+        "GPU": {
+          "clear_memory_page_state": true
+        }
+      },
+      "tierSettings": {},
+      "notes": "Tagged requires_clear_memory_page_state_true (fixes missing models in Team Ninja games); a tester set apu to xaudio2 to avoid audio cut-outs.",
+      "source": "https://github.com/xenia-canary/game-compatibility/issues/492"
+    },
+    {
+      "title": "Blue Dragon",
+      "ids": [
+        "4D5307DF"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Gameplay",
+      "settings": {
+        "GPU": {
+          "clear_memory_page_state": true
+        }
+      },
+      "tierSettings": {},
+      "notes": "Tagged requires_clear_memory_page_state_true; fur textures need render_target_path_d3d12=rov, which is slow and crash-prone on AMD GPUs.",
+      "source": "https://github.com/xenia-canary/game-compatibility/issues/6"
+    }
+  ]
+}

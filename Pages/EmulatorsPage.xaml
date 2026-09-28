@@ -1,0 +1,38 @@
+<Page x:Class="GameOp.Pages.EmulatorsPage" Foreground="{DynamicResource TextFillColorPrimaryBrush}" ScrollViewer.CanContentScroll="False"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      Title="Emulators">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="24,12,24,24">
+            <TextBlock Text="Emulators" FontSize="28" FontWeight="SemiBold" />
+            <TextBlock Style="{StaticResource Caption}" Margin="0,2,0,0"
+                       Text="GameOp finds emulators in Program Files, EmuDeck, RetroBat, Emulation folders on every drive, and any folder you add. Every file it changes is backed up first. Updates come from each emulator's official GitHub releases, are checksum-verified, and never delete or overwrite your BIOS, firmware, keys, saves, memory cards or settings." />
+
+            <ui:Card Margin="0,12,0,0" Padding="16">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Level for bulk actions" VerticalAlignment="Center" Margin="0,0,8,0" />
+                    <ComboBox x:Name="BulkTier" Grid.Column="1" Width="200" />
+                    <ui:Button Grid.Column="2" Content="Check for updates" Click="OnCheckUpdates" Margin="0,0,8,0" HorizontalAlignment="Right">
+                        <ui:Button.Icon><ui:SymbolIcon Symbol="ArrowDownload24" /></ui:Button.Icon>
+                    </ui:Button>
+                    <ui:Button Grid.Column="3" Content="Add search folder" Click="OnAddRoot" Margin="0,0,8,0">
+                        <ui:Button.Icon><ui:SymbolIcon Symbol="FolderAdd24" /></ui:Button.Icon>
+                    </ui:Button>
+                    <ui:Button Grid.Column="4" Content="Rescan" Click="OnRescan">
+                        <ui:Button.Icon><ui:SymbolIcon Symbol="ArrowSync24" /></ui:Button.Icon>
+                    </ui:Button>
+                </Grid>
+            </ui:Card>
+
+            <StackPanel x:Name="Cards" Margin="0,12,0,0" />
+        </StackPanel>
+    </ScrollViewer>
+</Page>

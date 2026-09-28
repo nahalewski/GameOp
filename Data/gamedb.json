@@ -1,0 +1,2882 @@
+{
+  "version": "2026.09.27",
+  "games": [
+    {
+      "title": "The Legend of Zelda: Breath of the Wild",
+      "ids": [
+        "00050000101C9300",
+        "00050000101C9400",
+        "00050000101C9500"
+      ],
+      "demand": "heavy",
+      "recommendedTier": "performance",
+      "compatibility": "Perfect",
+      "settings": {
+        "Graphics": {
+          "disableGPUFence": "false",
+          "accurateShaderMul": "true"
+        }
+      },
+      "tierSettings": {},
+      "notes": "Shipped profile forces accurate shader multiplication. For Vulkan 'Error -4' crashes the wiki suggests Single-core recompiler, at a big performance cost.",
+      "source": "https://github.com/cemu-project/Cemu/tree/main/bin/gameProfiles/default",
+      "emulator": "cemu"
+    },
+    {
+      "title": "Mario Kart 8",
+      "ids": [
+        "000500001010EB00",
+        "000500001010EC00",
+        "000500001010ED00"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Perfect",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "Wiki recommends CPU mode Auto/Multi-core recompiler and Vulkan with Async Compile to avoid shader stutter.",
+      "source": "https://wiki.cemu.info/wiki/Mario_Kart_8",
+      "emulator": "cemu"
+    },
+    {
+      "title": "Super Smash Bros. for Wii U",
+      "ids": [
+        "0005000010110E00",
+        "0005000010144F00",
+        "0005000010145000"
+      ],
+      "demand": "heavy",
+      "recommendedTier": "performance",
+      "compatibility": "Perfect",
+      "settings": {
+        "CPU": {
+          "cpuMode": "Singlecore-Recompiler"
+        },
+        "Graphics": {
+          "streamoutBufferCacheSize": 48
+        }
+      },
+      "tierSettings": {},
+      "notes": "Shipped profile forces Single-core recompiler (multi-core crashes randomly since 1.22.0), so it is CPU-bound; enable Async Compile.",
+      "source": "https://github.com/cemu-project/Cemu/tree/main/bin/gameProfiles/default",
+      "emulator": "cemu"
+    },
+    {
+      "title": "Splatoon",
+      "ids": [
+        "0005000010162B00",
+        "0005000010176900",
+        "0005000010176A00"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Playable",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "Runs with defaults; use Vulkan since OpenGL can break wall painting.",
+      "source": "https://wiki.cemu.info/wiki/Splatoon",
+      "emulator": "cemu"
+    },
+    {
+      "title": "Super Mario 3D World",
+      "ids": [
+        "0005000010106100",
+        "0005000010145C00",
+        "0005000010145D00"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Runs",
+      "settings": {
+        "Graphics": {
+          "accurateShaderMul": "false"
+        }
+      },
+      "tierSettings": {},
+      "notes": "Shipped profile disables accurate shader multiplication; wiki recommends Multi-core recompiler and Async Compile on Vulkan.",
+      "source": "https://github.com/cemu-project/Cemu/tree/main/bin/gameProfiles/default",
+      "emulator": "cemu"
+    },
+    {
+      "title": "Xenoblade Chronicles X",
+      "ids": [
+        "0005000010116100",
+        "00050000101C4C00",
+        "00050000101C4D00"
+      ],
+      "demand": "heavy",
+      "recommendedTier": "performance",
+      "compatibility": "Playable",
+      "settings": {
+        "CPU": {
+          "cpuMode": "Singlecore-Recompiler"
+        },
+        "Graphics": {
+          "accurateShaderMul": "false"
+        }
+      },
+      "tierSettings": {},
+      "notes": "Shipped profile forces Single-core recompiler, so it is heavily CPU-bound; a bloom-reduction graphic pack helps on Vulkan.",
+      "source": "https://github.com/cemu-project/Cemu/tree/main/bin/gameProfiles/default",
+      "emulator": "cemu"
+    },
+    {
+      "title": "Pikmin 3",
+      "ids": [
+        "000500001012BC00",
+        "000500001012BD00",
+        "000500001012BE00"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Playable",
+      "settings": {
+        "Graphics": {
+          "extendedTextureReadback": "true"
+        }
+      },
+      "tierSettings": {},
+      "notes": "Shipped profile enables extended texture readback; otherwise defaults.",
+      "source": "https://github.com/cemu-project/Cemu/tree/main/bin/gameProfiles/default",
+      "emulator": "cemu"
+    },
+    {
+      "title": "The Legend of Zelda: The Wind Waker HD",
+      "ids": [
+        "0005000010185400",
+        "0005000010143500",
+        "0005000010143600"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Perfect",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "No profile overrides; runs with defaults.",
+      "source": "https://wiki.cemu.info/wiki/The_Legend_of_Zelda:_The_Wind_Waker_HD",
+      "emulator": "cemu"
+    },
+    {
+      "title": "The Legend of Zelda: Twilight Princess HD",
+      "ids": [
+        "0005000E1019C800",
+        "000500001019E500",
+        "000500001019E600"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Perfect",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "No profile overrides; runs with defaults.",
+      "source": "https://wiki.cemu.info/wiki/The_Legend_of_Zelda:_Twilight_Princess_HD",
+      "emulator": "cemu"
+    },
+    {
+      "title": "Donkey Kong Country: Tropical Freeze",
+      "ids": [
+        "0005000010144800",
+        "0005000010137F00",
+        "0005000010138300"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Perfect",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "No profile overrides; runs with defaults.",
+      "source": "https://wiki.cemu.info/wiki/Donkey_Kong_Country:_Tropical_Freeze",
+      "emulator": "cemu"
+    },
+    {
+      "title": "Hyrule Warriors",
+      "ids": [
+        "000500C01017CD00",
+        "000500001017D800",
+        "000500001017D900"
+      ],
+      "demand": "heavy",
+      "recommendedTier": "performance",
+      "compatibility": "Perfect",
+      "settings": {
+        "General": {
+          "useRDTSC": "false"
+        }
+      },
+      "tierSettings": {},
+      "notes": "Shipped profile disables RDTSC timing; large enemy counts make it demanding.",
+      "source": "https://github.com/cemu-project/Cemu/tree/main/bin/gameProfiles/default",
+      "emulator": "cemu"
+    },
+    {
+      "title": "Monster Hunter 3 Ultimate",
+      "ids": [
+        "0005000010118300",
+        "0005000010117200"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Perfect",
+      "settings": {
+        "Graphics": {
+          "streamoutBufferCacheSize": 48
+        }
+      },
+      "tierSettings": {},
+      "notes": "Shipped profile enlarges the streamout buffer cache.",
+      "source": "https://github.com/cemu-project/Cemu/tree/main/bin/gameProfiles/default",
+      "emulator": "cemu"
+    },
+    {
+      "title": "Super Smash Bros. Melee",
+      "ids": [
+        "GALE01",
+        "GALP01",
+        "GALJ01"
+      ],
+      "demand": "light",
+      "recommendedTier": "battery",
+      "compatibility": "Unverified",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "Dolphin's shipped profile only adds a Gecko trophy-viewer code and stereoscopy convergence; no accuracy overrides needed.",
+      "source": "https://github.com/dolphin-emu/dolphin/blob/master/Data/Sys/GameSettings/GAL.ini",
+      "emulator": "dolphin"
+    },
+    {
+      "title": "The Legend of Zelda: The Wind Waker",
+      "ids": [
+        "GZLE01",
+        "GZLP01",
+        "GZLJ01"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Unverified",
+      "settings": {
+        "Video_Hacks": {
+          "EFBAccessEnable": true,
+          "EFBToTextureEnable": false,
+          "VISkip": false
+        },
+        "Video_Enhancements": {
+          "ArbitraryMipmapDetection": true
+        }
+      },
+      "tierSettings": {},
+      "notes": "Needs EFB access and EFB copies to RAM (Pictograph, light effects); Dolphin applies these automatically.",
+      "source": "https://github.com/dolphin-emu/dolphin/blob/master/Data/Sys/GameSettings/GZL.ini",
+      "emulator": "dolphin"
+    },
+    {
+      "title": "Super Mario Sunshine",
+      "ids": [
+        "GMSE01",
+        "GMSP01",
+        "GMSJ01"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Unverified",
+      "settings": {
+        "Video": {
+          "PerfQueriesEnable": true
+        },
+        "Video_Hacks": {
+          "EFBToTextureEnable": false,
+          "EFBAccessEnable": true,
+          "MissingColorValue": "0x00000000"
+        },
+        "Video_Enhancements": {
+          "ForceTextureFiltering": 0,
+          "ArbitraryMipmapDetection": true
+        }
+      },
+      "tierSettings": {},
+      "notes": "Needs EFB copies to RAM, EFB access and perf queries (goop, sun); forced texture filtering is disabled to avoid artifacts.",
+      "source": "https://github.com/dolphin-emu/dolphin/blob/master/Data/Sys/GameSettings/GMS.ini",
+      "emulator": "dolphin"
+    },
+    {
+      "title": "Mario Kart: Double Dash!!",
+      "ids": [
+        "GM4E01",
+        "GM4P01",
+        "GM4J01"
+      ],
+      "demand": "light",
+      "recommendedTier": "battery",
+      "compatibility": "Unverified",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "No accuracy overrides in Dolphin's shipped profile (stereoscopy only).",
+      "source": "https://github.com/dolphin-emu/dolphin/blob/master/Data/Sys/GameSettings/GM4.ini",
+      "emulator": "dolphin"
+    },
+    {
+      "title": "Metroid Prime",
+      "ids": [
+        "GM8E01",
+        "GM8P01",
+        "GM8J01"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Unverified",
+      "settings": {
+        "Video_Settings": {
+          "SafeTextureCacheColorSamples": 512,
+          "SuggestedAspectRatio": 2,
+          "CPUCull": true
+        }
+      },
+      "tierSettings": {},
+      "notes": "Uses Medium (512) texture cache accuracy and CPU culling; keep other defaults.",
+      "source": "https://github.com/dolphin-emu/dolphin/blob/master/Data/Sys/GameSettings/GM8.ini",
+      "emulator": "dolphin"
+    },
+    {
+      "title": "Super Mario Galaxy",
+      "ids": [
+        "RMGE01",
+        "RMGP01",
+        "RMGJ01",
+        "RMGK01"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Unverified",
+      "settings": {
+        "Video_Hacks": {
+          "EFBAccessEnable": true,
+          "EFBAccessDeferInvalidation": true
+        },
+        "Video_Enhancements": {
+          "ArbitraryMipmapDetection": true
+        }
+      },
+      "tierSettings": {},
+      "notes": "EFB access is required (Star Bit pointer interaction); deferred invalidation keeps it fast.",
+      "source": "https://github.com/dolphin-emu/dolphin/blob/master/Data/Sys/GameSettings/RMG.ini",
+      "emulator": "dolphin"
+    },
+    {
+      "title": "Super Mario Galaxy 2",
+      "ids": [
+        "SB4E01",
+        "SB4P01",
+        "SB4J01",
+        "SB4K01"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Unverified",
+      "settings": {
+        "Video_Hacks": {
+          "EFBAccessEnable": true,
+          "EFBAccessDeferInvalidation": true
+        },
+        "Video_Enhancements": {
+          "ArbitraryMipmapDetection": true
+        }
+      },
+      "tierSettings": {},
+      "notes": "Same EFB access requirements as the first Galaxy.",
+      "source": "https://github.com/dolphin-emu/dolphin/blob/master/Data/Sys/GameSettings/SB4.ini",
+      "emulator": "dolphin"
+    },
+    {
+      "title": "Super Smash Bros. Brawl",
+      "ids": [
+        "RSBE01",
+        "RSBP01",
+        "RSBJ01",
+        "RSBK01"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Unverified",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "No accuracy overrides in Dolphin's shipped profile (stereoscopy only).",
+      "source": "https://github.com/dolphin-emu/dolphin/blob/master/Data/Sys/GameSettings/RSB.ini",
+      "emulator": "dolphin"
+    },
+    {
+      "title": "The Legend of Zelda: Skyward Sword",
+      "ids": [
+        "SOUE01",
+        "SOUP01",
+        "SOUJ01",
+        "SOUK01"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Unverified",
+      "settings": {
+        "Video_Hacks": {
+          "EFBAccessEnable": true,
+          "EFBEmulateFormatChanges": true
+        },
+        "Video_Enhancements": {
+          "ArbitraryMipmapDetection": true
+        }
+      },
+      "tierSettings": {},
+      "notes": "Needs EFB access and EFB format-change emulation; motion controls are the main hurdle on a handheld.",
+      "source": "https://github.com/dolphin-emu/dolphin/blob/master/Data/Sys/GameSettings/SOU.ini",
+      "emulator": "dolphin"
+    },
+    {
+      "title": "Mario Kart Wii",
+      "ids": [
+        "RMCE01",
+        "RMCP01",
+        "RMCJ01",
+        "RMCK01"
+      ],
+      "demand": "light",
+      "recommendedTier": "battery",
+      "compatibility": "Unverified",
+      "settings": {
+        "Video_Hacks": {
+          "EFBEmulateFormatChanges": true
+        },
+        "Video_Settings": {
+          "MSAA": 0
+        }
+      },
+      "tierSettings": {},
+      "notes": "Dolphin forces EFB format-change emulation and disables MSAA for this game.",
+      "source": "https://github.com/dolphin-emu/dolphin/blob/master/Data/Sys/GameSettings/RMC.ini",
+      "emulator": "dolphin"
+    },
+    {
+      "title": "Paper Mario: The Thousand-Year Door",
+      "ids": [
+        "G8ME01",
+        "G8MP01",
+        "G8MJ01"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Unverified",
+      "settings": {
+        "Video_Hacks": {
+          "EFBToTextureEnable": false,
+          "BBoxEnable": true,
+          "ImmediateXFBEnable": false,
+          "DeferEFBCopies": false
+        }
+      },
+      "tierSettings": {},
+      "notes": "Requires bounding-box emulation (GPU-costly) and EFB copies to RAM; keep these on or effects and menus break.",
+      "source": "https://github.com/dolphin-emu/dolphin/blob/master/Data/Sys/GameSettings/G8M.ini",
+      "emulator": "dolphin"
+    },
+    {
+      "title": "F-Zero GX",
+      "ids": [
+        "GFZE8P",
+        "GFZP8P",
+        "GFZJ8P"
+      ],
+      "demand": "heavy",
+      "recommendedTier": "performance",
+      "compatibility": "Unverified",
+      "settings": {
+        "Core": {
+          "FPRF": true,
+          "CPUThread": false
+        },
+        "Video_Hacks": {
+          "EFBAccessTileSize": 0
+        }
+      },
+      "tierSettings": {},
+      "notes": "Dolphin disables dual core (CPUThread) and enables FPRF for accuracy, making it CPU-bound; use the performance tier.",
+      "source": "https://github.com/dolphin-emu/dolphin/blob/master/Data/Sys/GameSettings/GFZ.ini",
+      "emulator": "dolphin"
+    },
+    {
+      "title": "The Legend of Zelda: Twilight Princess (GameCube)",
+      "ids": [
+        "GZ2E01",
+        "GZ2P01",
+        "GZ2J01"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Unverified",
+      "settings": {
+        "Video_Hacks": {
+          "VISkip": false
+        },
+        "Video_Settings": {
+          "CPUCull": true
+        },
+        "Video_Enhancements": {
+          "ArbitraryMipmapDetection": true
+        }
+      },
+      "tierSettings": {},
+      "notes": "VI skip disabled and CPU culling enabled by Dolphin's shipped profile.",
+      "source": "https://github.com/dolphin-emu/dolphin/blob/master/Data/Sys/GameSettings/GZ2.ini",
+      "emulator": "dolphin"
+    },
+    {
+      "title": "The Legend of Zelda: Twilight Princess (Wii)",
+      "ids": [
+        "RZDE01",
+        "RZDP01",
+        "RZDJ01",
+        "RZDK01"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Unverified",
+      "settings": {
+        "Video_Hacks": {
+          "EFBAccessEnable": true,
+          "VISkip": false
+        },
+        "Video_Settings": {
+          "CPUCull": true
+        },
+        "Video_Enhancements": {
+          "ArbitraryMipmapDetection": true
+        }
+      },
+      "tierSettings": {},
+      "notes": "Wii version additionally needs EFB access.",
+      "source": "https://github.com/dolphin-emu/dolphin/blob/master/Data/Sys/GameSettings/RZD.ini",
+      "emulator": "dolphin"
+    },
+    {
+      "title": "Final Fantasy VII",
+      "ids": [
+        "SCUS-94163",
+        "SCUS-94164",
+        "SCUS-94165",
+        "SCES-00867",
+        "SCES-10867",
+        "SCES-20867",
+        "SCES-00868",
+        "SCES-10868",
+        "SCES-20868",
+        "SCES-00869",
+        "SCES-10869",
+        "SCES-20869",
+        "SCES-00900",
+        "SCES-10900",
+        "SCES-20900"
+      ],
+      "demand": "light",
+      "recommendedTier": "battery",
+      "compatibility": "NoIssues",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "No user settings needed. DuckStation's gamedb disables widescreen and sprite texture filtering because they break the pre-rendered backgrounds.",
+      "source": "https://raw.githubusercontent.com/stenzek/duckstation/master/data/resources/gamedb.yaml",
+      "emulator": "duckstation"
+    },
+    {
+      "title": "Final Fantasy VIII",
+      "ids": [
+        "SLUS-00892",
+        "SLUS-00908",
+        "SLUS-00909",
+        "SLUS-00910",
+        "SCES-02080",
+        "SCES-12080",
+        "SCES-22080",
+        "SCES-32080",
+        "SLES-02081",
+        "SLES-12081",
+        "SLES-22081",
+        "SLES-32081",
+        "SLES-02082",
+        "SLES-12082",
+        "SLES-22082",
+        "SLES-32082",
+        "SLES-02083",
+        "SLES-12083",
+        "SLES-22083",
+        "SLES-32083",
+        "SLES-02084",
+        "SLES-12084",
+        "SLES-22084",
+        "SLES-32084"
+      ],
+      "demand": "light",
+      "recommendedTier": "battery",
+      "compatibility": "NoIssues",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "The gamedb auto-limits CD-ROM speedup during FMVs and disables widescreen/scaled interlacing. Don't force CD read speedup for this game.",
+      "source": "https://raw.githubusercontent.com/stenzek/duckstation/master/data/resources/gamedb.yaml",
+      "emulator": "duckstation"
+    },
+    {
+      "title": "Final Fantasy IX",
+      "ids": [
+        "SLUS-01251",
+        "SLUS-01295",
+        "SLUS-01296",
+        "SLUS-01297",
+        "SLES-02965",
+        "SLES-12965",
+        "SLES-22965",
+        "SLES-32965",
+        "SLES-02966",
+        "SLES-12966",
+        "SLES-22966",
+        "SLES-32966",
+        "SLES-02967",
+        "SLES-12967",
+        "SLES-22967",
+        "SLES-32967",
+        "SLES-02968",
+        "SLES-12968",
+        "SLES-22968",
+        "SLES-32968",
+        "SLES-02969",
+        "SLES-12969",
+        "SLES-22969",
+        "SLES-32969"
+      ],
+      "demand": "light",
+      "recommendedTier": "battery",
+      "compatibility": "NoIssues",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "No user settings needed; widescreen hack is disabled by the gamedb.",
+      "source": "https://raw.githubusercontent.com/stenzek/duckstation/master/data/resources/gamedb.yaml",
+      "emulator": "duckstation"
+    },
+    {
+      "title": "Metal Gear Solid",
+      "ids": [
+        "SLUS-00594",
+        "SLUS-00776",
+        "SLES-01370",
+        "SLES-11370",
+        "SLES-01506",
+        "SLES-11506",
+        "SLES-01507",
+        "SLES-11507",
+        "SLES-01508",
+        "SLES-11508",
+        "SLES-01734",
+        "SLES-11734"
+      ],
+      "demand": "light",
+      "recommendedTier": "battery",
+      "compatibility": "NoIssues",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "The gamedb forces PGXP CPU mode when PGXP is on (more CPU cost, still light on Z1) and caps CD speedup, since the game crashes at high read speedup.",
+      "source": "https://raw.githubusercontent.com/stenzek/duckstation/master/data/resources/gamedb.yaml",
+      "emulator": "duckstation"
+    },
+    {
+      "title": "Crash Bandicoot",
+      "ids": [
+        "SCUS-94900",
+        "SCES-00344"
+      ],
+      "demand": "light",
+      "recommendedTier": "battery",
+      "compatibility": "NoIssues",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "No user settings needed; the gamedb forces rounded texture coordinates for upscaling.",
+      "source": "https://raw.githubusercontent.com/stenzek/duckstation/master/data/resources/gamedb.yaml",
+      "emulator": "duckstation"
+    },
+    {
+      "title": "Spyro the Dragon",
+      "ids": [
+        "SCUS-94228",
+        "SCES-01438"
+      ],
+      "demand": "light",
+      "recommendedTier": "battery",
+      "compatibility": "NoIssues",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "When PGXP is on, the gamedb forces PGXP CPU mode and disables PGXP culling to avoid geometry corruption near portals.",
+      "source": "https://raw.githubusercontent.com/stenzek/duckstation/master/data/resources/gamedb.yaml",
+      "emulator": "duckstation"
+    },
+    {
+      "title": "Gran Turismo 2",
+      "ids": [
+        "SCUS-94455",
+        "SCUS-94488",
+        "SCES-02380",
+        "SCES-12380"
+      ],
+      "demand": "light",
+      "recommendedTier": "battery",
+      "compatibility": "NoIssues",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "No issues and no per-game settings needed.",
+      "source": "https://raw.githubusercontent.com/stenzek/duckstation/master/data/resources/gamedb.yaml",
+      "emulator": "duckstation"
+    },
+    {
+      "title": "Resident Evil 2",
+      "ids": [
+        "SLUS-00421",
+        "SLUS-00592",
+        "SLUS-00748",
+        "SLUS-00756",
+        "SLES-00972",
+        "SLES-10972",
+        "SLES-00973",
+        "SLES-10973",
+        "SLES-00974",
+        "SLES-10974",
+        "SLES-00975",
+        "SLES-10975",
+        "SLES-00976",
+        "SLES-10976"
+      ],
+      "demand": "light",
+      "recommendedTier": "battery",
+      "compatibility": "NoIssues",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "The gamedb caps CD speedup (the game hangs on boot and at doors otherwise), forces the recompiler ICache and disables widescreen.",
+      "source": "https://raw.githubusercontent.com/stenzek/duckstation/master/data/resources/gamedb.yaml",
+      "emulator": "duckstation"
+    },
+    {
+      "title": "Castlevania: Symphony of the Night",
+      "ids": [
+        "SLUS-00067",
+        "SLES-00524"
+      ],
+      "demand": "light",
+      "recommendedTier": "battery",
+      "compatibility": "NoIssues",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "The gamedb caps CD read speedup (hangs on the first load otherwise) and disables widescreen, which breaks sprite alignment.",
+      "source": "https://raw.githubusercontent.com/stenzek/duckstation/master/data/resources/gamedb.yaml",
+      "emulator": "duckstation"
+    },
+    {
+      "title": "Tekken 3",
+      "ids": [
+        "SLUS-00402",
+        "SCES-01237"
+      ],
+      "demand": "light",
+      "recommendedTier": "battery",
+      "compatibility": "NoIssues",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "The gamedb forces PGXP CPU mode and a PGXP tolerance of 3 to fix spiky polygons, and disables auto analog mode.",
+      "source": "https://raw.githubusercontent.com/stenzek/duckstation/master/data/resources/gamedb.yaml",
+      "emulator": "duckstation"
+    },
+    {
+      "title": "Silent Hill",
+      "ids": [
+        "SLUS-00707",
+        "SLES-01514"
+      ],
+      "demand": "light",
+      "recommendedTier": "battery",
+      "compatibility": "NoIssues",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "The gamedb forces the recompiler ICache. No user settings needed.",
+      "source": "https://raw.githubusercontent.com/stenzek/duckstation/master/data/resources/gamedb.yaml",
+      "emulator": "duckstation"
+    },
+    {
+      "title": "Shadow of the Colossus",
+      "ids": [
+        "SCUS-97472",
+        "SCES-53326"
+      ],
+      "demand": "heavy",
+      "recommendedTier": "performance",
+      "compatibility": "Playable",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "One of the heaviest PS2 titles (EE/VU bound); GameIndex auto-sets blending level 4, HPO and native scaling. Wiki testers report EE overclock (130%) breaks physics and causes slowdowns, so leave EE Cycle Rate at 100% or lower, not higher.",
+      "source": "https://wiki.pcsx2.net/Shadow_of_the_Colossus",
+      "emulator": "pcsx2"
+    },
+    {
+      "title": "ICO",
+      "ids": [
+        "SCUS-97113",
+        "SCES-50760"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Playable",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "GameIndex auto-applies clamp modes and post-processing fixes. Wiki lists brief lag in the three Yorda cage cutscenes with no known workaround.",
+      "source": "https://wiki.pcsx2.net/ICO",
+      "emulator": "pcsx2"
+    },
+    {
+      "title": "Metal Gear Solid 2: Sons of Liberty",
+      "ids": [
+        "SLUS-20144",
+        "SLES-50383",
+        "SLES-50384",
+        "SLES-50385",
+        "SLUS-20554",
+        "SLES-82009"
+      ],
+      "demand": "heavy",
+      "recommendedTier": "performance",
+      "compatibility": "Playable",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "Wiki calls it quite GS heavy, with slowdowns mostly in cutscenes. Ocelot/Fatman skin colour needs Blending Accuracy High (GameIndex recommends level 3), which costs a lot of GPU.",
+      "source": "https://wiki.pcsx2.net/Metal_Gear_Solid_2:_Sons_of_Liberty",
+      "emulator": "pcsx2"
+    },
+    {
+      "title": "Metal Gear Solid 3: Snake Eater",
+      "ids": [
+        "SLUS-20915",
+        "SLES-82013",
+        "SLES-82024",
+        "SLES-82026",
+        "SLES-82032",
+        "SLUS-21359",
+        "SLUS-21243",
+        "SLUS-21360",
+        "SLES-82042"
+      ],
+      "demand": "heavy",
+      "recommendedTier": "performance",
+      "compatibility": "Playable",
+      "settings": {},
+      "tierSettings": {
+        "battery": {
+          "EmuCore/Speedhacks": {
+            "EECycleSkip": 1
+          }
+        },
+        "balanced": {
+          "EmuCore/Speedhacks": {
+            "EECycleSkip": 1
+          }
+        }
+      },
+      "notes": "Heavy cutscenes can run at 50-100% speed. A wiki tester found EE Cycle Skip at Mild Underclock removed almost all lag. High blending accuracy slows the game down.",
+      "source": "https://wiki.pcsx2.net/Metal_Gear_Solid_3:_Snake_Eater",
+      "emulator": "pcsx2"
+    },
+    {
+      "title": "Gran Turismo 3: A-Spec",
+      "ids": [
+        "SCUS-97102",
+        "SCUS-97512",
+        "SCES-50294",
+        "PBPX-95503"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Playable",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "GameIndex auto-applies HPO, auto flush and a GSC fix. Wiki reports slight slowdowns on city and night tracks.",
+      "source": "https://wiki.pcsx2.net/Gran_Turismo_3:_A-Spec",
+      "emulator": "pcsx2"
+    },
+    {
+      "title": "Gran Turismo 4",
+      "ids": [
+        "SCUS-97328",
+        "SCES-51719",
+        "SCUS-97563"
+      ],
+      "demand": "heavy",
+      "recommendedTier": "performance",
+      "compatibility": "Playable",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "Heavy on both EE and GS, with slowdowns on city courses and in license tests. Wiki says EE cyclerate changes can speed up races but slow down the video-backed menus; blending accuracy should be at least Basic (GameIndex recommends 3).",
+      "source": "https://wiki.pcsx2.net/Gran_Turismo_4",
+      "emulator": "pcsx2"
+    },
+    {
+      "title": "God of War",
+      "ids": [
+        "SCUS-97399",
+        "SCES-51533",
+        "SCES-53133"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Playable",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "Wiki testers needed MTVU (vuThread) to hold 60fps in heavy battles. VU Cycle Stealing gives a big speedup but makes Kratos blink.",
+      "source": "https://wiki.pcsx2.net/God_of_War",
+      "emulator": "pcsx2"
+    },
+    {
+      "title": "God of War II",
+      "ids": [
+        "SCUS-97481",
+        "SCES-54206"
+      ],
+      "demand": "heavy",
+      "recommendedTier": "performance",
+      "compatibility": "Playable",
+      "settings": {},
+      "tierSettings": {
+        "battery": {
+          "EmuCore/GS": {
+            "accurate_blending_unit": 1
+          }
+        }
+      },
+      "notes": "Demanding. Wiki reports FPS drops when Blending Accuracy is above Basic. If lines follow Kratos at 1080p or higher, set Round Sprite to Off.",
+      "source": "https://wiki.pcsx2.net/God_of_War_II",
+      "emulator": "pcsx2"
+    },
+    {
+      "title": "Kingdom Hearts",
+      "ids": [
+        "SLUS-20370",
+        "SCES-50967",
+        "SCES-50968",
+        "SCES-50969",
+        "SCES-50970",
+        "SCES-50971",
+        "SLPS-25197",
+        "SLPS-25198",
+        "SLPM-66123"
+      ],
+      "demand": "light",
+      "recommendedTier": "battery",
+      "compatibility": "Playable",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "Runs easily. Includes the JP Final Mix serials; GameIndex auto-sets native scaling for DOF (Round Sprite on Final Mix). Floor flashing when upscaling is a known non-issue that native resolution avoids.",
+      "source": "https://wiki.pcsx2.net/Kingdom_Hearts",
+      "emulator": "pcsx2"
+    },
+    {
+      "title": "Kingdom Hearts II",
+      "ids": [
+        "SLUS-21005",
+        "SLES-54114",
+        "SLES-54232",
+        "SLES-54233",
+        "SLES-54234",
+        "SLES-54235",
+        "SLPM-66675",
+        "SLPM-55020"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Playable",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "Includes the JP Final Mix+ serials. Wiki reports minimal slowdown in some areas; GameIndex auto-applies auto flush, Round Sprite, HPO and native scaling (Final Mix+ also gets blending level 4).",
+      "source": "https://wiki.pcsx2.net/Kingdom_Hearts_II",
+      "emulator": "pcsx2"
+    },
+    {
+      "title": "Final Fantasy X",
+      "ids": [
+        "SLUS-20312",
+        "SCES-50490",
+        "SCES-50491",
+        "SCES-50492",
+        "SCES-50493",
+        "SCES-50494"
+      ],
+      "demand": "light",
+      "recommendedTier": "balanced",
+      "compatibility": "Playable",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "Easy to emulate. Wiki advises against combining EE cyclerate and VU cycle stealing because it causes false FPS and slowdowns. GameIndex auto-applies round/clamp modes and blending level 4.",
+      "source": "https://wiki.pcsx2.net/Final_Fantasy_X",
+      "emulator": "pcsx2"
+    },
+    {
+      "title": "Final Fantasy X-2",
+      "ids": [
+        "SLUS-20672",
+        "SLES-51815",
+        "SLES-51816",
+        "SLES-51817",
+        "SLES-51818",
+        "SLES-51819"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Playable",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "Somewhat more demanding than FFX per the wiki; full speed up to 4x scaling, with menu slowdown at 5x and above.",
+      "source": "https://wiki.pcsx2.net/Final_Fantasy_X-2",
+      "emulator": "pcsx2"
+    },
+    {
+      "title": "Final Fantasy XII",
+      "ids": [
+        "SLUS-20963",
+        "SLUS-21475",
+        "SLES-54354",
+        "SLES-54355",
+        "SLES-54356",
+        "SLES-54357",
+        "SLES-54358"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Playable",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "Wiki notes EE cyclerate changes can make FMVs skip if set too high, and VU cycle stealing has no effect. GameIndex auto-fixes bloom.",
+      "source": "https://wiki.pcsx2.net/Final_Fantasy_XII",
+      "emulator": "pcsx2"
+    },
+    {
+      "title": "Silent Hill 2",
+      "ids": [
+        "SLUS-20228",
+        "SLES-50382",
+        "SLES-51156"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Playable",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "GameIndex auto-sets EE Cycle Rate +1 (fixes FMV hangs) and blending level 4. Don't override the EE cycle rate for this game.",
+      "source": "https://wiki.pcsx2.net/Silent_Hill_2",
+      "emulator": "pcsx2"
+    },
+    {
+      "title": "Silent Hill 3",
+      "ids": [
+        "SLUS-20622",
+        "SLES-51434"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Playable",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "Needs at least Medium blending for correct effects; GameIndex now enforces a minimum blending level of 4 and fixes FMV field order.",
+      "source": "https://wiki.pcsx2.net/Silent_Hill_3",
+      "emulator": "pcsx2"
+    },
+    {
+      "title": "Shin Megami Tensei: Persona 3 FES",
+      "ids": [
+        "SLUS-21621",
+        "SLES-55354"
+      ],
+      "demand": "light",
+      "recommendedTier": "battery",
+      "compatibility": "Playable",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "Light game. Minimap misalignment is a known minor issue in hardware mode.",
+      "source": "https://wiki.pcsx2.net/Shin_Megami_Tensei:_Persona_3_FES",
+      "emulator": "pcsx2"
+    },
+    {
+      "title": "Shin Megami Tensei: Persona 4",
+      "ids": [
+        "SLUS-21782",
+        "SLES-55474"
+      ],
+      "demand": "light",
+      "recommendedTier": "balanced",
+      "compatibility": "Playable",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "Mostly light, but random battles and boss fights can dip to around 40fps per the wiki. GameIndex auto-applies VU clamp and post-processing fixes.",
+      "source": "https://wiki.pcsx2.net/Shin_Megami_Tensei:_Persona_4",
+      "emulator": "pcsx2"
+    },
+    {
+      "title": "Ratchet & Clank",
+      "ids": [
+        "SCUS-97199",
+        "SCES-50916"
+      ],
+      "demand": "heavy",
+      "recommendedTier": "performance",
+      "compatibility": "Playable",
+      "settings": {},
+      "tierSettings": {
+        "performance": {
+          "EmuCore/Speedhacks": {
+            "EECycleRate": 1
+          }
+        },
+        "max": {
+          "EmuCore/Speedhacks": {
+            "EECycleRate": 1
+          }
+        }
+      },
+      "notes": "EE heavy. Wiki reports EE Cycle Rate 130% fixes almost all slowdowns at the cost of higher CPU/GPU load; -1 (75%) triggers the game's internal frameskip instead.",
+      "source": "https://wiki.pcsx2.net/Ratchet_%26_Clank",
+      "emulator": "pcsx2"
+    },
+    {
+      "title": "Jak and Daxter: The Precursor Legacy",
+      "ids": [
+        "SCUS-97124",
+        "SCES-50361",
+        "SCES-50614"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Playable",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "Runs well with minor slowdown. GameIndex auto-sets blending level 3 and CPU sprite render fixes.",
+      "source": "https://wiki.pcsx2.net/Jak_and_Daxter:_The_Precursor_Legacy",
+      "emulator": "pcsx2"
+    },
+    {
+      "title": "Jak II",
+      "ids": [
+        "SCUS-97265",
+        "SCUS-97509",
+        "SCES-51608"
+      ],
+      "demand": "heavy",
+      "recommendedTier": "performance",
+      "compatibility": "Playable",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "Wiki: very demanding, and it speeds physics up during lag. The listed workaround is any combination of EE cyclerate and VU cycle stealing, but no single value is confirmed. Greatest Hits v2.01 has a stretched finger bug; prefer v1.00.",
+      "source": "https://wiki.pcsx2.net/Jak_II",
+      "emulator": "pcsx2"
+    },
+    {
+      "title": "Jak 3",
+      "ids": [
+        "SCUS-97330",
+        "SCUS-97516",
+        "SCES-52460"
+      ],
+      "demand": "heavy",
+      "recommendedTier": "performance",
+      "compatibility": "Playable",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "Demanding with slowdowns in some sections. Wiki says disabling Instant VU1 fixes the trailing burner flames in the intro cutscene.",
+      "source": "https://wiki.pcsx2.net/Jak_3",
+      "emulator": "pcsx2"
+    },
+    {
+      "title": "Sly Cooper and the Thievius Raccoonus",
+      "ids": [
+        "SCUS-97198",
+        "SCES-50917"
+      ],
+      "demand": "light",
+      "recommendedTier": "battery",
+      "compatibility": "Playable",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "Occasional lag in a few levels. Wiki says EE Cyclerate -3 fixes the lag but stutters FMVs, so it isn't recommended.",
+      "source": "https://wiki.pcsx2.net/Sly_Cooper_and_the_Thievius_Raccoonus",
+      "emulator": "pcsx2"
+    },
+    {
+      "title": "Okami",
+      "ids": [
+        "SLUS-21115",
+        "SLES-54439"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Playable",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "Very minor slowdown in large maps. Wiki notes a cloudy image when upscaling (a non-issue); GameIndex auto-applies HPO and native scaling.",
+      "source": "https://wiki.pcsx2.net/Okami",
+      "emulator": "pcsx2"
+    },
+    {
+      "title": "Devil May Cry 3: Dante's Awakening",
+      "ids": [
+        "SLUS-20964",
+        "SLES-53038",
+        "SLUS-21361",
+        "SLES-54186"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Playable",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "Some effects cause moderate slowdown, and high internal resolutions cause big slowdowns in menus. GameIndex auto-fixes the Mission 18 door and post effects.",
+      "source": "https://wiki.pcsx2.net/Devil_May_Cry_3:_Dante%27s_Awakening",
+      "emulator": "pcsx2"
+    },
+    {
+      "title": "Resident Evil 4",
+      "ids": [
+        "SLUS-21134",
+        "SLES-53702",
+        "SLES-53756"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Playable",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "No active known issues; GameIndex auto-sets HPO to fix blurriness.",
+      "source": "https://wiki.pcsx2.net/Resident_Evil_4",
+      "emulator": "pcsx2"
+    },
+    {
+      "title": "Burnout 3: Takedown",
+      "ids": [
+        "SLUS-21050",
+        "SLES-52584",
+        "SLES-52585"
+      ],
+      "demand": "heavy",
+      "recommendedTier": "performance",
+      "compatibility": "Playable",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "Wiki: very CPU and GPU intensive. GameIndex applies many GS fixes (blending 3, target CLUT, native scaling), so keep upscaling modest on handhelds.",
+      "source": "https://wiki.pcsx2.net/Burnout_3:_Takedown",
+      "emulator": "pcsx2"
+    },
+    {
+      "title": "Need for Speed: Underground 2",
+      "ids": [
+        "SLUS-21065",
+        "SLES-52725"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Playable",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "Wiki: constant full speed needed max VU Cycle Stealing (causes slight audio crackle). GameIndex enables draw buffering for performance.",
+      "source": "https://wiki.pcsx2.net/Need_for_Speed:_Underground_2",
+      "emulator": "pcsx2"
+    },
+    {
+      "title": "Grand Theft Auto: San Andreas",
+      "ids": [
+        "SLUS-20946",
+        "SLES-52541",
+        "SLES-52927"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Playable",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "GameIndex auto-applies EE clamp (mission freeze fix), blending level 2 and post-processing fixes. Keep upscaling modest.",
+      "source": "https://wiki.pcsx2.net/Grand_Theft_Auto:_San_Andreas",
+      "emulator": "pcsx2"
+    },
+    {
+      "title": "Tekken 5",
+      "ids": [
+        "SLUS-21059",
+        "SCES-53202"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Playable",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "Wiki: demanding, varies by stage, and EE/VU speedhacks can cause slowdowns. Progressive-scan mode has stage rendering and shake issues on NTSC.",
+      "source": "https://wiki.pcsx2.net/Tekken_5",
+      "emulator": "pcsx2"
+    },
+    {
+      "title": "Dragon Quest VIII: Journey of the Cursed King",
+      "ids": [
+        "SLUS-21207",
+        "SLES-53974"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Playable",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "Can be demanding. Wiki recommends no manual hardware hacks; GameIndex already applies CPU sprite render and native scaling fixes.",
+      "source": "https://wiki.pcsx2.net/Dragon_Quest_VIII:_Journey_of_the_Cursed_King",
+      "emulator": "pcsx2"
+    },
+    {
+      "title": "Ape Escape 2",
+      "ids": [
+        "SLUS-20685",
+        "SCES-50885",
+        "SCES-51102",
+        "SCES-51103",
+        "SCES-51104",
+        "SCES-51105"
+      ],
+      "demand": "light",
+      "recommendedTier": "battery",
+      "compatibility": "Playable",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "No active known issues; GameIndex auto-applies blending level 3, HPO and a COP2 timing patch.",
+      "source": "https://wiki.pcsx2.net/Ape_Escape_2",
+      "emulator": "pcsx2"
+    },
+    {
+      "title": "Grand Theft Auto: Liberty City Stories",
+      "ids": [
+        "ULUS10041",
+        "ULES00151",
+        "ULES00182",
+        "ULJM05255",
+        "ULJM05359",
+        "ULJM05885",
+        "NPJH50825"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Unverified",
+      "settings": {
+        "Graphics": {
+          "SkipBufferEffects": false
+        }
+      },
+      "tierSettings": {},
+      "notes": "compat.ini flags RequireBufferedRendering (never enable Skip Buffer Effects); a sprite border fix is auto-applied.",
+      "source": "https://github.com/hrydgard/ppsspp/blob/master/assets/compat.ini",
+      "emulator": "ppsspp"
+    },
+    {
+      "title": "Grand Theft Auto: Vice City Stories",
+      "ids": [
+        "ULUS10160",
+        "ULES00502",
+        "ULES00503",
+        "ULJM05297",
+        "ULJM05395",
+        "ULJM05884",
+        "NPJH50827"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Unverified",
+      "settings": {
+        "Graphics": {
+          "SkipBufferEffects": false
+        }
+      },
+      "tierSettings": {},
+      "notes": "Requires buffered rendering; sprite border fix is auto-applied by PPSSPP.",
+      "source": "https://github.com/hrydgard/ppsspp/blob/master/assets/compat.ini",
+      "emulator": "ppsspp"
+    },
+    {
+      "title": "God of War: Chains of Olympus",
+      "ids": [
+        "UCUS98653",
+        "UCES00842",
+        "UCAS40198",
+        "ULJM05438",
+        "ULJM05348",
+        "UCKS45084",
+        "NPUG80325",
+        "NPEG00023",
+        "NPHG00027",
+        "NPHG00028",
+        "NPJH50170"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Unverified",
+      "settings": {
+        "Graphics": {
+          "SkipBufferEffects": false
+        }
+      },
+      "tierSettings": {},
+      "notes": "Requires buffered rendering; PPSSPP auto-applies a 60 fps framerate hack and rotated-analog fix.",
+      "source": "https://github.com/hrydgard/ppsspp/blob/master/assets/compat.ini",
+      "emulator": "ppsspp"
+    },
+    {
+      "title": "God of War: Ghost of Sparta",
+      "ids": [
+        "UCUS98737",
+        "UCES01401",
+        "UCES01473",
+        "UCAS40323",
+        "UCJS10114",
+        "NPHG00092",
+        "NPEG00044",
+        "NPEG00045",
+        "NPJG00120",
+        "NPUG80508"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Unverified",
+      "settings": {
+        "Graphics": {
+          "SkipBufferEffects": false
+        },
+        "CPU": {
+          "CPUSpeed": 0
+        }
+      },
+      "tierSettings": {},
+      "notes": "Requires buffered rendering and the default emulated CPU clock (RequireDefaultCPUClock).",
+      "source": "https://github.com/hrydgard/ppsspp/blob/master/assets/compat.ini",
+      "emulator": "ppsspp"
+    },
+    {
+      "title": "Metal Gear Solid: Peace Walker",
+      "ids": [
+        "ULUS10509",
+        "ULES01372",
+        "ULJM08038",
+        "NPJH50045",
+        "ULJM05630"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Unverified",
+      "settings": {
+        "Graphics": {
+          "SkipBufferEffects": false
+        }
+      },
+      "tierSettings": {},
+      "notes": "Requires buffered rendering (Skip Buffer Effects off).",
+      "source": "https://github.com/hrydgard/ppsspp/blob/master/assets/compat.ini",
+      "emulator": "ppsspp"
+    },
+    {
+      "title": "Tekken 6",
+      "ids": [
+        "ULUS10466",
+        "ULES01376",
+        "ULJS00224",
+        "NPUH10047",
+        "ULAS42214",
+        "ULJS19054",
+        "NPJH50184"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Unverified",
+      "settings": {
+        "CPU": {
+          "CPUSpeed": 0
+        }
+      },
+      "tierSettings": {},
+      "notes": "Requires the default emulated CPU clock; PPSSPP also auto-applies a 60 fps cap and more accurate VMMUL (fixes leg shaking).",
+      "source": "https://github.com/hrydgard/ppsspp/blob/master/assets/compat.ini",
+      "emulator": "ppsspp"
+    },
+    {
+      "title": "Monster Hunter Freedom Unite",
+      "ids": [
+        "ULUS10391",
+        "ULES01213"
+      ],
+      "demand": "light",
+      "recommendedTier": "battery",
+      "compatibility": "Unverified",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "Listed under SaveStatesNotRecommended: use in-game saves rather than save states.",
+      "source": "https://github.com/hrydgard/ppsspp/blob/master/assets/compat.ini",
+      "emulator": "ppsspp"
+    },
+    {
+      "title": "Monster Hunter Freedom 2",
+      "ids": [
+        "ULUS10266",
+        "ULES00851"
+      ],
+      "demand": "light",
+      "recommendedTier": "battery",
+      "compatibility": "Unverified",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "Listed under SaveStatesNotRecommended: use in-game saves rather than save states.",
+      "source": "https://github.com/hrydgard/ppsspp/blob/master/assets/compat.ini",
+      "emulator": "ppsspp"
+    },
+    {
+      "title": "Daxter",
+      "ids": [
+        "UCUS98618",
+        "UCUS98654",
+        "UCES00044",
+        "NPUG80329",
+        "NPEG00025",
+        "UCKS45025"
+      ],
+      "demand": "light",
+      "recommendedTier": "balanced",
+      "compatibility": "Unverified",
+      "settings": {
+        "Graphics": {
+          "SkipBufferEffects": false
+        }
+      },
+      "tierSettings": {},
+      "notes": "Requires buffered rendering; rotated-analog-stick fix is auto-applied.",
+      "source": "https://github.com/hrydgard/ppsspp/blob/master/assets/compat.ini",
+      "emulator": "ppsspp"
+    },
+    {
+      "title": "Burnout Dominator",
+      "ids": [
+        "ULUS10236",
+        "ULES00750",
+        "ULJM05242",
+        "ULJM05371",
+        "NPJH50304",
+        "ULES00703",
+        "ULAS42095"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Unverified",
+      "settings": {
+        "Graphics": {
+          "SkipBufferEffects": false
+        }
+      },
+      "tierSettings": {},
+      "notes": "Requires buffered rendering; lens-flare effects are auto-rendered at lower resolution.",
+      "source": "https://github.com/hrydgard/ppsspp/blob/master/assets/compat.ini",
+      "emulator": "ppsspp"
+    },
+    {
+      "title": "WipEout Pure",
+      "ids": [
+        "UCUS98612",
+        "UCES00001",
+        "UCJS10007",
+        "NPJG00059"
+      ],
+      "demand": "light",
+      "recommendedTier": "battery",
+      "compatibility": "Unverified",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "No user overrides needed; PPSSPP auto-applies lower-res effects and software depth raster for the sun lens flare.",
+      "source": "https://github.com/hrydgard/ppsspp/blob/master/assets/compat.ini",
+      "emulator": "ppsspp"
+    },
+    {
+      "title": "Crisis Core: Final Fantasy VII",
+      "ids": [
+        "ULUS10336",
+        "ULES01044"
+      ],
+      "demand": "light",
+      "recommendedTier": "battery",
+      "compatibility": "Unverified",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "No entries in compat.ini; runs with default settings.",
+      "source": "https://github.com/hrydgard/ppsspp/blob/master/assets/compat.ini",
+      "emulator": "ppsspp"
+    },
+    {
+      "title": "Demon's Souls",
+      "ids": [
+        "BLUS30443",
+        "BLES00932",
+        "BCJS30022",
+        "BCAS20071",
+        "NPEB01202",
+        "NPUB30910",
+        "NPJA00102"
+      ],
+      "demand": "heavy",
+      "recommendedTier": "performance",
+      "compatibility": "Playable",
+      "settings": {
+        "Video": {
+          "Write Color Buffers": true,
+          "Minimum Scalable Dimension": 640
+        }
+      },
+      "tierSettings": {},
+      "notes": "Enable the 'Unlock FPS' patch. On CPUs under 8 cores/16 threads the wiki suggests Max SPURS Threads = 3 (Advanced tab); the in-game FPS counter is unreliable due to frame duplication.",
+      "source": "https://wiki.rpcs3.net/index.php?title=Demon%27s_Souls",
+      "emulator": "rpcs3"
+    },
+    {
+      "title": "Persona 5",
+      "ids": [
+        "BLUS31604",
+        "BLES02247",
+        "BLJM61346",
+        "NPEB02436",
+        "NPJB00769",
+        "NPUB31848"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Playable",
+      "settings": {
+        "Video": {
+          "Write Color Buffers": true,
+          "Resolution Scale": 100
+        }
+      },
+      "tierSettings": {},
+      "notes": "Use only integer resolution scales (100/200/300%). On weak hardware (e.g. Steam Deck) the wiki suggests Max SPURS Threads = 4 and trying SPU thread values 1-3; keep frame limit at 30 to avoid palace soft-locks.",
+      "source": "https://wiki.rpcs3.net/index.php?title=Persona_5",
+      "emulator": "rpcs3"
+    },
+    {
+      "title": "Red Dead Redemption",
+      "ids": [
+        "BLUS30418",
+        "BLES00680",
+        "BLJM60265",
+        "BLKS20202",
+        "NPEB00833",
+        "NPUB30638",
+        "NPHB00465",
+        "BLES01294",
+        "BLUS30758",
+        "BLJM60403",
+        "BLAS50382",
+        "BLKS20315",
+        "NPJB00504"
+      ],
+      "demand": "extreme",
+      "recommendedTier": "max",
+      "compatibility": "Ingame",
+      "settings": {
+        "Core": {
+          "Sleep Timers Accuracy": "As Host"
+        },
+        "Video": {
+          "Write Color Buffers": true,
+          "MSAA": "Disabled",
+          "Relaxed ZCULL Sync": true,
+          "Accurate ZCULL stats": false
+        }
+      },
+      "tierSettings": {},
+      "notes": "Do not install game updates - they lower performance significantly. Very CPU heavy; expect sub-30fps on handheld APUs.",
+      "source": "https://wiki.rpcs3.net/index.php?title=Red_Dead_Redemption",
+      "emulator": "rpcs3"
+    },
+    {
+      "title": "Metal Gear Solid 4: Guns of the Patriots",
+      "ids": [
+        "BLUS30109",
+        "BLES00246",
+        "BLJM67001",
+        "NPEB02182",
+        "NPUB31633",
+        "NPJB00698"
+      ],
+      "demand": "extreme",
+      "recommendedTier": "max",
+      "compatibility": "Ingame",
+      "settings": {
+        "Core": {
+          "Accurate RSX reservation access": true
+        },
+        "Video": {
+          "Write Color Buffers": true,
+          "Frame limit": "PS3 Native",
+          "Relaxed ZCULL Sync": true,
+          "Accurate ZCULL stats": false
+        }
+      },
+      "tierSettings": {},
+      "notes": "Wiki also requires libvdec.sprx in Firmware libraries (LLE) for FMVs and the canary 'Crash fix' patch; the game is very unstable without it.",
+      "source": "https://wiki.rpcs3.net/index.php?title=Metal_Gear_Solid_4:_Guns_of_the_Patriots",
+      "emulator": "rpcs3"
+    },
+    {
+      "title": "God of War III",
+      "ids": [
+        "BCUS98111",
+        "BCES00510",
+        "BCES00799",
+        "BCKS15003",
+        "BCAS25003",
+        "BCJS37001"
+      ],
+      "demand": "extreme",
+      "recommendedTier": "max",
+      "compatibility": "Ingame",
+      "settings": {
+        "Core": {
+          "SPU Block Size": "Mega"
+        },
+        "Video": {
+          "Write Color Buffers": true,
+          "Minimum Scalable Dimension": 160,
+          "Vulkan": {
+            "Asynchronous Texture Streaming 2": true
+          }
+        }
+      },
+      "tierSettings": {},
+      "notes": "Enable the 'Disable MLAA' and 'Disable SPU MLAA' patches for performance. Hardware requirement is very high.",
+      "source": "https://wiki.rpcs3.net/index.php?title=God_of_War_III",
+      "emulator": "rpcs3"
+    },
+    {
+      "title": "God of War: Ascension",
+      "ids": [
+        "BCUS98232",
+        "BCES01741",
+        "BCES01742",
+        "BCJS37008",
+        "BCAS25016",
+        "NPEA00445",
+        "NPUA80918",
+        "NPHA80258",
+        "NPJA00094"
+      ],
+      "demand": "extreme",
+      "recommendedTier": "max",
+      "compatibility": "Ingame",
+      "settings": {
+        "Core": {
+          "Accurate RSX reservation access": true,
+          "Sleep Timers Accuracy": "As Host"
+        },
+        "Video": {
+          "Write Color Buffers": true,
+          "Relaxed ZCULL Sync": false,
+          "Accurate ZCULL stats": false
+        }
+      },
+      "tierSettings": {},
+      "notes": "The 'Disable MLAA' patch is mandatory (black screen without it). Do not use Relaxed ZCULL.",
+      "source": "https://wiki.rpcs3.net/index.php?title=God_of_War:_Ascension",
+      "emulator": "rpcs3"
+    },
+    {
+      "title": "God of War Collection",
+      "ids": [
+        "BCUS98229",
+        "BCES00791",
+        "BCES00800",
+        "BLJM60200",
+        "NPJA00066",
+        "NPEA00255",
+        "NPUA80490",
+        "NPHA80104",
+        "NPJA00061",
+        "NPEA00256",
+        "NPUA80491",
+        "NPJA00062",
+        "NPHA80105"
+      ],
+      "demand": "medium",
+      "recommendedTier": "performance",
+      "compatibility": "Playable",
+      "settings": {
+        "Video": {
+          "Frame limit": "60"
+        }
+      },
+      "tierSettings": {},
+      "notes": "Game speed is tied to 60 FPS, so a locked 60 is needed to avoid slowdown.",
+      "source": "https://wiki.rpcs3.net/index.php?title=God_of_War:_Collection",
+      "emulator": "rpcs3"
+    },
+    {
+      "title": "Uncharted: Drake's Fortune",
+      "ids": [
+        "BCUS98103",
+        "BCES00065",
+        "BCJS30015",
+        "BCAS20024",
+        "NPEA00363",
+        "NPUA80697",
+        "NPHA80193"
+      ],
+      "demand": "heavy",
+      "recommendedTier": "performance",
+      "compatibility": "Ingame",
+      "settings": {
+        "Core": {
+          "SPU Block Size": "Mega"
+        },
+        "Video": {
+          "Write Color Buffers": true,
+          "MSAA": "Disabled",
+          "Minimum Scalable Dimension": 160,
+          "Relaxed ZCULL Sync": false,
+          "Accurate ZCULL stats": false
+        }
+      },
+      "tierSettings": {},
+      "notes": "Wiki also suggests Write Depth Buffer (if smoke clips through objects) and 'Emulate Special Depth Comparison' (fixes offscreen Z-fighting) in the Advanced tab.",
+      "source": "https://wiki.rpcs3.net/index.php?title=Uncharted:_Drake%27s_Fortune",
+      "emulator": "rpcs3"
+    },
+    {
+      "title": "Uncharted 2: Among Thieves",
+      "ids": [
+        "BCUS98123",
+        "BCES00509",
+        "BCES00727",
+        "BCES00757",
+        "BCJS30035",
+        "BCAS20097",
+        "BCKS10086",
+        "NPEA00364",
+        "NPEA00365",
+        "NPEA00369",
+        "NPUA80698",
+        "NPHA80194"
+      ],
+      "demand": "extreme",
+      "recommendedTier": "max",
+      "compatibility": "Ingame",
+      "settings": {
+        "Video": {
+          "Write Color Buffers": true,
+          "Read Depth Buffer": true,
+          "Anisotropic Filter Override": 0,
+          "Minimum Scalable Dimension": 160,
+          "Vulkan": {
+            "Asynchronous Texture Streaming 2": true
+          }
+        }
+      },
+      "tierSettings": {},
+      "notes": "Enable 'Disable Mesh Trimming' and 'Enable GPU Lighting' patches; only use 'Disable SPU Post-processing' when upscaling. Read Depth Buffer is only needed with async texture streaming.",
+      "source": "https://wiki.rpcs3.net/index.php?title=Uncharted_2:_Among_Thieves",
+      "emulator": "rpcs3"
+    },
+    {
+      "title": "Uncharted 3: Drake's Deception",
+      "ids": [
+        "BCUS98233",
+        "BCES01175",
+        "BCES01176",
+        "BCJS37004",
+        "BCAS25009",
+        "BCUS99086",
+        "BCES01670",
+        "BCES01692",
+        "BCAS25014",
+        "NPEA00422",
+        "NPUA80858"
+      ],
+      "demand": "extreme",
+      "recommendedTier": "max",
+      "compatibility": "Ingame",
+      "settings": {
+        "Core": {
+          "Accurate RSX reservation access": true
+        },
+        "Video": {
+          "Write Color Buffers": true,
+          "Read Color Buffers": true,
+          "Handle RSX Memory Tiling": true,
+          "Multithreaded RSX": true,
+          "Resolution Scale": 100,
+          "Relaxed ZCULL Sync": false,
+          "Accurate ZCULL stats": true,
+          "Vulkan": {
+            "Asynchronous Texture Streaming 2": true
+          }
+        }
+      },
+      "tierSettings": {},
+      "notes": "ZCULL must be Precise. Enable the MLAA/mesh trimming/GPU lighting patches; with patches, Read Color Buffers and memory tiling are not needed.",
+      "source": "https://wiki.rpcs3.net/index.php?title=Uncharted_3:_Drake%27s_Deception",
+      "emulator": "rpcs3"
+    },
+    {
+      "title": "The Last of Us",
+      "ids": [
+        "BCUS98174",
+        "BCES01584",
+        "BCES01585",
+        "BCJS37010",
+        "BCAS20270",
+        "NPEA00435",
+        "NPUA80960",
+        "NPHA80243",
+        "NPJA00096",
+        "NPEA00521",
+        "NPUA81175"
+      ],
+      "demand": "extreme",
+      "recommendedTier": "max",
+      "compatibility": "Ingame",
+      "settings": {
+        "Core": {
+          "Accurate RSX reservation access": true
+        },
+        "Video": {
+          "Frame limit": "60",
+          "Resolution Scale": 100,
+          "Minimum Scalable Dimension": 1,
+          "Write Color Buffers": true,
+          "Read Color Buffers": true,
+          "Handle RSX Memory Tiling": true,
+          "Relaxed ZCULL Sync": true,
+          "Accurate ZCULL stats": false
+        }
+      },
+      "tierSettings": {},
+      "notes": "Requires a strong CPU plus the 'Disable in-built MLAA' and bug-fix patches for serviceable performance; Relaxed ZCULL may break the flashlight.",
+      "source": "https://wiki.rpcs3.net/index.php?title=The_Last_of_Us",
+      "emulator": "rpcs3"
+    },
+    {
+      "title": "Gran Turismo 5",
+      "ids": [
+        "BCUS98114",
+        "BCES00569",
+        "BCAS20108",
+        "BCJS30001"
+      ],
+      "demand": "extreme",
+      "recommendedTier": "max",
+      "compatibility": "Ingame",
+      "settings": {
+        "Core": {
+          "SPU Block Size": "Mega",
+          "Accurate RSX reservation access": true,
+          "Sleep Timers Accuracy": "As Host"
+        },
+        "Video": {
+          "Disable ZCull Occlusion Queries": true
+        }
+      },
+      "tierSettings": {},
+      "notes": "Buying cars can crash with the SPU LLVM recompiler; ASMJIT or accurate xfloat avoids it. Updates past 2.00 are heavier on the CPU.",
+      "source": "https://wiki.rpcs3.net/index.php?title=Gran_Turismo_5",
+      "emulator": "rpcs3"
+    },
+    {
+      "title": "Gran Turismo 6",
+      "ids": [
+        "BCUS98296",
+        "BCES01893",
+        "BCES01977",
+        "BCJS37016",
+        "BCAS25018",
+        "BCUS99247",
+        "NPEA00502",
+        "NPUA81049",
+        "NPHA80269",
+        "NPJA00113"
+      ],
+      "demand": "extreme",
+      "recommendedTier": "max",
+      "compatibility": "Ingame",
+      "settings": {
+        "Core": {
+          "Accurate RSX reservation access": true
+        },
+        "Video": {
+          "Write Color Buffers": true,
+          "Read Color Buffers": true,
+          "Disable ZCull Occlusion Queries": true
+        }
+      },
+      "tierSettings": {},
+      "notes": "Do not update past 1.05. On 1.05 and below the wiki alternatively suggests Force CPU Blit with Write/Read Color Buffers off for higher FPS (less lighting).",
+      "source": "https://wiki.rpcs3.net/index.php?title=Gran_Turismo_6",
+      "emulator": "rpcs3"
+    },
+    {
+      "title": "Ni no Kuni: Wrath of the White Witch",
+      "ids": [
+        "BLUS30947",
+        "BLES01555",
+        "NPEB01158",
+        "NPUB30932",
+        "BLJS10150",
+        "BLJS10185",
+        "NPJB00238"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Playable",
+      "settings": {
+        "Video": {
+          "Anisotropic Filter Override": 16,
+          "Vblank Rate": 120
+        }
+      },
+      "tierSettings": {},
+      "notes": "Vblank 120 is for 60fps play; 16x AF can make some 2D UI elements display incorrectly.",
+      "source": "https://wiki.rpcs3.net/index.php?title=Ni_no_Kuni:_Wrath_of_the_White_Witch",
+      "emulator": "rpcs3"
+    },
+    {
+      "title": "Yakuza 3",
+      "ids": [
+        "BLUS30494",
+        "BLES00834",
+        "BLJM60132"
+      ],
+      "demand": "heavy",
+      "recommendedTier": "performance",
+      "compatibility": "Ingame",
+      "settings": {
+        "Core": {
+          "SPU Block Size": "Mega",
+          "RSX FIFO Accuracy": "Atomic"
+        },
+        "Video": {
+          "Minimum Scalable Dimension": 512
+        }
+      },
+      "tierSettings": {},
+      "notes": "Random crashes without log output are a known issue. AMD Windows drivers can show rainbow patterns on faces in some cutscenes.",
+      "source": "https://wiki.rpcs3.net/index.php?title=Yakuza_3",
+      "emulator": "rpcs3"
+    },
+    {
+      "title": "Yakuza 4",
+      "ids": [
+        "BLUS30643",
+        "BLES01081",
+        "BLJM60208",
+        "NPEB02036",
+        "NPUB31510"
+      ],
+      "demand": "heavy",
+      "recommendedTier": "performance",
+      "compatibility": "Ingame",
+      "settings": {
+        "Video": {
+          "Minimum Scalable Dimension": 512
+        }
+      },
+      "tierSettings": {},
+      "notes": "Random crashes without log output are a known issue.",
+      "source": "https://wiki.rpcs3.net/index.php?title=Yakuza_4",
+      "emulator": "rpcs3"
+    },
+    {
+      "title": "Yakuza 5",
+      "ids": [
+        "BLJM60489",
+        "NPEB02228",
+        "NPUB31658"
+      ],
+      "demand": "heavy",
+      "recommendedTier": "performance",
+      "compatibility": "Ingame",
+      "settings": {
+        "Core": {
+          "Sleep Timers Accuracy": "As Host"
+        },
+        "Video": {
+          "Minimum Scalable Dimension": 512,
+          "Force CPU Blit": true
+        }
+      },
+      "tierSettings": {},
+      "notes": "A SPU MLAA removal patch is available (does not work at exactly 100% resolution scale). Random crashes are a known issue.",
+      "source": "https://wiki.rpcs3.net/index.php?title=Yakuza_5",
+      "emulator": "rpcs3"
+    },
+    {
+      "title": "Dragon's Crown",
+      "ids": [
+        "BLUS30767",
+        "BLES01950",
+        "BLJM61041",
+        "BCAS20298",
+        "NPEB01836",
+        "NPUB31235"
+      ],
+      "demand": "light",
+      "recommendedTier": "battery",
+      "compatibility": "Playable",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "No non-default settings recommended; minor black lines on some backdrops.",
+      "source": "https://wiki.rpcs3.net/index.php?title=Dragon%27s_Crown",
+      "emulator": "rpcs3"
+    },
+    {
+      "title": "Ratchet & Clank Future: Tools of Destruction",
+      "ids": [
+        "BCUS98127",
+        "BCES00052",
+        "BCJS30014",
+        "NPEA00452",
+        "NPUA80965"
+      ],
+      "demand": "heavy",
+      "recommendedTier": "performance",
+      "compatibility": "Ingame",
+      "settings": {
+        "Core": {
+          "SPU Block Size": "Mega"
+        },
+        "Video": {
+          "Frame limit": "60",
+          "MSAA": "Disabled",
+          "Multithreaded RSX": false,
+          "Relaxed ZCULL Sync": false,
+          "Accurate ZCULL stats": false,
+          "Vulkan": {
+            "Asynchronous Texture Streaming 2": false
+          }
+        }
+      },
+      "tierSettings": {},
+      "notes": "Use English (US) system language to avoid missing audio. Frame limit 60 helps if Decryptor puzzles don't work.",
+      "source": "https://wiki.rpcs3.net/index.php?title=Ratchet_%26_Clank_Future:_Tools_of_Destruction",
+      "emulator": "rpcs3"
+    },
+    {
+      "title": "Ratchet & Clank Future: A Crack in Time",
+      "ids": [
+        "BCUS98124",
+        "BCES00511",
+        "BCES00726",
+        "BCES00748",
+        "NPEA00453",
+        "NPUA80966"
+      ],
+      "demand": "heavy",
+      "recommendedTier": "performance",
+      "compatibility": "Ingame",
+      "settings": {
+        "Video": {
+          "MSAA": "Auto",
+          "Read Color Buffers": true,
+          "Vulkan": {
+            "Asynchronous Texture Streaming 2": false
+          }
+        }
+      },
+      "tierSettings": {},
+      "notes": "Anti-aliasing must stay on Auto or the whole screen pixelates. RYNO V causes heavy FPS drops.",
+      "source": "https://wiki.rpcs3.net/index.php?title=Ratchet_%26_Clank_Future:_A_Crack_in_Time",
+      "emulator": "rpcs3"
+    },
+    {
+      "title": "Skate 3",
+      "ids": [
+        "BLUS30464",
+        "BLES00760",
+        "BLJM60296"
+      ],
+      "demand": "heavy",
+      "recommendedTier": "performance",
+      "compatibility": "Playable",
+      "settings": {
+        "Video": {
+          "MSAA": "Disabled",
+          "Write Color Buffers": true,
+          "Vblank Rate": 120
+        }
+      },
+      "tierSettings": {},
+      "notes": "On CPUs with fewer than 12 threads the wiki suggests trying Preferred SPU Threads 1, 2 or 3 to fix choppy audio or slow-motion physics.",
+      "source": "https://wiki.rpcs3.net/index.php?title=Skate_3",
+      "emulator": "rpcs3"
+    },
+    {
+      "title": "Resistance: Fall of Man",
+      "ids": [
+        "BCUS98107",
+        "BCES00001",
+        "BCJS30003",
+        "NPEA00430"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Playable",
+      "settings": {
+        "Video": {
+          "Minimum Scalable Dimension": 80
+        }
+      },
+      "tierSettings": {},
+      "notes": "Vblank Rate 120 plus the 'Unlock FPS' patch allows 60fps (above 150Hz breaks Bullseye trap physics).",
+      "source": "https://wiki.rpcs3.net/index.php?title=Resistance:_Fall_of_Man",
+      "emulator": "rpcs3"
+    },
+    {
+      "title": "Killzone 2",
+      "ids": [
+        "BCUS98116",
+        "BCES00081",
+        "BCJS30032",
+        "BCAS20066"
+      ],
+      "demand": "extreme",
+      "recommendedTier": "max",
+      "compatibility": "Ingame",
+      "settings": {
+        "Core": {
+          "SPU Block Size": "Mega"
+        },
+        "Video": {
+          "Write Color Buffers": true,
+          "Multithreaded RSX": false,
+          "Relaxed ZCULL Sync": true,
+          "Accurate ZCULL stats": false,
+          "Vulkan": {
+            "Asynchronous Texture Streaming 2": false
+          }
+        }
+      },
+      "tierSettings": {},
+      "notes": "Write Color Buffers is only needed without the 'Disable Post Processing on SPU' patch. Sixaxis required in places; Vblank 120 enables 60fps.",
+      "source": "https://wiki.rpcs3.net/index.php?title=Killzone_2",
+      "emulator": "rpcs3"
+    },
+    {
+      "title": "Killzone 3",
+      "ids": [
+        "BCUS98234",
+        "BCES01007"
+      ],
+      "demand": "extreme",
+      "recommendedTier": "max",
+      "compatibility": "Ingame",
+      "settings": {
+        "Core": {
+          "SPU Block Size": "Mega"
+        },
+        "Video": {
+          "Write Color Buffers": true,
+          "Vblank Rate": 120,
+          "Relaxed ZCULL Sync": true,
+          "Accurate ZCULL stats": false,
+          "Vulkan": {
+            "Asynchronous Texture Streaming 2": false
+          }
+        }
+      },
+      "tierSettings": {},
+      "notes": "Write Color Buffers is only needed without the MLAA patch. Some elements bug out at high framerates.",
+      "source": "https://wiki.rpcs3.net/index.php?title=Killzone_3",
+      "emulator": "rpcs3"
+    },
+    {
+      "title": "LittleBigPlanet",
+      "ids": [
+        "BCUS98148",
+        "BCES00141",
+        "NPEA00241",
+        "NPUA80472",
+        "BCUS98208",
+        "BCES00611",
+        "BCAS20078"
+      ],
+      "demand": "heavy",
+      "recommendedTier": "performance",
+      "compatibility": "Playable",
+      "settings": {
+        "Video": {
+          "Anisotropic Filter Override": 0,
+          "MSAA": "Auto",
+          "Minimum Scalable Dimension": 128,
+          "Write Color Buffers": true
+        }
+      },
+      "tierSettings": {},
+      "notes": "Update to at least v1.21 to avoid infinite loading. Water levels may freeze after a while.",
+      "source": "https://wiki.rpcs3.net/index.php?title=LittleBigPlanet",
+      "emulator": "rpcs3"
+    },
+    {
+      "title": "Heavenly Sword",
+      "ids": [
+        "BCUS98132",
+        "BCES00078",
+        "BCAS20016"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Playable",
+      "settings": {
+        "Video": {
+          "MSAA": "Disabled"
+        }
+      },
+      "tierSettings": {},
+      "notes": "Disabling anti-aliasing avoids VRAM-related crashes in picture-in-picture scenes, especially with resolution scaling.",
+      "source": "https://wiki.rpcs3.net/index.php?title=Heavenly_Sword",
+      "emulator": "rpcs3"
+    },
+    {
+      "title": "Valkyria Chronicles",
+      "ids": [
+        "BLUS30196",
+        "BLES00372",
+        "BLJM60063"
+      ],
+      "demand": "light",
+      "recommendedTier": "battery",
+      "compatibility": "Playable",
+      "settings": {
+        "Video": {
+          "Frame limit": "PS3 Native"
+        }
+      },
+      "tierSettings": {},
+      "notes": "PS3 Native frame limit removes tearing during cutscenes and intros.",
+      "source": "https://wiki.rpcs3.net/index.php?title=Valkyria_Chronicles",
+      "emulator": "rpcs3"
+    },
+    {
+      "title": "Tales of Xillia",
+      "ids": [
+        "BLUS31006",
+        "BLES01815",
+        "BLJS10120",
+        "NPEB01310",
+        "NPUB31136"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Playable",
+      "settings": {
+        "Core": {
+          "PPU Threads": 1
+        },
+        "Video": {
+          "Frame limit": "PS3 Native"
+        }
+      },
+      "tierSettings": {},
+      "notes": "PPU Threads 1 (config.yml only) fixes missing music/SFX. Leave frame limit Off instead if using the 60 FPS patch; don't skip the Bamco logos.",
+      "source": "https://wiki.rpcs3.net/index.php?title=Tales_of_Xillia",
+      "emulator": "rpcs3"
+    },
+    {
+      "title": "Tales of Graces f",
+      "ids": [
+        "BLUS30903",
+        "BLES01617",
+        "NPUB31133"
+      ],
+      "demand": "light",
+      "recommendedTier": "battery",
+      "compatibility": "Playable",
+      "settings": {
+        "Video": {
+          "Frame limit": "PS3 Native"
+        }
+      },
+      "tierSettings": {},
+      "notes": "PS3 Native frame limit lets the game switch between its 60fps combat and 30fps field caps.",
+      "source": "https://wiki.rpcs3.net/index.php?title=Tales_of_Graces_f",
+      "emulator": "rpcs3"
+    },
+    {
+      "title": "Catherine",
+      "ids": [
+        "BLUS30428",
+        "BLES01459",
+        "BLJM60215",
+        "NPEB00875",
+        "NPUB30698"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Playable",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "No non-default settings recommended.",
+      "source": "https://wiki.rpcs3.net/index.php?title=Catherine",
+      "emulator": "rpcs3"
+    },
+    {
+      "title": "Minecraft: PlayStation 3 Edition",
+      "ids": [
+        "BLUS31426",
+        "BLES01976",
+        "NPEB01899",
+        "NPUB31419",
+        "NPJB00549"
+      ],
+      "demand": "light",
+      "recommendedTier": "battery",
+      "compatibility": "Playable",
+      "settings": {
+        "Video": {
+          "Frame limit": "Off",
+          "Anisotropic Filter Override": 0,
+          "Multithreaded RSX": true
+        }
+      },
+      "tierSettings": {},
+      "notes": "Menus are tied to 60fps; avoid changing the frame limiter while the game runs. Split-screen lobby creation can crash.",
+      "source": "https://wiki.rpcs3.net/index.php?title=Minecraft",
+      "emulator": "rpcs3"
+    },
+    {
+      "title": "Dark Souls",
+      "ids": [
+        "BLUS30782",
+        "BLES01396",
+        "BLES01402",
+        "BLES01765",
+        "BLJM60517"
+      ],
+      "demand": "heavy",
+      "recommendedTier": "performance",
+      "compatibility": "Playable",
+      "settings": {
+        "Core": {
+          "Accurate RSX reservation access": true
+        },
+        "Video": {
+          "Write Color Buffers": true,
+          "Relaxed ZCULL Sync": true,
+          "Accurate ZCULL stats": false,
+          "Vulkan": {
+            "Asynchronous Texture Streaming 2": true
+          }
+        }
+      },
+      "tierSettings": {},
+      "notes": "Write Color Buffers fixes the game appearing too dark; Accurate RSX reservation access may prevent random freezes.",
+      "source": "https://wiki.rpcs3.net/index.php?title=Dark_Souls",
+      "emulator": "rpcs3"
+    },
+    {
+      "title": "The Legend of Zelda: Tears of the Kingdom",
+      "ids": [
+        "0100F2C0115B6000"
+      ],
+      "demand": "extreme",
+      "recommendedTier": "max",
+      "compatibility": "Ingame (Ryujinx; amd-vendor-bug)",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "Ryujinx list tags an AMD vendor bug; the heaviest Switch title, keep 1x resolution on the Ally.",
+      "source": "https://gist.github.com/ezhevita/b41ed3bf64d0cc01269cab036e884f3d",
+      "emulator": "switch"
+    },
+    {
+      "title": "The Legend of Zelda: Breath of the Wild",
+      "ids": [
+        "01007EF00011E000"
+      ],
+      "demand": "heavy",
+      "recommendedTier": "performance",
+      "compatibility": "Ingame (Ryujinx; amd-vendor-bug) / Great (yuzu)",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "yuzu notes particle effects are wrong at normal GPU accuracy but the Camera Rune fails at high, so neither accuracy is ideal.",
+      "source": "https://yuzu-mirror.github.io/game/the-legend-of-zelda-breath-of-the-wild/",
+      "emulator": "switch"
+    },
+    {
+      "title": "Super Mario Odyssey",
+      "ids": [
+        "0100000000010000"
+      ],
+      "demand": "heavy",
+      "recommendedTier": "performance",
+      "compatibility": "Playable (Ryujinx)",
+      "settings": {
+        "switch": {
+          "docked": true
+        }
+      },
+      "tierSettings": {},
+      "notes": "yuzu page recommends Docked console mode; AMD users should use Vulkan.",
+      "source": "https://yuzu-mirror.github.io/game/super-mario-odyssey/",
+      "emulator": "switch"
+    },
+    {
+      "title": "Mario Kart 8 Deluxe",
+      "ids": [
+        "0100152000022000"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Playable (Ryujinx; amd-vendor-bug)",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "Needs firmware (Mii data) or it crashes on boot; install the latest update. Some lighting issues on Vulkan.",
+      "source": "https://yuzu-mirror.github.io/game/mario-kart-8-deluxe/",
+      "emulator": "switch"
+    },
+    {
+      "title": "Super Smash Bros. Ultimate",
+      "ids": [
+        "01006A800016E000"
+      ],
+      "demand": "heavy",
+      "recommendedTier": "performance",
+      "compatibility": "Ingame (Ryujinx) / Great (yuzu)",
+      "settings": {
+        "switch": {
+          "asyncShaders": true
+        }
+      },
+      "tierSettings": {},
+      "notes": "yuzu game-specific config: enable asynchronous shader building on Vulkan to reduce heavy shader stutter (can occasionally crash).",
+      "source": "https://yuzu-mirror.github.io/game/super-smash-bros-ultimate/",
+      "emulator": "switch"
+    },
+    {
+      "title": "Animal Crossing: New Horizons",
+      "ids": [
+        "01006F8002326000"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Ingame (Ryujinx) / Great (yuzu)",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "No setting overrides documented; multiplayer and some BCAT events unsupported.",
+      "source": "https://yuzu-mirror.github.io/game/animal-crossing-new-horizons/",
+      "emulator": "switch"
+    },
+    {
+      "title": "Metroid Dread",
+      "ids": [
+        "010093801237C000"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Playable (Ryujinx) / Great (yuzu)",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "Runs well with default settings.",
+      "source": "https://yuzu-mirror.github.io/game/metroid-dread/",
+      "emulator": "switch"
+    },
+    {
+      "title": "The Legend of Zelda: Link's Awakening",
+      "ids": [
+        "01006BB00C6F0000"
+      ],
+      "demand": "heavy",
+      "recommendedTier": "performance",
+      "compatibility": "Ingame (Ryujinx) / Great (yuzu)",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "yuzu recommends Vulkan; performance can struggle in demanding areas and depth of field may need a mod.",
+      "source": "https://yuzu-mirror.github.io/game/the-legend-of-zelda-links-awakening/",
+      "emulator": "switch"
+    },
+    {
+      "title": "Fire Emblem: Three Houses",
+      "ids": [
+        "010055D009F78000"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Playable (Ryujinx) / Great (yuzu)",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "No setting overrides documented.",
+      "source": "https://yuzu-mirror.github.io/game/fire-emblem-three-houses/",
+      "emulator": "switch"
+    },
+    {
+      "title": "Xenoblade Chronicles 3",
+      "ids": [
+        "010074F013262000"
+      ],
+      "demand": "extreme",
+      "recommendedTier": "max",
+      "compatibility": "Ingame (Ryujinx; amd-vendor-bug, vulkan-backend-bug)",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "yuzu recommends the Bloom/Brightness workaround mod on Vulkan; save often as crashes can occur.",
+      "source": "https://yuzu-mirror.github.io/game/xenoblade-chronicles-3/",
+      "emulator": "switch"
+    },
+    {
+      "title": "Splatoon 3",
+      "ids": [
+        "0100C2500FC20000"
+      ],
+      "demand": "heavy",
+      "recommendedTier": "performance",
+      "compatibility": "Playable (Ryujinx; amd-vendor-bug)",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "Ryujinx list tags an OpenGL backend bug; use Vulkan.",
+      "source": "https://gist.github.com/ezhevita/b41ed3bf64d0cc01269cab036e884f3d",
+      "emulator": "switch"
+    },
+    {
+      "title": "Kirby and the Forgotten Land",
+      "ids": [
+        "01004D300C5AE000"
+      ],
+      "demand": "heavy",
+      "recommendedTier": "performance",
+      "compatibility": "Ingame (Ryujinx; gpu)",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "No setting overrides documented; GPU issues noted on the Ryujinx list.",
+      "source": "https://gist.github.com/ezhevita/b41ed3bf64d0cc01269cab036e884f3d",
+      "emulator": "switch"
+    },
+    {
+      "title": "Pokemon Legends: Arceus",
+      "ids": [
+        "01001F5010DFA000"
+      ],
+      "demand": "heavy",
+      "recommendedTier": "performance",
+      "compatibility": "Ingame (Ryujinx)",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "No setting overrides documented; GPU issues noted on the Ryujinx list.",
+      "source": "https://gist.github.com/ezhevita/b41ed3bf64d0cc01269cab036e884f3d",
+      "emulator": "switch"
+    },
+    {
+      "title": "Pokemon Scarlet / Violet",
+      "ids": [
+        "0100A3D008C5C000",
+        "01008F6008C5E000"
+      ],
+      "demand": "extreme",
+      "recommendedTier": "max",
+      "compatibility": "Ingame (Ryujinx; amd-vendor-bug)",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "Ryujinx list tags AMD vendor bugs; very demanding even on native hardware.",
+      "source": "https://gist.github.com/ezhevita/b41ed3bf64d0cc01269cab036e884f3d",
+      "emulator": "switch"
+    },
+    {
+      "title": "Halo 3",
+      "ids": [
+        "4D5307E6"
+      ],
+      "demand": "extreme",
+      "recommendedTier": "max",
+      "compatibility": "Playable",
+      "settings": {
+        "GPU": {
+          "occlusion_query": "fast",
+          "readback_resolve": "fast"
+        }
+      },
+      "tierSettings": {},
+      "notes": "Tester finished it with occlusion_query and readback_resolve set to fast; fast occlusion queries fix unoccluded lens flares.",
+      "source": "https://github.com/xenia-canary/game-compatibility/issues/214",
+      "emulator": "xenia"
+    },
+    {
+      "title": "Halo 3: ODST",
+      "ids": [
+        "4D530877"
+      ],
+      "demand": "extreme",
+      "recommendedTier": "max",
+      "compatibility": "Playable",
+      "settings": {
+        "GPU": {
+          "occlusion_query": "fast",
+          "readback_resolve": "full"
+        }
+      },
+      "tierSettings": {},
+      "notes": "Tester on a ROG Xbox Ally X finished it with readback_resolve=full (fixes over-brightness) and occlusion_query=fast. ROV fixes decal flicker but is slow and crash-prone on AMD.",
+      "source": "https://github.com/xenia-canary/game-compatibility/issues/215",
+      "emulator": "xenia"
+    },
+    {
+      "title": "Halo: Reach",
+      "ids": [
+        "4D53085B"
+      ],
+      "demand": "extreme",
+      "recommendedTier": "max",
+      "compatibility": "Playable",
+      "settings": {
+        "GPU": {
+          "occlusion_query": "fast",
+          "readback_resolve": "full"
+        }
+      },
+      "tierSettings": {},
+      "notes": "readback_resolve=full avoids text corruption and brightness issues; leave query_occlusion_sample_lower_threshold at default to avoid AO flicker.",
+      "source": "https://github.com/xenia-canary/game-compatibility/issues/981",
+      "emulator": "xenia"
+    },
+    {
+      "title": "Red Dead Redemption",
+      "ids": [
+        "5454082B"
+      ],
+      "demand": "extreme",
+      "recommendedTier": "max",
+      "compatibility": "Playable",
+      "settings": {
+        "GPU": {
+          "occlusion_query": "fast"
+        }
+      },
+      "tierSettings": {},
+      "notes": "occlusion_query=fast fixes unoccluded lens flares; a tester also capped FPS with framerate_limit. Ragdoll physics may differ at higher FPS.",
+      "source": "https://github.com/xenia-canary/game-compatibility/issues/129",
+      "emulator": "xenia"
+    },
+    {
+      "title": "Gears of War",
+      "ids": [
+        "4D5307D5"
+      ],
+      "demand": "heavy",
+      "recommendedTier": "performance",
+      "compatibility": "Playable",
+      "settings": {
+        "GPU": {
+          "occlusion_query": "fast"
+        }
+      },
+      "tierSettings": {},
+      "notes": "Use D3D12 (report says Vulkan still unstable). depth_bias_shader_offset=true fixed blood pools on NVIDIA but may not work on AMD.",
+      "source": "https://github.com/xenia-canary/game-compatibility/issues/44",
+      "emulator": "xenia"
+    },
+    {
+      "title": "Gears of War 2",
+      "ids": [
+        "4D53082D"
+      ],
+      "demand": "heavy",
+      "recommendedTier": "performance",
+      "compatibility": "Playable",
+      "settings": {
+        "GPU": {
+          "occlusion_query": "strict"
+        }
+      },
+      "tierSettings": {},
+      "notes": "Maintainers recommend occlusion_query=strict for lens flares; the Black Shading Fix patch fixes black character textures.",
+      "source": "https://github.com/xenia-canary/game-compatibility/issues/46",
+      "emulator": "xenia"
+    },
+    {
+      "title": "Forza Horizon",
+      "ids": [
+        "4D5309C9"
+      ],
+      "demand": "extreme",
+      "recommendedTier": "max",
+      "compatibility": "Playable",
+      "settings": {
+        "GPU": {
+          "readback_resolve": "fast"
+        },
+        "Storage": {
+          "mount_cache": true
+        }
+      },
+      "tierSettings": {},
+      "notes": "Tagged requires_mount_cache; readback_resolve=fast fixes green/purple car artifacts when upscaling. Stay at 1x (720p) scale on the Ally.",
+      "source": "https://github.com/xenia-canary/game-compatibility/issues/30",
+      "emulator": "xenia"
+    },
+    {
+      "title": "Skate 3",
+      "ids": [
+        "454108E6"
+      ],
+      "demand": "heavy",
+      "recommendedTier": "performance",
+      "compatibility": "Playable",
+      "settings": {
+        "APU": {
+          "xma_decoder": "old",
+          "use_dedicated_xma_thread": false
+        }
+      },
+      "tierSettings": {},
+      "notes": "xma_decoder=old and disabling the dedicated XMA thread fixed audio cut-out freezes; readback_resolve=fast fixes billboard photos (Edge build).",
+      "source": "https://github.com/xenia-canary/game-compatibility/issues/349",
+      "emulator": "xenia"
+    },
+    {
+      "title": "Lost Odyssey",
+      "ids": [
+        "4D5307FA"
+      ],
+      "demand": "heavy",
+      "recommendedTier": "performance",
+      "compatibility": "Gameplay",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "Character lighting flicker is fixed by ROV/FSI or the Character Lighting Fix patch; ROV is costly and can crash AMD shader compilers, so prefer the patch.",
+      "source": "https://github.com/xenia-canary/game-compatibility/issues/4",
+      "emulator": "xenia"
+    },
+    {
+      "title": "Ninja Gaiden II",
+      "ids": [
+        "544307D5"
+      ],
+      "demand": "heavy",
+      "recommendedTier": "performance",
+      "compatibility": "Playable",
+      "settings": {
+        "GPU": {
+          "clear_memory_page_state": true
+        }
+      },
+      "tierSettings": {},
+      "notes": "Tagged requires_clear_memory_page_state_true (fixes missing models in Team Ninja games); a tester set apu to xaudio2 to avoid audio cut-outs.",
+      "source": "https://github.com/xenia-canary/game-compatibility/issues/492",
+      "emulator": "xenia"
+    },
+    {
+      "title": "Blue Dragon",
+      "ids": [
+        "4D5307DF"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Gameplay",
+      "settings": {
+        "GPU": {
+          "clear_memory_page_state": true
+        }
+      },
+      "tierSettings": {},
+      "notes": "Tagged requires_clear_memory_page_state_true; fur textures need render_target_path_d3d12=rov, which is slow and crash-prone on AMD GPUs.",
+      "source": "https://github.com/xenia-canary/game-compatibility/issues/6",
+      "emulator": "xenia"
+    }
+  ]
+}

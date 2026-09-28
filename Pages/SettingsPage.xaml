@@ -1,0 +1,74 @@
+<Page x:Class="GameOp.Pages.SettingsPage" Foreground="{DynamicResource TextFillColorPrimaryBrush}" ScrollViewer.CanContentScroll="False"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      Title="Settings">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="24,12,24,24">
+            <TextBlock Text="Settings" FontSize="28" FontWeight="SemiBold" />
+
+            <TextBlock Text="Behaviour" Style="{StaticResource SectionHeader}" />
+            <ui:Card Padding="20">
+                <StackPanel>
+                    <ui:ToggleSwitch x:Name="AutoPower" Content="Auto power per game: switch TDP when a known game is in the foreground" Click="OnToggle" />
+                    <ui:ToggleSwitch x:Name="Gamepad" Content="Controller navigation (D-pad to move, A to select, B back, LB/RB to change page)" Click="OnToggle" Margin="0,12,0,0" />
+                </StackPanel>
+            </ui:Card>
+
+            <TextBlock Text="Emulator updates" Style="{StaticResource SectionHeader}" />
+            <ui:Card Padding="20">
+                <StackPanel>
+                    <ui:ToggleSwitch x:Name="AutoUpdate" Content="Install emulator updates automatically (checked at start-up and every 6 hours, skipped while an emulator is running)" Click="OnToggle" />
+                    <ui:ToggleSwitch x:Name="Prerelease" Content="Include pre-release / nightly builds" Click="OnToggle" Margin="0,12,0,0" />
+                    <TextBlock Text="Folder for newly installed emulators" Margin="0,16,0,4" />
+                    <StackPanel Orientation="Horizontal">
+                        <ui:TextBox x:Name="InstallRoot" Width="360" IsReadOnly="True" />
+                        <ui:Button Content="Browse" Margin="8,0,0,0" Click="OnInstallRoot" />
+                    </StackPanel>
+                    <TextBlock Style="{StaticResource Caption}" Margin="0,6,0,0"
+                               Text="Updates never delete files. BIOS, firmware, keys, saves, memory cards, save states and config files are never overwritten, and replaced program files are backed up so you can roll back." />
+                </StackPanel>
+            </ui:Card>
+
+            <TextBlock Text="Device" Style="{StaticResource SectionHeader}" />
+            <ui:Card Padding="20">
+                <StackPanel>
+                    <TextBlock x:Name="HwText" Style="{StaticResource Caption}" />
+                    <TextBlock Text="Device model" Margin="0,10,0,4" />
+                    <ComboBox x:Name="DevicePick" Width="360" HorizontalAlignment="Left" SelectionChanged="OnDevice" />
+                    <TextBlock Style="{StaticResource Caption}" Margin="0,4,0,0" Text="Leave on Auto-detect unless detection picked the wrong model. Takes effect after a restart." />
+
+                    <TextBlock Text="RyzenAdj fallback (optional)" Margin="0,16,0,4" />
+                    <StackPanel Orientation="Horizontal">
+                        <ui:TextBox x:Name="RyzenAdj" Width="360" PlaceholderText="Path to ryzenadj.exe" IsReadOnly="True" />
+                        <ui:Button Content="Browse" Margin="8,0,0,0" Click="OnRyzenAdj" />
+                        <ui:Button Content="Clear" Margin="8,0,0,0" Click="OnClearRyzenAdj" />
+                    </StackPanel>
+                    <TextBlock Style="{StaticResource Caption}" Margin="0,4,0,0"
+                               Text="Only used if the ASUS ACPI driver isn't available. Download RyzenAdj yourself from its official GitHub releases." />
+                </StackPanel>
+            </ui:Card>
+
+            <TextBlock Text="Game database" Style="{StaticResource SectionHeader}" />
+            <ui:Card Padding="20">
+                <StackPanel>
+                    <TextBlock x:Name="DbText" Style="{StaticResource Caption}" />
+                    <TextBlock Text="Update URL (JSON in the same format as Data\gamedb.json)" Margin="0,12,0,4" />
+                    <StackPanel Orientation="Horizontal">
+                        <ui:TextBox x:Name="DbUrl" Width="460" PlaceholderText="https://…/gamedb.json" />
+                        <ui:Button Content="Update now" Appearance="Primary" Margin="8,0,0,0" Click="OnUpdateDb">
+                            <ui:Button.Icon><ui:SymbolIcon Symbol="CloudArrowDown24" /></ui:Button.Icon>
+                        </ui:Button>
+                    </StackPanel>
+                    <WrapPanel Margin="0,12,0,0">
+                        <ui:Button Content="Import JSON file" Click="OnImport" Margin="0,0,8,0">
+                            <ui:Button.Icon><ui:SymbolIcon Symbol="DocumentArrowUp24" /></ui:Button.Icon>
+                        </ui:Button>
+                        <ui:Button Content="Reset to built-in database" Click="OnResetDb" Margin="0,0,8,0" />
+                        <ui:Button Content="Open GameOp data folder" Click="OnOpenData" />
+                    </WrapPanel>
+                </StackPanel>
+            </ui:Card>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

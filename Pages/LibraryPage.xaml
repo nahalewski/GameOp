@@ -1,0 +1,128 @@
+<Page x:Class="GameOp.Pages.LibraryPage" Foreground="{DynamicResource TextFillColorPrimaryBrush}" ScrollViewer.CanContentScroll="False"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      Title="Game Library">
+    <Grid Margin="24,12,24,24">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5*" />
+            <ColumnDefinition Width="16" />
+            <ColumnDefinition Width="6*" />
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.ColumnSpan="3">
+            <TextBlock Text="Game Library" FontSize="28" FontWeight="SemiBold" />
+            <TextBlock x:Name="DbInfo" Style="{StaticResource Caption}" Margin="0,2,0,12" />
+        </StackPanel>
+
+        <!-- Filters -->
+        <Grid Grid.Row="1" Grid.Column="0" Margin="0,0,0,8">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <ui:TextBox x:Name="Search" PlaceholderText="Search games or serials…" TextChanged="OnFilter">
+                <ui:TextBox.Icon><ui:SymbolIcon Symbol="Search24" /></ui:TextBox.Icon>
+            </ui:TextBox>
+            <ComboBox x:Name="EmuFilter" Grid.Column="1" Width="160" Margin="8,0,0,0" SelectionChanged="OnFilter" />
+        </Grid>
+        <CheckBox x:Name="InstalledOnly" Grid.Row="1" Grid.Column="2" Content="Only games found in my emulators" Click="OnFilter" VerticalAlignment="Center" />
+
+        <!-- Game list -->
+        <ui:Card Grid.Row="2" Grid.Column="0" Padding="0" VerticalAlignment="Stretch" VerticalContentAlignment="Stretch">
+            <ListBox x:Name="GameList" SelectionChanged="OnSelect" Background="Transparent" BorderThickness="0"
+                     ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="4,6">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <StackPanel>
+                                <TextBlock Text="{Binding Title}" FontWeight="SemiBold" TextTrimming="CharacterEllipsis" />
+                                <TextBlock Text="{Binding Subtitle}" FontSize="12" Opacity="0.7" TextTrimming="CharacterEllipsis" />
+                            </StackPanel>
+                            <TextBlock Grid.Column="1" Text="{Binding Badge}" FontSize="12" VerticalAlignment="Center" Margin="8,0,0,0" Opacity="0.85" />
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </ui:Card>
+
+        <!-- Details -->
+        <ScrollViewer Grid.Row="2" Grid.Column="2" VerticalScrollBarVisibility="Auto">
+            <StackPanel x:Name="Details" Visibility="Collapsed">
+                <ui:Card Padding="20">
+                    <StackPanel>
+                        <TextBlock x:Name="DTitle" FontSize="22" FontWeight="SemiBold" TextWrapping="Wrap" />
+                        <TextBlock x:Name="DMeta" Style="{StaticResource Caption}" Margin="0,4,0,0" />
+                        <TextBlock x:Name="DCompat" Margin="0,8,0,0" TextWrapping="Wrap" />
+                        <TextBlock x:Name="DNotes" Margin="0,8,0,0" TextWrapping="Wrap" />
+                        <TextBlock Margin="0,6,0,0">
+                            <Hyperlink x:Name="DSource" RequestNavigate="OnSource"><Run Text="Source" /></Hyperlink>
+                        </TextBlock>
+                    </StackPanel>
+                </ui:Card>
+
+                <ui:Card Padding="20" Margin="0,12,0,0">
+                    <StackPanel>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Margin="0,0,8,0">
+                                <TextBlock Text="Profile level" Style="{StaticResource Caption}" />
+                                <ComboBox x:Name="TierPick" Margin="0,4,0,0" SelectionChanged="OnTierPick" />
+                            </StackPanel>
+                            <StackPanel Grid.Column="1" Margin="8,0,0,0">
+                                <TextBlock Text="Write to" Style="{StaticResource Caption}" />
+                                <ComboBox x:Name="TargetPick" Margin="0,4,0,0" SelectionChanged="OnTargetPick" />
+                            </StackPanel>
+                        </Grid>
+                        <TextBlock x:Name="DPower" Style="{StaticResource Caption}" Margin="0,8,0,0" />
+                        <TextBlock x:Name="DTarget" Style="{StaticResource Caption}" Margin="0,2,0,0" />
+
+                        <StackPanel Orientation="Horizontal" Margin="0,14,0,0">
+                            <ui:Button x:Name="ApplyBtn" Content="Apply profile" Appearance="Primary" Click="OnApply" Padding="18,8">
+                                <ui:Button.Icon><ui:SymbolIcon Symbol="Checkmark24" /></ui:Button.Icon>
+                            </ui:Button>
+                            <ui:Button x:Name="MaxBtn" Content="Max out" Margin="8,0,0,0" Click="OnMax" Padding="18,8">
+                                <ui:Button.Icon><ui:SymbolIcon Symbol="Rocket24" /></ui:Button.Icon>
+                            </ui:Button>
+                            <ui:Button Content="Power only" Margin="8,0,0,0" Click="OnPowerOnly" Padding="18,8">
+                                <ui:Button.Icon><ui:SymbolIcon Symbol="BatteryCharge24" /></ui:Button.Icon>
+                            </ui:Button>
+                        </StackPanel>
+                    </StackPanel>
+                </ui:Card>
+
+                <TextBlock Text="Settings that will be written" Style="{StaticResource SectionHeader}" FontSize="16" />
+                <ui:Card Padding="12">
+                    <ItemsControl x:Name="SettingsPreview">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="0,2">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="{Binding Path}" FontSize="12" Opacity="0.8" TextTrimming="CharacterEllipsis" />
+                                    <TextBlock Grid.Column="1" Text="{Binding Value}" FontSize="12" FontWeight="SemiBold" Margin="12,0,0,0" />
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ui:Card>
+            </StackPanel>
+        </ScrollViewer>
+        <TextBlock x:Name="EmptyHint" Grid.Row="2" Grid.Column="2" Text="Pick a game to see its profile." Style="{StaticResource Caption}"
+                   HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" />
+    </Grid>
+</Page>

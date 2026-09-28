@@ -1,0 +1,80 @@
+{
+  "devices": [
+    {
+      "id": "ally_z1",
+      "name": "ROG Ally (2023)",
+      "modelCodes": ["RC71L"],
+      "cpuMatch": "Z1",
+      "cpuExclude": "Extreme",
+      "apu": "AMD Ryzen Z1",
+      "cpu": "6 cores / 12 threads, Zen 4",
+      "gpu": "Radeon 740M, 4 CU RDNA 3",
+      "ram": "16 GB LPDDR5-6400",
+      "display": "7\" 1920x1080 120 Hz",
+      "batteryWh": 40,
+      "gpuClass": "low",
+      "tdp": { "battery": 9, "balanced": 15, "performance": 25, "max": 30 },
+      "limits": { "minSpl": 7, "maxSpl": 30, "maxSppt": 35, "maxFppt": 35 }
+    },
+    {
+      "id": "ally_z1e",
+      "name": "ROG Ally (2023) Z1 Extreme",
+      "modelCodes": ["RC71L"],
+      "cpuMatch": "Z1 Extreme",
+      "apu": "AMD Ryzen Z1 Extreme",
+      "cpu": "8 cores / 16 threads, Zen 4",
+      "gpu": "Radeon 780M, 12 CU RDNA 3",
+      "ram": "16 GB LPDDR5-6400",
+      "display": "7\" 1920x1080 120 Hz",
+      "batteryWh": 40,
+      "gpuClass": "high",
+      "tdp": { "battery": 10, "balanced": 15, "performance": 25, "max": 30 },
+      "limits": { "minSpl": 7, "maxSpl": 30, "maxSppt": 35, "maxFppt": 35 }
+    },
+    {
+      "id": "ally_x",
+      "name": "ROG Ally X",
+      "modelCodes": ["RC72LA", "RC72L"],
+      "cpuMatch": "Z1 Extreme",
+      "apu": "AMD Ryzen Z1 Extreme",
+      "cpu": "8 cores / 16 threads, Zen 4",
+      "gpu": "Radeon 780M, 12 CU RDNA 3",
+      "ram": "24 GB LPDDR5X-7500",
+      "display": "7\" 1920x1080 120 Hz",
+      "batteryWh": 80,
+      "gpuClass": "high",
+      "tdp": { "battery": 10, "balanced": 17, "performance": 25, "max": 30 },
+      "limits": { "minSpl": 7, "maxSpl": 30, "maxSppt": 35, "maxFppt": 35 }
+    },
+    {
+      "id": "xbox_ally",
+      "name": "ROG Xbox Ally",
+      "modelCodes": ["RC73YA", "RC73Y"],
+      "cpuMatch": "Z2 A",
+      "apu": "AMD Ryzen Z2 A",
+      "cpu": "4 cores / 8 threads, Zen 2",
+      "gpu": "Radeon, 8 CU RDNA 2",
+      "ram": "16 GB LPDDR5X-6400",
+      "display": "7\" 1920x1080 120 Hz",
+      "batteryWh": 60,
+      "gpuClass": "low",
+      "tdp": { "battery": 7, "balanced": 10, "performance": 15, "max": 20 },
+      "limits": { "minSpl": 6, "maxSpl": 20, "maxSppt": 22, "maxFppt": 25 }
+    },
+    {
+      "id": "xbox_ally_x",
+      "name": "ROG Xbox Ally X",
+      "modelCodes": ["RC73XA", "RC73X"],
+      "cpuMatch": "Z2 Extreme",
+      "apu": "AMD Ryzen AI Z2 Extreme",
+      "cpu": "8 cores / 16 threads, Zen 5",
+      "gpu": "Radeon 890M, 16 CU RDNA 3.5",
+      "ram": "24 GB LPDDR5X-8000",
+      "display": "7\" 1920x1080 120 Hz",
+      "batteryWh": 80,
+      "gpuClass": "high",
+      "tdp": { "battery": 10, "balanced": 17, "performance": 25, "max": 35 },
+      "limits": { "minSpl": 7, "maxSpl": 35, "maxSppt": 35, "maxFppt": 40 }
+    }
+  ]
+}

@@ -1,0 +1,196 @@
+{
+  "emulator": "switch",
+  "games": [
+    {
+      "title": "The Legend of Zelda: Tears of the Kingdom",
+      "ids": [
+        "0100F2C0115B6000"
+      ],
+      "demand": "extreme",
+      "recommendedTier": "max",
+      "compatibility": "Ingame (Ryujinx; amd-vendor-bug)",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "Ryujinx list tags an AMD vendor bug; the heaviest Switch title, keep 1x resolution on the Ally.",
+      "source": "https://gist.github.com/ezhevita/b41ed3bf64d0cc01269cab036e884f3d"
+    },
+    {
+      "title": "The Legend of Zelda: Breath of the Wild",
+      "ids": [
+        "01007EF00011E000"
+      ],
+      "demand": "heavy",
+      "recommendedTier": "performance",
+      "compatibility": "Ingame (Ryujinx; amd-vendor-bug) / Great (yuzu)",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "yuzu notes particle effects are wrong at normal GPU accuracy but the Camera Rune fails at high, so neither accuracy is ideal.",
+      "source": "https://yuzu-mirror.github.io/game/the-legend-of-zelda-breath-of-the-wild/"
+    },
+    {
+      "title": "Super Mario Odyssey",
+      "ids": [
+        "0100000000010000"
+      ],
+      "demand": "heavy",
+      "recommendedTier": "performance",
+      "compatibility": "Playable (Ryujinx)",
+      "settings": {
+        "switch": {
+          "docked": true
+        }
+      },
+      "tierSettings": {},
+      "notes": "yuzu page recommends Docked console mode; AMD users should use Vulkan.",
+      "source": "https://yuzu-mirror.github.io/game/super-mario-odyssey/"
+    },
+    {
+      "title": "Mario Kart 8 Deluxe",
+      "ids": [
+        "0100152000022000"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Playable (Ryujinx; amd-vendor-bug)",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "Needs firmware (Mii data) or it crashes on boot; install the latest update. Some lighting issues on Vulkan.",
+      "source": "https://yuzu-mirror.github.io/game/mario-kart-8-deluxe/"
+    },
+    {
+      "title": "Super Smash Bros. Ultimate",
+      "ids": [
+        "01006A800016E000"
+      ],
+      "demand": "heavy",
+      "recommendedTier": "performance",
+      "compatibility": "Ingame (Ryujinx) / Great (yuzu)",
+      "settings": {
+        "switch": {
+          "asyncShaders": true
+        }
+      },
+      "tierSettings": {},
+      "notes": "yuzu game-specific config: enable asynchronous shader building on Vulkan to reduce heavy shader stutter (can occasionally crash).",
+      "source": "https://yuzu-mirror.github.io/game/super-smash-bros-ultimate/"
+    },
+    {
+      "title": "Animal Crossing: New Horizons",
+      "ids": [
+        "01006F8002326000"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Ingame (Ryujinx) / Great (yuzu)",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "No setting overrides documented; multiplayer and some BCAT events unsupported.",
+      "source": "https://yuzu-mirror.github.io/game/animal-crossing-new-horizons/"
+    },
+    {
+      "title": "Metroid Dread",
+      "ids": [
+        "010093801237C000"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Playable (Ryujinx) / Great (yuzu)",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "Runs well with default settings.",
+      "source": "https://yuzu-mirror.github.io/game/metroid-dread/"
+    },
+    {
+      "title": "The Legend of Zelda: Link's Awakening",
+      "ids": [
+        "01006BB00C6F0000"
+      ],
+      "demand": "heavy",
+      "recommendedTier": "performance",
+      "compatibility": "Ingame (Ryujinx) / Great (yuzu)",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "yuzu recommends Vulkan; performance can struggle in demanding areas and depth of field may need a mod.",
+      "source": "https://yuzu-mirror.github.io/game/the-legend-of-zelda-links-awakening/"
+    },
+    {
+      "title": "Fire Emblem: Three Houses",
+      "ids": [
+        "010055D009F78000"
+      ],
+      "demand": "medium",
+      "recommendedTier": "balanced",
+      "compatibility": "Playable (Ryujinx) / Great (yuzu)",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "No setting overrides documented.",
+      "source": "https://yuzu-mirror.github.io/game/fire-emblem-three-houses/"
+    },
+    {
+      "title": "Xenoblade Chronicles 3",
+      "ids": [
+        "010074F013262000"
+      ],
+      "demand": "extreme",
+      "recommendedTier": "max",
+      "compatibility": "Ingame (Ryujinx; amd-vendor-bug, vulkan-backend-bug)",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "yuzu recommends the Bloom/Brightness workaround mod on Vulkan; save often as crashes can occur.",
+      "source": "https://yuzu-mirror.github.io/game/xenoblade-chronicles-3/"
+    },
+    {
+      "title": "Splatoon 3",
+      "ids": [
+        "0100C2500FC20000"
+      ],
+      "demand": "heavy",
+      "recommendedTier": "performance",
+      "compatibility": "Playable (Ryujinx; amd-vendor-bug)",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "Ryujinx list tags an OpenGL backend bug; use Vulkan.",
+      "source": "https://gist.github.com/ezhevita/b41ed3bf64d0cc01269cab036e884f3d"
+    },
+    {
+      "title": "Kirby and the Forgotten Land",
+      "ids": [
+        "01004D300C5AE000"
+      ],
+      "demand": "heavy",
+      "recommendedTier": "performance",
+      "compatibility": "Ingame (Ryujinx; gpu)",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "No setting overrides documented; GPU issues noted on the Ryujinx list.",
+      "source": "https://gist.github.com/ezhevita/b41ed3bf64d0cc01269cab036e884f3d"
+    },
+    {
+      "title": "Pokemon Legends: Arceus",
+      "ids": [
+        "01001F5010DFA000"
+      ],
+      "demand": "heavy",
+      "recommendedTier": "performance",
+      "compatibility": "Ingame (Ryujinx)",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "No setting overrides documented; GPU issues noted on the Ryujinx list.",
+      "source": "https://gist.github.com/ezhevita/b41ed3bf64d0cc01269cab036e884f3d"
+    },
+    {
+      "title": "Pokemon Scarlet / Violet",
+      "ids": [
+        "0100A3D008C5C000",
+        "01008F6008C5E000"
+      ],
+      "demand": "extreme",
+      "recommendedTier": "max",
+      "compatibility": "Ingame (Ryujinx; amd-vendor-bug)",
+      "settings": {},
+      "tierSettings": {},
+      "notes": "Ryujinx list tags AMD vendor bugs; very demanding even on native hardware.",
+      "source": "https://gist.github.com/ezhevita/b41ed3bf64d0cc01269cab036e884f3d"
+    }
+  ]
+}
