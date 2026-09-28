@@ -76,7 +76,7 @@
         "balanced": { "settings": { "GPU": { "Renderer": "Vulkan", "ResolutionScale": 3, "TextureFilter": "Nearest", "PGXPEnable": true } } },
         "performance": { "settings": { "GPU": { "Renderer": "Vulkan", "ResolutionScale": 5, "TextureFilter": "Bilinear", "PGXPEnable": true } } },
         "max": {
-          "settings": { "GPU": { "Renderer": "Vulkan", "ResolutionScale": 8, "TextureFilter": "xBRBinAlias", "PGXPEnable": true } },
+          "settings": { "GPU": { "Renderer": "Vulkan", "ResolutionScale": 8, "TextureFilter": "xBRBinAlpha", "PGXPEnable": true } },
           "lowGpu": { "GPU": { "ResolutionScale": 5, "TextureFilter": "Bilinear" } }
         }
       }

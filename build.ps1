@@ -1,7 +1,7 @@
 # Builds GameOp and produces both release flavours in .\dist:
-#   GameOp-Portable-v<ver>.zip   (unzip anywhere; settings stay in .\UserData)
-#   GameOp-Setup-v<ver>.exe      (installer, Start menu + optional desktop shortcut)
-param([string]$Version = "1.0.0")
+#   GameOp-Portable-v<ver>.exe   single file; run from anywhere, settings stay in .\GameOp-Data next to it
+#   GameOp-Setup-v<ver>.exe      installer (Program Files, Start menu + optional desktop shortcut)
+param([string]$Version = "1.1.0")
 $ErrorActionPreference = "Stop"
 Set-Location $PSScriptRoot
 
@@ -20,14 +20,8 @@ New-Item -ItemType Directory dist | Out-Null
 if ($LASTEXITCODE -ne 0) { throw "publish failed" }
 Remove-Item publish\*.pdb -ErrorAction SilentlyContinue
 
-# Portable
-$portable = "dist\GameOp-Portable-v$Version"
-New-Item -ItemType Directory $portable | Out-Null
-Copy-Item publish\* $portable -Recurse
-Copy-Item README.md $portable
-Set-Content "$portable\portable.txt" "This file makes GameOp keep its settings and backups in the UserData folder next to GameOp.exe."
-Compress-Archive -Path "$portable\*" -DestinationPath "dist\GameOp-Portable-v$Version.zip" -CompressionLevel Optimal
-Remove-Item -Recurse -Force $portable
+# Portable: the same single-file exe; "Portable" in the name switches on portable mode.
+Copy-Item publish\GameOp.exe "dist\GameOp-Portable-v$Version.exe"
 
 # Installer
 if ($iscc) {

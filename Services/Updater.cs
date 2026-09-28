@@ -1,12 +1,7 @@
 using System.Diagnostics;
 using System.IO;
-using System.Net.Http;
-using System.Security.Cryptography;
 using System.Text.Json.Nodes;
 using System.Text.RegularExpressions;
-using SharpCompress.Archives;
-using SharpCompress.Common;
-using SharpCompress.Readers;
 
 namespace GameOp.Services;
 
@@ -89,7 +84,7 @@ public static class EmulatorUpdater
     public static async Task<UpdateInfo?> CheckAsync(string emulatorId, bool includePrerelease)
     {
         if (!Sources.TryGetValue(emulatorId, out var src)) return null;
-        using var http = Http();
+        using var http = Downloads.Http();
         var url = includePrerelease || src.Prerelease
             ? $"https://api.github.com/repos/{src.Repo}/releases?per_page=10"
             : $"https://api.github.com/repos/{src.Repo}/releases/latest";
@@ -128,6 +123,8 @@ public static class EmulatorUpdater
     /// <summary>Compares with what GameOp last installed; falls back to the exe's date the first time.</summary>
     public static UpdateState Evaluate(EmulatorAdapter e, UpdateInfo info, Models.AppSettings s)
     {
+        // A release the user rolled back is skipped until a newer one comes out.
+        if (s.SkippedReleases.TryGetValue(e.Id, out var skipped) && skipped == info.Key) return UpdateState.UpToDate;
         if (s.InstalledVersions.TryGetValue(e.Id, out var key))
             return key == info.Key ? UpdateState.UpToDate : UpdateState.Available;
         if (e.ExePath is null || !File.Exists(e.ExePath)) return UpdateState.Available;
@@ -155,34 +152,17 @@ public static class EmulatorUpdater
     {
         if (IsRunning(e)) throw new InvalidOperationException($"{e.Name} is running. Close it and try again.");
 
-        var work = Path.Combine(Path.GetTempPath(), "GameOp-update", $"{e.Id}-{Guid.NewGuid():N}");
-        Directory.CreateDirectory(work);
-        try
+        using var work = new Downloads.TempDir();
         {
-            // Download
-            var archive = Path.Combine(work, info.AssetName);
+            // Download + verify
+            var archive = Path.Combine(work.Path, info.AssetName);
             progress?.Report($"Downloading {info.AssetName} ({info.Size / 1048576.0:0.0} MB)…");
-            using (var http = Http())
-            await using (var src = await http.GetStreamAsync(info.Url))
-            await using (var dst = File.Create(archive))
-                await src.CopyToAsync(dst);
-
-            // Verify
-            if (info.Sha256 is not null)
-            {
-                progress?.Report("Verifying checksum…");
-                await using var fs = File.OpenRead(archive);
-                var hash = Convert.ToHexString(await SHA256.HashDataAsync(fs));
-                if (!hash.Equals(info.Sha256, StringComparison.OrdinalIgnoreCase))
-                    throw new InvalidDataException("Checksum mismatch – the download was corrupted or tampered with. Nothing was changed.");
-            }
+            await Downloads.DownloadAsync(info.Url, archive, info.Size, info.Sha256, progress);
 
             // Extract
             progress?.Report("Extracting…");
-            var extracted = Path.Combine(work, "x");
-            Directory.CreateDirectory(extracted);
-            using (var a = ArchiveFactory.OpenArchive(archive))
-                a.WriteToDirectory(extracted, new ExtractionOptions { ExtractFullPath = true, Overwrite = true });
+            var extracted = Path.Combine(work.Path, "x");
+            Downloads.Extract(archive, extracted);
 
             // Package root = the folder containing the emulator's exe.
             var exe = e.ExeNames
@@ -191,66 +171,85 @@ public static class EmulatorUpdater
                 ?? throw new InvalidDataException($"The release doesn't contain {string.Join(" / ", e.ExeNames)}.");
             var packageRoot = Path.GetDirectoryName(exe)!;
 
-            // Copy: add/replace program files only. Never delete, never touch protected files.
+            // The download can take minutes – make sure the emulator wasn't started meanwhile.
+            if (IsRunning(e)) throw new InvalidOperationException($"{e.Name} was started during the download. Close it and try again.");
+
+            // Copy: add/replace program files only. Never delete user files, never touch protected files.
+            // The marker is written first so a failed or interrupted update can always be undone.
             progress?.Report("Installing…");
             var backup = Path.Combine(AppPaths.BackupDir, "updates", e.Id, DateTime.Now.ToString("yyyyMMdd-HHmmss"));
+            var marker = Path.Combine(backup, MarkerName);
+            Directory.CreateDirectory(backup);
+            File.WriteAllLines(marker, [installDir, info.Version]);
             int copied = 0, kept = 0;
             Directory.CreateDirectory(installDir);
-            foreach (var file in Directory.EnumerateFiles(packageRoot, "*", SearchOption.AllDirectories))
+            try
             {
-                var rel = Path.GetRelativePath(packageRoot, file);
-                var target = Path.Combine(installDir, rel);
-                if (File.Exists(target))
+                foreach (var file in Directory.EnumerateFiles(packageRoot, "*", SearchOption.AllDirectories))
                 {
-                    if (IsProtected(rel)) { kept++; continue; }
-                    var b = Path.Combine(backup, rel);
-                    Directory.CreateDirectory(Path.GetDirectoryName(b)!);
-                    File.Copy(target, b, overwrite: true);
+                    var rel = Path.GetRelativePath(packageRoot, file);
+                    var target = Path.Combine(installDir, rel);
+                    if (File.Exists(target))
+                    {
+                        if (IsProtected(rel)) { kept++; continue; }
+                        var b = Path.Combine(backup, "files", rel);
+                        Directory.CreateDirectory(Path.GetDirectoryName(b)!);
+                        File.Copy(target, b, overwrite: true);
+                    }
+                    else File.AppendAllLines(marker, ["added:" + rel]); // new program file; removed again on rollback
+                    Directory.CreateDirectory(Path.GetDirectoryName(target)!);
+                    File.Copy(file, target, overwrite: true);
+                    copied++;
                 }
-                Directory.CreateDirectory(Path.GetDirectoryName(target)!);
-                File.Copy(file, target, overwrite: true);
-                copied++;
             }
-            if (Directory.Exists(backup)) File.WriteAllText(Path.Combine(backup, "gameop-update.txt"), $"{installDir}\n{info.Version}\n");
+            catch (Exception ex)
+            {
+                var restored = RestoreFrom(backup);
+                throw new IOException($"Update stopped ({ex.Message}). The previous version was put back ({restored} files).", ex);
+            }
 
             Log.Ok($"{e.Name} updated to {info.Version}: {copied} files installed, {kept} of your files left untouched");
             return Path.Combine(installDir, Path.GetFileName(exe));
         }
-        finally
-        {
-            try { Directory.Delete(work, recursive: true); } catch { /* temp cleanup is best-effort */ }
-        }
     }
 
-    /// <summary>Puts back the program files replaced by the most recent update.</summary>
+    private const string MarkerName = "gameop-update.txt";
+
+    /// <summary>Copies replaced files back and removes files the update added. Returns the number of files changed.</summary>
+    private static int RestoreFrom(string backup)
+    {
+        var lines = File.ReadAllLines(Path.Combine(backup, MarkerName));
+        var installDir = lines[0];
+        var n = 0;
+        var files = Path.Combine(backup, "files");
+        if (Directory.Exists(files))
+            foreach (var f in Directory.EnumerateFiles(files, "*", SearchOption.AllDirectories))
+            {
+                var target = Path.Combine(installDir, Path.GetRelativePath(files, f));
+                Directory.CreateDirectory(Path.GetDirectoryName(target)!);
+                File.Copy(f, target, overwrite: true);
+                n++;
+            }
+        foreach (var rel in lines.Where(l => l.StartsWith("added:")).Select(l => l[6..]))
+        {
+            // Only program files the update itself created are removed; protected names are never touched.
+            var target = Path.Combine(installDir, rel);
+            if (!IsProtected(rel) && File.Exists(target)) { File.Delete(target); n++; }
+        }
+        Directory.Move(backup, backup + "-rolled-back");
+        return n;
+    }
+
+    /// <summary>Puts back the program files replaced by the most recent update and removes the ones it added.</summary>
     public static string Rollback(EmulatorAdapter e)
     {
         var dir = Path.Combine(AppPaths.BackupDir, "updates", e.Id);
         var last = Directory.Exists(dir)
-            ? Directory.GetDirectories(dir).Where(d => !d.EndsWith("-rolled-back")).OrderDescending().FirstOrDefault()
+            ? Directory.GetDirectories(dir).Where(d => !d.EndsWith("-rolled-back") && File.Exists(Path.Combine(d, MarkerName)))
+                .OrderDescending().FirstOrDefault()
             : null;
-        if (last is null || !File.Exists(Path.Combine(last, "gameop-update.txt"))) return "No update to roll back.";
+        if (last is null) return "No update to roll back.";
         if (IsRunning(e)) return $"{e.Name} is running. Close it first.";
-        var installDir = File.ReadAllLines(Path.Combine(last, "gameop-update.txt"))[0];
-        var n = 0;
-        foreach (var f in Directory.EnumerateFiles(last, "*", SearchOption.AllDirectories))
-        {
-            var rel = Path.GetRelativePath(last, f);
-            if (rel == "gameop-update.txt") continue;
-            var target = Path.Combine(installDir, rel);
-            Directory.CreateDirectory(Path.GetDirectoryName(target)!);
-            File.Copy(f, target, overwrite: true);
-            n++;
-        }
-        Directory.Move(last, last + "-rolled-back");
-        return $"Restored {n} files from before the update.";
-    }
-
-    private static HttpClient Http()
-    {
-        var http = new HttpClient { Timeout = TimeSpan.FromMinutes(10) };
-        http.DefaultRequestHeaders.UserAgent.ParseAdd("GameOp/1.0 (+https://github.com/nahalewski/GameOp)");
-        http.DefaultRequestHeaders.Accept.ParseAdd("application/vnd.github+json");
-        return http;
+        return $"Restored {RestoreFrom(last)} files to how they were before the update.";
     }
 }

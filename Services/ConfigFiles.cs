@@ -14,7 +14,9 @@ public static class Formatters
     public static string Lower(JsonNode? v) => Raw(v, "true", "false");
     public static string Title(JsonNode? v) => Raw(v, "True", "False");
     public static string Toml(JsonNode? v) =>
-        v is JsonValue jv && jv.GetValueKind() == JsonValueKind.String ? $"\"{jv.GetValue<string>()}\"" : Lower(v);
+        v is JsonValue jv && jv.GetValueKind() == JsonValueKind.String
+            ? $"\"{jv.GetValue<string>().Replace("\\", "\\\\").Replace("\"", "\\\"")}\""
+            : Lower(v);
 
     private static string Raw(JsonNode? v, string t, string f)
     {
@@ -107,13 +109,46 @@ public sealed class IniFile
         _lines.Insert(insertAt, $"{key}{Separator}{value}");
     }
 
-    /// <summary>Applies {section: {key: value}} settings.</summary>
+    /// <summary>For repeatable keys (PCSX2 "[Patches] Enable = …"): adds key = value unless that exact line exists.</summary>
+    public void Add(string section, string key, string value)
+    {
+        if (GetAll(section, key).Any(v => v.Equals(value, StringComparison.OrdinalIgnoreCase))) return;
+        var (start, end) = FindSection(section);
+        if (start < 0) { Set(section, key, value); return; }
+        var insertAt = end;
+        while (insertAt - 1 > start && _lines[insertAt - 1].Trim().Length == 0) insertAt--;
+        _lines.Insert(insertAt, $"{key}{Separator}{value}");
+    }
+
+    /// <summary>Removes "key = value" lines (repeatable keys) from a section.</summary>
+    public void Remove(string section, string key, string value)
+    {
+        var (start, end) = FindSection(section);
+        if (start < 0) return;
+        for (var i = end - 1; i > start; i--)
+            if (string.Equals(KeyName(_lines[i]), key, StringComparison.OrdinalIgnoreCase) &&
+                _lines[i][(_lines[i].IndexOf('=') + 1)..].Trim().Equals(value, StringComparison.OrdinalIgnoreCase))
+                _lines.RemoveAt(i);
+    }
+
+    /// <summary>
+    /// Applies {section: {key: value}} settings. Array values become repeated keys; a key written as "!Key" with an
+    /// array value removes those entries instead (used to switch per-game PCSX2 patches back off).
+    /// </summary>
     public void Apply(JsonObject settings, ValueFormatter format)
     {
         foreach (var (section, keys) in settings)
         {
             if (keys is not JsonObject obj) continue;
-            foreach (var (key, value) in obj) Set(section, key, format(value));
+            foreach (var (key, value) in obj)
+            {
+                if (key.StartsWith('!') && value is JsonArray removals)
+                    foreach (var item in removals) Remove(section, key[1..], format(item));
+                else if (value is JsonArray list)
+                    foreach (var item in list) Add(section, key, format(item));
+                else
+                    Set(section, key, format(value));
+            }
         }
     }
 
@@ -206,7 +241,11 @@ public sealed class YamlFile
     private static string FormatValue(JsonNode? v)
     {
         var s = Formatters.Lower(v);
-        return s.Length == 0 ? "\"\"" : s;
+        if (s.Length == 0) return "\"\"";
+        // Plain scalars can't start with YAML indicators or contain ": " / " #"; quote those (single quotes, '' escapes).
+        var needsQuotes = v?.GetValueKind() == JsonValueKind.String &&
+                          ("[]{}*&!|>'\"%@`#,?-:".Contains(s[0]) || s.Contains(": ") || s.Contains(" #") || s != s.Trim());
+        return needsQuotes ? $"'{s.Replace("'", "''")}'" : s;
     }
 
     public void Save()

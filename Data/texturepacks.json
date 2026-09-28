@@ -1,0 +1,1265 @@
+{
+  "packs": [
+    {
+      "id": "mgs2-hd-ui",
+      "emulator": "pcsx2",
+      "title": "Metal Gear Solid 2: Substance",
+      "gameIds": [
+        "SLUS-20554"
+      ],
+      "name": "MGS2 HD Collection Font & HUD Port",
+      "author": "NathanHigley",
+      "version": "2.2",
+      "url": "https://github.com/NathanHigley/MGS2-HD-UI/releases/download/2.2/MGS2-HD-UI.zip",
+      "sizeBytes": 14808012,
+      "format": "zip",
+      "rootHint": "SLUS-20554/replacements",
+      "sourcePage": "https://github.com/NathanHigley/MGS2-HD-UI",
+      "license": "not stated",
+      "notes": "Ports UI/HUD/font textures from the Bluepoint HD Collection as BC7 DDS; world textures untouched."
+    },
+    {
+      "id": "warriors-xbox-textures",
+      "emulator": "pcsx2",
+      "title": "The Warriors",
+      "gameIds": [
+        "SLUS-21215"
+      ],
+      "name": "The Warriors Xbox Texture Port",
+      "author": "eternights (Blakeline)",
+      "version": "release",
+      "url": "https://github.com/eternights/XboxTexturePack.TheWarriors/releases/download/release/XboxTexturePack.TheWarriors.zip",
+      "sizeBytes": 152878697,
+      "format": "zip",
+      "rootHint": "SLUS-21215/replacements",
+      "sourcePage": "https://github.com/Blakeline/XboxTexturePack.TheWarriors",
+      "license": "not stated",
+      "notes": "Replaces PS2 textures with the 2x-resolution Xbox release textures; USA release, PCSX2 1.7.2389+."
+    },
+    {
+      "id": "speed-racer-hd",
+      "emulator": "pcsx2",
+      "title": "Speed Racer: The Videogame",
+      "gameIds": [
+        "SLUS-21812"
+      ],
+      "name": "Speed Racer HD Texture Pack",
+      "author": "BMT619",
+      "version": "v1.0",
+      "url": "https://github.com/BMT619/Speed-Racer-PCSX2-HD-Texture-Pack/releases/download/v1.0/SLUS-21812.zip",
+      "sizeBytes": 1190071056,
+      "format": "zip",
+      "rootHint": "SLUS-21812/replacements",
+      "sourcePage": "https://github.com/BMT619/Speed-Racer-PCSX2-HD-Texture-Pack",
+      "license": "not stated",
+      "notes": "Upscayl-upscaled texture replacements for the USA release."
+    },
+    {
+      "id": "ac2aa-hd-4x-part1",
+      "emulator": "pcsx2",
+      "title": "Armored Core 2: Another Age",
+      "gameIds": [
+        "SLUS-20249"
+      ],
+      "name": "AC2AA HD 4x (part 1 of 2)",
+      "author": "KaedeIchigo",
+      "version": "v0.1.0-beta.1",
+      "url": "https://github.com/KaedeIchigo/ac2aa-hd-texture-pack/releases/download/v0.1.0-beta.1/AC2AA-HD-4x-v0.1.0-beta.1-part1.zip",
+      "sizeBytes": 1489734604,
+      "format": "zip",
+      "rootHint": "SLUS-20249/replacements",
+      "sourcePage": "https://github.com/KaedeIchigo/ac2aa-hd-texture-pack",
+      "license": "not stated",
+      "notes": "Beta 4x AI upscale split into two independent zips (1930 PNGs in this one); install BOTH parts into the same folder."
+    },
+    {
+      "id": "ac2aa-hd-4x-part2",
+      "emulator": "pcsx2",
+      "title": "Armored Core 2: Another Age",
+      "gameIds": [
+        "SLUS-20249"
+      ],
+      "name": "AC2AA HD 4x (part 2 of 2)",
+      "author": "KaedeIchigo",
+      "version": "v0.1.0-beta.1",
+      "url": "https://github.com/KaedeIchigo/ac2aa-hd-texture-pack/releases/download/v0.1.0-beta.1/AC2AA-HD-4x-v0.1.0-beta.1-part2.zip",
+      "sizeBytes": 1487502462,
+      "format": "zip",
+      "rootHint": "SLUS-20249/replacements",
+      "sourcePage": "https://github.com/KaedeIchigo/ac2aa-hd-texture-pack",
+      "license": "not stated",
+      "notes": "Beta 4x AI upscale split into two independent zips (2045 PNGs in this one); install BOTH parts into the same folder."
+    },
+    {
+      "id": "mk-deception-remastered",
+      "emulator": "pcsx2",
+      "title": "Mortal Kombat: Deception",
+      "gameIds": [
+        "SLUS-20881"
+      ],
+      "name": "Mortal Kombat Deception Remastered",
+      "author": "vStar925",
+      "version": "1.13-EA",
+      "url": "https://github.com/vStar925/Mortal-Kombat-Deception-Remastered/releases/download/PCSX2-1.13/MKDeception.Remastered.1.13.7z",
+      "sizeBytes": 568918267,
+      "format": "7z",
+      "rootHint": "SLUS-20881/replacements",
+      "sourcePage": "https://github.com/vStar925/Mortal-Kombat-Deception-Remastered",
+      "license": "not stated",
+      "notes": "Redrawn/upscaled textures; archive also has 'Optional Replacements' and a small 'dumps' folder beside replacements that should not be installed."
+    },
+    {
+      "id": "mk-armageddon-hd",
+      "emulator": "pcsx2",
+      "title": "Mortal Kombat: Armageddon",
+      "gameIds": [
+        "SLUS-21410"
+      ],
+      "name": "Mortal Kombat Armageddon HD Texture Pack",
+      "author": "ckiscxrsed",
+      "version": "v1.5",
+      "url": "https://github.com/ckiscxrsed/Mortal-Kombat-Armageddon-HD-Textures/releases/download/v1.5/SLUS-21410.rar",
+      "sizeBytes": 1743501920,
+      "format": "rar",
+      "rootHint": "SLUS-21410/replacements",
+      "sourcePage": "https://github.com/ckiscxrsed/Mortal-Kombat-Armageddon-HD-Textures",
+      "license": "not stated",
+      "notes": "AI-upscaled WIP pack; v1.5 is the newest release that has a downloadable asset (v1.6/v1.7 tags have none)."
+    },
+    {
+      "id": "monster-hunter-g-hd",
+      "emulator": "pcsx2",
+      "title": "Monster Hunter G",
+      "gameIds": [
+        "SLPM-65869"
+      ],
+      "name": "MHG HD",
+      "author": "JustShrub",
+      "version": "V0.10",
+      "url": "https://github.com/JustShrub/MHG-HD/releases/download/V0.10/MHG-HD_V0.10.7z",
+      "sizeBytes": 1104993315,
+      "format": "7z",
+      "rootHint": "replacements",
+      "sourcePage": "https://github.com/JustShrub/MHG-HD",
+      "license": "GPL-3.0 (repo LICENSE)",
+      "notes": "Upscaled textures for the Japanese PS2 release."
+    },
+    {
+      "id": "wipeout-fusion-hd",
+      "emulator": "pcsx2",
+      "title": "WipEout Fusion",
+      "gameIds": [
+        "SLUS-20462",
+        "SCES-50005"
+      ],
+      "name": "WipEout Fusion HD Texture Pack",
+      "author": "sethvm (NR74W)",
+      "version": "git f4500c0",
+      "url": "https://codeload.github.com/sethvm/WipEout-Fusion-HD-Texture-Pack/zip/f4500c049f6687b6fcd10ec036d10ce5ff61097d",
+      "sizeBytes": 369718456,
+      "format": "zip",
+      "rootHint": "WipEout-Fusion-HD-Texture-Pack-f4500c049f6687b6fcd10ec036d10ce5ff61097d/textures/serial/replacements",
+      "sourcePage": "https://github.com/sethvm/WipEout-Fusion-HD-Texture-Pack",
+      "license": "not stated",
+      "notes": "Repo archive pinned to a commit; textures sit in a placeholder 'serial' folder meant to be renamed to the game serial; needs Bilinear (PS2) filtering."
+    },
+    {
+      "id": "dq8-hd-1vierock",
+      "emulator": "pcsx2",
+      "title": "Dragon Quest VIII: Journey of the Cursed King",
+      "gameIds": [
+        "SLUS-21207"
+      ],
+      "name": "Dragon Quest VIII HD (1vierock)",
+      "author": "1vierock",
+      "version": "archive.org 2023-11",
+      "url": "https://archive.org/download/ps2-hd-apr-15-2023/1vierock%20PS2%20HD%20Texture%20Packs/Dragon%20Quest%208%20HD%20PS2%201vierock/DQ8.7z",
+      "sizeBytes": 1802970116,
+      "format": "7z",
+      "rootHint": "SLUS-21207/replacements",
+      "sourcePage": "https://archive.org/details/ps2-hd-apr-15-2023",
+      "license": "not stated",
+      "notes": "1vierock pack mirrored in a third-party archive.org 'PS2 HD' collection uploaded for archival purposes."
+    },
+    {
+      "id": "dark-cloud-hd-1vierock",
+      "emulator": "pcsx2",
+      "title": "Dark Cloud",
+      "gameIds": [
+        "SCUS-97111"
+      ],
+      "name": "Dark Cloud HD (1vierock)",
+      "author": "1vierock",
+      "version": "archive.org 2023-11",
+      "url": "https://archive.org/download/ps2-hd-apr-15-2023/1vierock%20PS2%20HD%20Texture%20Packs/Dark%20Cloud%20HD%20PS2%201vierock/SCUS-97111%28Darkcloud%29.7z",
+      "sizeBytes": 1568135881,
+      "format": "7z",
+      "rootHint": "SCUS-97111/replacements",
+      "sourcePage": "https://archive.org/details/ps2-hd-apr-15-2023",
+      "license": "not stated",
+      "notes": "1vierock pack, third-party archive.org mirror."
+    },
+    {
+      "id": "dark-cloud-2-hd-1vierock",
+      "emulator": "pcsx2",
+      "title": "Dark Cloud 2",
+      "gameIds": [
+        "SCUS-97213"
+      ],
+      "name": "Dark Cloud 2 HD (1vierock)",
+      "author": "1vierock",
+      "version": "archive.org 2023-11",
+      "url": "https://archive.org/download/ps2-hd-apr-15-2023/1vierock%20PS2%20HD%20Texture%20Packs/Dark%20Cloud%202%20HD%20PS2%201vierock/SCUS-97213.7z",
+      "sizeBytes": 2142193325,
+      "format": "7z",
+      "rootHint": "SCUS-97213/replacements",
+      "sourcePage": "https://archive.org/details/ps2-hd-apr-15-2023",
+      "license": "not stated",
+      "notes": "1vierock pack, third-party archive.org mirror."
+    },
+    {
+      "id": "dirge-of-cerberus-hd-1vierock",
+      "emulator": "pcsx2",
+      "title": "Dirge of Cerberus: Final Fantasy VII",
+      "gameIds": [
+        "SLUS-21419"
+      ],
+      "name": "Dirge of Cerberus HD (1vierock)",
+      "author": "1vierock",
+      "version": "archive.org 2023-11",
+      "url": "https://archive.org/download/ps2-hd-apr-15-2023/1vierock%20PS2%20HD%20Texture%20Packs/Final%20Fantasy%207%20Dirge%20of%20Cerberus_%20Final%20Fantasy%20VII%20HD%20%20PS2%201vierock/SLUS-21419%28ff7%29.7z",
+      "sizeBytes": 1486788085,
+      "format": "7z",
+      "rootHint": "SLUS-21419/replacements",
+      "sourcePage": "https://archive.org/details/ps2-hd-apr-15-2023",
+      "license": "not stated",
+      "notes": "1vierock pack, third-party archive.org mirror."
+    },
+    {
+      "id": "burnout-3-hd-remaster",
+      "emulator": "pcsx2",
+      "title": "Burnout 3: Takedown",
+      "gameIds": [
+        "SLUS-21050"
+      ],
+      "name": "Burnout 3 HD Remaster",
+      "author": "Panda_Venom",
+      "version": "archive.org",
+      "url": "https://archive.org/download/slus-21050.7z/SLUS-21050.7z",
+      "sizeBytes": 996063167,
+      "format": "7z",
+      "rootHint": "SLUS-21050/replacements",
+      "sourcePage": "https://archive.org/details/slus-21050.7z",
+      "license": "not stated",
+      "notes": "Panda_Venom pack (originally posted on GBAtemp) mirrored on archive.org; DDS replacements."
+    },
+    {
+      "id": "mgs3-subsistence-hd",
+      "emulator": "pcsx2",
+      "title": "Metal Gear Solid 3: Subsistence",
+      "gameIds": [
+        "SLUS-21359"
+      ],
+      "name": "MGS3 Subsistence HD Textures v2.0",
+      "author": "not stated (archive.org uploader)",
+      "version": "2.0",
+      "url": "https://archive.org/download/mgs-3-subsistence-hd-textures/MGS3_Subsistence%20HD%20Textures.rar",
+      "sizeBytes": 1408327391,
+      "format": "rar",
+      "rootHint": "SLUS-21359/replacements",
+      "sourcePage": "https://archive.org/details/mgs-3-subsistence-hd-textures",
+      "license": "not stated",
+      "notes": "Original author not named on the item page; folder layout verified from RAR headers only."
+    },
+    {
+      "id": "persona-4-hd",
+      "emulator": "pcsx2",
+      "title": "Shin Megami Tensei: Persona 4",
+      "gameIds": [
+        "SLUS-21782"
+      ],
+      "name": "Persona 4 (PS2) HD Texture",
+      "author": "not stated (archive.org uploader)",
+      "version": "archive.org",
+      "url": "https://archive.org/download/persona-4-ps-2-hd-texture.-7z/Persona%204%20%28PS2%29%20HD%20Texture.7z",
+      "sizeBytes": 944221408,
+      "format": "7z",
+      "rootHint": "SLUS-21782/replacements",
+      "sourcePage": "https://archive.org/details/persona-4-ps-2-hd-texture.-7z",
+      "license": "not stated",
+      "notes": "Portraits, fonts/icons, UI and Persona art; original author not credited on the item page."
+    },
+    {
+      "id": "sms-uhd",
+      "emulator": "dolphin",
+      "title": "Super Mario Sunshine",
+      "gameIds": [
+        "GMS"
+      ],
+      "name": "Super Mario Sunshine UHD Texture Pack",
+      "author": "qashto & Yazius",
+      "version": "2.1.1",
+      "url": "https://github.com/qashto/Super_Mario_Sunshine_UHD_Texture_Pack/releases/download/2.1.1/GMS.7z",
+      "sizeBytes": 986431331,
+      "format": "7z",
+      "rootHint": "GMS/Textures",
+      "sourcePage": "https://github.com/qashto/Super_Mario_Sunshine_UHD_Texture_Pack",
+      "license": "not stated",
+      "notes": "Full UHD DDS pack in resource-pack layout (GMS/ also holds a manifest, logo and a .gci save that are not needed)."
+    },
+    {
+      "id": "sms-1080",
+      "emulator": "dolphin",
+      "title": "Super Mario Sunshine",
+      "gameIds": [
+        "GMS"
+      ],
+      "name": "Super Mario Sunshine UHD Pack (1080p build)",
+      "author": "qashto & Yazius",
+      "version": "2.1.1",
+      "url": "https://github.com/qashto/Super_Mario_Sunshine_UHD_Texture_Pack/releases/download/2.1.1/GMS_1080.zip",
+      "sizeBytes": 155892294,
+      "format": "zip",
+      "rootHint": "",
+      "sourcePage": "https://github.com/qashto/Super_Mario_Sunshine_UHD_Texture_Pack",
+      "license": "not stated",
+      "notes": "Lighter 1080p DDS build; texture folders are at the archive root."
+    },
+    {
+      "id": "kirby-air-ride-uhd",
+      "emulator": "dolphin",
+      "title": "Kirby Air Ride",
+      "gameIds": [
+        "GKY"
+      ],
+      "name": "Kirby Air Ride UHD Texture Pack",
+      "author": "qashto",
+      "version": "v1.0.0",
+      "url": "https://github.com/qashto/Kirby_Air_Ride_UHD_Texture_Pack/releases/download/v1.0.0/GKY.7z",
+      "sizeBytes": 27653889,
+      "format": "7z",
+      "rootHint": "GKY",
+      "sourcePage": "https://github.com/qashto/Kirby_Air_Ride_UHD_Texture_Pack",
+      "license": "not stated",
+      "notes": "Upscales and retextures, mostly UI, menus and City Trial."
+    },
+    {
+      "id": "mkwii-reloaded",
+      "emulator": "dolphin",
+      "title": "Mario Kart Wii",
+      "gameIds": [
+        "RMC"
+      ],
+      "name": "MKWii Reloaded",
+      "author": "GhostlyDark",
+      "version": "v0.2.0",
+      "url": "https://github.com/GhostlyDark/MKWii-Reloaded/releases/download/v0.2.0/mkwii-reloaded-v0.2.0-dds.7z",
+      "sizeBytes": 409942972,
+      "format": "7z",
+      "rootHint": "MKWii Reloaded (DDS)",
+      "sourcePage": "https://github.com/GhostlyDark/MKWii-Reloaded",
+      "license": "not stated",
+      "notes": "DDS HD pack; ships an RMC.txt marker so Dolphin matches every region."
+    },
+    {
+      "id": "sm64-reloaded-vc",
+      "emulator": "dolphin",
+      "title": "Super Mario 64 (Wii Virtual Console)",
+      "gameIds": [
+        "NAA"
+      ],
+      "name": "SM64 Reloaded (Dolphin DDS)",
+      "author": "GhostlyDark",
+      "version": "v2.6.0",
+      "url": "https://github.com/GhostlyDark/SM64-Reloaded/releases/download/v2.6.0/sm64-reloaded-v2.6.0-dolphin-dds.7z",
+      "sizeBytes": 528395525,
+      "format": "7z",
+      "rootHint": "SM64 Reloaded (Dolphin DDS)",
+      "sourcePage": "https://github.com/GhostlyDark/SM64-Reloaded",
+      "license": "not stated",
+      "notes": "For the Wii VC release; marker files also cover the NAX/NTL variants."
+    },
+    {
+      "id": "oot-reloaded-vc",
+      "emulator": "dolphin",
+      "title": "The Legend of Zelda: Ocarina of Time (VC / GC releases)",
+      "gameIds": [
+        "NAC",
+        "D43",
+        "PZL"
+      ],
+      "name": "OoT Reloaded (Dolphin DDS HD)",
+      "author": "GhostlyDark",
+      "version": "v11.0.0",
+      "url": "https://github.com/GhostlyDark/OoT-Reloaded-Dolphin/releases/download/v11.0.0/oot-reloaded-v11.0.0-dolphin-dds-hd.7z",
+      "sizeBytes": 390300159,
+      "format": "7z",
+      "rootHint": "OoT Reloaded (DDS)",
+      "sourcePage": "https://github.com/GhostlyDark/OoT-Reloaded-Dolphin",
+      "license": "not stated",
+      "notes": "Covers Wii VC, Master Quest and Collector's Edition via ID-marker .txt files; a 4K build (1.7 GB) is also released."
+    },
+    {
+      "id": "mm-reloaded-vc",
+      "emulator": "dolphin",
+      "title": "The Legend of Zelda: Majora's Mask (VC / GC releases)",
+      "gameIds": [
+        "NAR",
+        "PZL"
+      ],
+      "name": "MM Reloaded (Dolphin DDS HD)",
+      "author": "GhostlyDark",
+      "version": "v11.0.2",
+      "url": "https://github.com/GhostlyDark/MM-Reloaded-Dolphin/releases/download/v11.0.2/mm-reloaded-v11.0.2-dolphin-dds-hd.7z",
+      "sizeBytes": 318414537,
+      "format": "7z",
+      "rootHint": "MM Reloaded (DDS HD)",
+      "sourcePage": "https://github.com/GhostlyDark/MM-Reloaded-Dolphin",
+      "license": "not stated",
+      "notes": "Wii VC and Collector's Edition; ID-marker .txt files included."
+    },
+    {
+      "id": "ssb-reloaded-vc",
+      "emulator": "dolphin",
+      "title": "Super Smash Bros. (Wii Virtual Console)",
+      "gameIds": [
+        "NAL"
+      ],
+      "name": "SSB Reloaded (Dolphin DDS)",
+      "author": "GhostlyDark",
+      "version": "v2.0.0",
+      "url": "https://github.com/GhostlyDark/SSB-Reloaded-Dolphin/releases/download/v2.0.0/ssb-reloaded-v2.0.0-dolphin-dds.7z",
+      "sizeBytes": 47957298,
+      "format": "7z",
+      "rootHint": "SSB Reloaded (DDS)",
+      "sourcePage": "https://github.com/GhostlyDark/SSB-Reloaded-Dolphin",
+      "license": "not stated",
+      "notes": "HD pack for the N64 Smash Bros. VC release."
+    },
+    {
+      "id": "rhythm-heaven-fever-hd",
+      "emulator": "dolphin",
+      "title": "Rhythm Heaven Fever",
+      "gameIds": [
+        "SOM"
+      ],
+      "name": "Rhythm Heaven Fever HD (DDS)",
+      "author": "Borists1 & contributors",
+      "version": "0.4",
+      "url": "https://github.com/Borists1/RhythmHeavenFeverHD/releases/download/0.4/DDS.zip",
+      "sizeBytes": 143326267,
+      "format": "zip",
+      "rootHint": "SOM",
+      "sourcePage": "https://github.com/Borists1/RhythmHeavenFeverHD",
+      "license": "not stated",
+      "notes": "Hand-redrawn 4K textures (WIP); a PNG build is also released."
+    },
+    {
+      "id": "slippi-hd",
+      "emulator": "dolphin",
+      "title": "Super Smash Bros. Melee (NTSC 1.02 / Slippi)",
+      "gameIds": [
+        "GALE01"
+      ],
+      "name": "Slippi-HD",
+      "author": "papajefe (compilation)",
+      "version": "1.0",
+      "url": "https://github.com/papajefe/Slippi-HD/releases/download/1.0/Slippi-HD.zip",
+      "sizeBytes": 706542634,
+      "format": "zip",
+      "rootHint": "GALE01",
+      "sourcePage": "https://github.com/papajefe/Slippi-HD",
+      "license": "not stated",
+      "notes": "Compilation of community Melee HD textures aimed at Slippi Dolphin."
+    },
+    {
+      "id": "mk-deception-dolphin",
+      "emulator": "dolphin",
+      "title": "Mortal Kombat: Deception (GameCube)",
+      "gameIds": [
+        "GQNE5D"
+      ],
+      "name": "Mortal Kombat Deception Remastered (Dolphin DDS)",
+      "author": "vStar925",
+      "version": "1.10",
+      "url": "https://github.com/vStar925/Mortal-Kombat-Deception-Remastered/releases/download/Dolphin-1.10/MKDeceptionTPK.1.10.dds.zip",
+      "sizeBytes": 398260749,
+      "format": "zip",
+      "rootHint": "textures/GQNE5D",
+      "sourcePage": "https://github.com/vStar925/Mortal-Kombat-Deception-Remastered",
+      "license": "not stated",
+      "notes": "Dolphin build of the MK Deception remaster."
+    },
+    {
+      "id": "bfbb-hd",
+      "emulator": "dolphin",
+      "title": "SpongeBob SquarePants: Battle for Bikini Bottom",
+      "gameIds": [
+        "GQPE78"
+      ],
+      "name": "BFBB HD Texture Pack",
+      "author": "joeyballentine",
+      "version": "git 24c3bd4",
+      "url": "https://codeload.github.com/joeyballentine/bfbb-hd-texture-pack/zip/24c3bd4970a9608bd564cc5996927ebea1b958f5",
+      "sizeBytes": 533838361,
+      "format": "zip",
+      "rootHint": "bfbb-hd-texture-pack-24c3bd4970a9608bd564cc5996927ebea1b958f5/GQPE78",
+      "sourcePage": "https://github.com/joeyballentine/bfbb-hd-texture-pack",
+      "license": "not stated",
+      "notes": "Custom-ESRGAN upscale of Xbox textures with manual fixes; repo archive pinned to a commit."
+    },
+    {
+      "id": "sphinx-hd",
+      "emulator": "dolphin",
+      "title": "Sphinx and the Cursed Mummy",
+      "gameIds": [
+        "GXP"
+      ],
+      "name": "Sphinx and the Cursed Mummy HD",
+      "author": "Swyter",
+      "version": "git 6cb37c1",
+      "url": "https://codeload.github.com/Swyter/sphinxhd/zip/6cb37c144f9a2e1ad1a3bafa7c72050e489ffb2c",
+      "sizeBytes": 41411741,
+      "format": "zip",
+      "rootHint": "sphinxhd-6cb37c144f9a2e1ad1a3bafa7c72050e489ffb2c/GXP",
+      "sourcePage": "https://github.com/Swyter/sphinxhd",
+      "license": "CC BY-NC-SA 4.0",
+      "notes": "Legibility-focused UI/font/inventory pack for PAL and NTSC; folder includes a few .xcf/.svg source files."
+    },
+    {
+      "id": "nfsu-pc-textures",
+      "emulator": "dolphin",
+      "title": "Need for Speed: Underground",
+      "gameIds": [
+        "GNDE69"
+      ],
+      "name": "NFS Underground Texture Pack (PC textures)",
+      "author": "altiereslima",
+      "version": "git 16c0dbe",
+      "url": "https://codeload.github.com/altiereslima/Need-for-Speed-Underground-Texture-Pack/zip/16c0dbe481f8ffa6608229a16a0c47db504ba3ad",
+      "sizeBytes": 34765847,
+      "format": "zip",
+      "rootHint": "Need-for-Speed-Underground-Texture-Pack-16c0dbe481f8ffa6608229a16a0c47db504ba3ad/GNDE69",
+      "sourcePage": "https://github.com/altiereslima/Need-for-Speed-Underground-Texture-Pack",
+      "license": "not stated",
+      "notes": "Replaces GameCube textures with the PC version's DDS textures."
+    },
+    {
+      "id": "scaler-uhd",
+      "emulator": "dolphin",
+      "title": "Scaler",
+      "gameIds": [
+        "GKU"
+      ],
+      "name": "Scaler UHD Texture Pack",
+      "author": "qashto",
+      "version": "git e51a498",
+      "url": "https://codeload.github.com/qashto/Scaler_UHD_Texture_Pack/zip/e51a498141e816284c771eeab536c8086f24e1a5",
+      "sizeBytes": 27427563,
+      "format": "zip",
+      "rootHint": "Scaler_UHD_Texture_Pack-e51a498141e816284c771eeab536c8086f24e1a5/GKU",
+      "sourcePage": "https://github.com/qashto/Scaler_UHD_Texture_Pack",
+      "license": "not stated",
+      "notes": "Small UI/map-focused UHD pack."
+    },
+    {
+      "id": "wii-menu-4k",
+      "emulator": "dolphin",
+      "title": "Wii System Menu",
+      "gameIds": [
+        "0000000100000002"
+      ],
+      "name": "WM4K - Wii Menu 4K",
+      "author": "Alan-bur",
+      "version": "2.3",
+      "url": "https://github.com/Alan-bur/WM4K/releases/download/2.3/0000000100000002.zip",
+      "sizeBytes": 873280763,
+      "format": "zip",
+      "rootHint": "0000000100000002/0000000100000002",
+      "sourcePage": "https://github.com/Alan-bur/WM4K",
+      "license": "not stated",
+      "notes": "4K textures for the Wii System Menu (title ID is used as the texture folder name)."
+    },
+    {
+      "id": "xenoblade-hd-core-1080p",
+      "emulator": "dolphin",
+      "title": "Xenoblade Chronicles",
+      "gameIds": [
+        "SX4"
+      ],
+      "name": "Xenoblade Chronicles HD Core Pack 1080p",
+      "author": "Layberneth, poweredbykimchi, Bighead & others",
+      "version": "8.52",
+      "url": "https://archive.org/download/xchd_20210218/XbC_Core_HD_v8.52_1080p.zip",
+      "sizeBytes": 707359502,
+      "format": "zip",
+      "rootHint": "textures/SX4",
+      "sourcePage": "https://forums.dolphin-emu.org/Thread-xenoblade-chronicles-hd-texture-pack-v8-52-august-21-2018",
+      "license": "not stated",
+      "notes": "Dolphin resource-pack zip mirrored on archive.org (item xchd_20210218); a 2160p build (1.56 GB) is in the same item."
+    },
+    {
+      "id": "chibi-robo-hd",
+      "emulator": "dolphin",
+      "title": "Chibi-Robo!",
+      "gameIds": [
+        "GGTE01"
+      ],
+      "name": "Chibi-Robo HD",
+      "author": "Ewzzy",
+      "version": "5",
+      "url": "https://archive.org/download/chibi-robo-hd/chibi.zip",
+      "sizeBytes": 236612500,
+      "format": "zip",
+      "rootHint": "textures/GGTE01",
+      "sourcePage": "https://archive.org/details/chibi-robo-hd",
+      "license": "not stated",
+      "notes": "Author-uploaded; hundreds of redrawn plus waifu-upscaled textures."
+    },
+    {
+      "id": "ffcc-danke",
+      "emulator": "dolphin",
+      "title": "Final Fantasy Crystal Chronicles",
+      "gameIds": [
+        "GCCE01"
+      ],
+      "name": "FFCC Texture Pack (DDS)",
+      "author": "danke",
+      "version": "1.0",
+      "url": "https://archive.org/download/final-fantasy-crystal-chronicles-texture-pack-danke/Final_Fantasy_Crystal_Chronicles_Texture_Pack_DDS_danke.zip",
+      "sizeBytes": 2567385630,
+      "format": "zip",
+      "rootHint": "textures/GCCE01",
+      "sourcePage": "https://archive.org/details/final-fantasy-crystal-chronicles-texture-pack-danke",
+      "license": "CC0 1.0 (per archive.org item)",
+      "notes": "Author-uploaded 4x upscale in Dolphin resource-pack layout."
+    },
+    {
+      "id": "nfs-most-wanted-gc-hd",
+      "emulator": "dolphin",
+      "title": "Need for Speed: Most Wanted (GameCube)",
+      "gameIds": [
+        "GOW"
+      ],
+      "name": "NFS Most Wanted GC HD",
+      "author": "Kupo",
+      "version": "1.3.2",
+      "url": "https://archive.org/download/nfs-mw-gamecube-hd-textures/NfSMW%20v1.3.2.7z",
+      "sizeBytes": 2324877600,
+      "format": "7z",
+      "rootHint": "Load/Textures/GOW",
+      "sourcePage": "https://archive.org/details/nfs-mw-gamecube-hd-textures",
+      "license": "not stated",
+      "notes": "Upscaled textures; archive also ships optional Load/DynamicInputTextures button prompts outside the rootHint."
+    },
+    {
+      "id": "baten-kaitos-hd",
+      "emulator": "dolphin",
+      "title": "Baten Kaitos: Eternal Wings and the Lost Ocean",
+      "gameIds": [
+        "GKBEAF"
+      ],
+      "name": "Baten Kaitos HD Texture Pack",
+      "author": "not stated (archive.org uploader)",
+      "version": "archive.org",
+      "url": "https://archive.org/download/baten-kaitos-hd-texture-pack/GKBEAF%28English%29.zip",
+      "sizeBytes": 1466110572,
+      "format": "zip",
+      "rootHint": "GKBEAF",
+      "sourcePage": "https://archive.org/details/baten-kaitos-hd-texture-pack",
+      "license": "not stated",
+      "notes": "ESRGAN-upscaled 2D/UI with hand-retextured battles; English (USA) release."
+    },
+    {
+      "id": "scooby-doo-n100f-hd",
+      "emulator": "dolphin",
+      "title": "Scooby-Doo! Night of 100 Frights",
+      "gameIds": [
+        "GIH"
+      ],
+      "name": "Scooby Doo Night of 100 Frights HD",
+      "author": "dogerki",
+      "version": "archive.org",
+      "url": "https://archive.org/download/dolphin-scooby-doo-night-of-100-frights-hd-texture-pack/Dolphin%20Scooby%20Doo%20Night%20of%20100%20Frights%20HD%20Texture%20Pack.rar",
+      "sizeBytes": 603899232,
+      "format": "rar",
+      "rootHint": "GIHP78",
+      "sourcePage": "https://archive.org/details/dolphin-scooby-doo-night-of-100-frights-hd-texture-pack",
+      "license": "not stated",
+      "notes": "Gigapixel upscale; archive folder is named GIHP78 so it is mapped to the GIH prefix to cover all regions (layout verified from RAR headers only)."
+    },
+    {
+      "id": "manhunt-2-psp",
+      "emulator": "ppsspp",
+      "title": "Manhunt 2",
+      "gameIds": [
+        "ULUS10280",
+        "ULES00756"
+      ],
+      "name": "Manhunt 2 PPSSPP Texture Pack",
+      "author": "santiago046",
+      "version": "v3.0.1",
+      "url": "https://github.com/santiago046/ppsspp-mh2-texture-pack/releases/download/v3.0.1/manhunt2-texture-pack-v3.0.1.zip",
+      "sizeBytes": 123588781,
+      "format": "zip",
+      "rootHint": "",
+      "sourcePage": "https://github.com/santiago046/ppsspp-mh2-texture-pack",
+      "license": "not stated",
+      "notes": "KTX2/ZIM textures with textures.ini at the archive root."
+    },
+    {
+      "id": "peggle-hd",
+      "emulator": "ppsspp",
+      "title": "Peggle",
+      "gameIds": [
+        "NPUG30040"
+      ],
+      "name": "PeggleHD (PlayStation button prompts)",
+      "author": "sinceohsix",
+      "version": "0.2",
+      "url": "https://github.com/sinceohsix/PeggleHD/releases/download/0.2/NPUG30040-PS.zip",
+      "sizeBytes": 58283322,
+      "format": "zip",
+      "rootHint": "NPUG30040",
+      "sourcePage": "https://github.com/sinceohsix/PeggleHD",
+      "license": "not stated",
+      "notes": "Also released with Switch and Xbox prompt variants."
+    },
+    {
+      "id": "la-pucelle-textures",
+      "emulator": "ppsspp",
+      "title": "La Pucelle: Ragnarok (English patched)",
+      "gameIds": [
+        "ULJS00244"
+      ],
+      "name": "La Pucelle Ragnarok Textures",
+      "author": "althonos",
+      "version": "v0.1.0",
+      "url": "https://github.com/althonos/lapucelle-textures/releases/download/v0.1.0/ULJS00244-v0.1.0.zip",
+      "sizeBytes": 1186784,
+      "format": "zip",
+      "rootHint": "ULJS00244",
+      "sourcePage": "https://github.com/althonos/lapucelle-textures",
+      "license": "CC NonCommercial (per README badge)",
+      "notes": "Small UI/font pack for the fan-translated Japanese release."
+    },
+    {
+      "id": "sims-2-psp-hd",
+      "emulator": "ppsspp",
+      "title": "The Sims 2 (PSP)",
+      "gameIds": [
+        "ULUS10031"
+      ],
+      "name": "The Sims 2 PSP HD Texture Pack",
+      "author": "Grip-hearttin",
+      "version": "v0.6",
+      "url": "https://github.com/Grip-hearttin/The-Sims-2-PSP-HD-Texture-Pack/releases/download/v0.6/ULUS10031.zip",
+      "sizeBytes": 409900920,
+      "format": "zip",
+      "rootHint": "",
+      "sourcePage": "https://github.com/Grip-hearttin/The-Sims-2-PSP-HD-Texture-Pack",
+      "license": "not stated",
+      "notes": "Outfits, UI icons and more; textures.ini at the archive root."
+    },
+    {
+      "id": "gta-vcs-pc-textures",
+      "emulator": "ppsspp",
+      "title": "Grand Theft Auto: Vice City Stories",
+      "gameIds": [
+        "ULUS10160"
+      ],
+      "name": "GTA VCS Texture Pack (PC Vice City textures)",
+      "author": "ASI-Factory",
+      "version": "latest",
+      "url": "https://github.com/ASI-Factory/GTA-VCS-Texture-Pack-PSP/releases/download/latest/GTA-VCS-Texture-Pack-PSP.zip",
+      "sizeBytes": 63745221,
+      "format": "zip",
+      "rootHint": "",
+      "sourcePage": "https://github.com/ASI-Factory/GTA-VCS-Texture-Pack-PSP",
+      "license": "not stated",
+      "notes": "Maps PC Vice City textures onto VCS; the 'latest' tag is a rolling release so size may change."
+    },
+    {
+      "id": "mgs-peace-walker-hd",
+      "emulator": "ppsspp",
+      "title": "Metal Gear Solid: Peace Walker",
+      "gameIds": [
+        "ULUS10509",
+        "ULES01372"
+      ],
+      "name": "MGS Peace Walker HD Textures",
+      "author": "AkiraJkr",
+      "version": "git 8034599",
+      "url": "https://codeload.github.com/AkiraJkr/Metal-Gear-Solid-Peace-Walker-HD-Textures/zip/8034599f551ce0cd8781e7559467e78c926d8b4a",
+      "sizeBytes": 6668549,
+      "format": "zip",
+      "rootHint": "Metal-Gear-Solid-Peace-Walker-HD-Textures-8034599f551ce0cd8781e7559467e78c926d8b4a",
+      "sourcePage": "https://github.com/AkiraJkr/Metal-Gear-Solid-Peace-Walker-HD-Textures",
+      "license": "not stated",
+      "notes": "Small font/UI pack; textures.ini lists both US and EU IDs."
+    },
+    {
+      "id": "kh-bbs-hd-remix",
+      "emulator": "ppsspp",
+      "title": "Kingdom Hearts Birth by Sleep (Final Mix)",
+      "gameIds": [
+        "ULUS10505",
+        "ULES01441",
+        "ULJM05775"
+      ],
+      "name": "Birth by Sleep HD ReMix+",
+      "author": "AkiraJkr",
+      "version": "git b858f34",
+      "url": "https://codeload.github.com/AkiraJkr/Birth-by-Sleep-HD-ReMix/zip/b858f34debbd7bd5b17e989cc194ab05a836c2b5",
+      "sizeBytes": 560716818,
+      "format": "zip",
+      "rootHint": "Birth-by-Sleep-HD-ReMix-b858f34debbd7bd5b17e989cc194ab05a836c2b5",
+      "sourcePage": "https://github.com/AkiraJkr/Birth-by-Sleep-HD-ReMix",
+      "license": "not stated",
+      "notes": "Made for the (English-patched) Final Mix, textures.ini covers US/EU/JP; repo also carries an optional Patches folder with a patcher .exe the app should ignore."
+    },
+    {
+      "id": "dissidia-012-hd",
+      "emulator": "ppsspp",
+      "title": "Dissidia 012 Final Fantasy",
+      "gameIds": [
+        "ULES01505",
+        "ULUS10566"
+      ],
+      "name": "Dissidia 012 HD Textures",
+      "author": "AkiraJkr",
+      "version": "git 7db3f28",
+      "url": "https://codeload.github.com/AkiraJkr/Dissidia-012-HD-Textures/zip/7db3f281f250dbb1569dd5c9a369b620c5db0a77",
+      "sizeBytes": 34279620,
+      "format": "zip",
+      "rootHint": "Dissidia-012-HD-Textures-7db3f281f250dbb1569dd5c9a369b620c5db0a77",
+      "sourcePage": "https://github.com/AkiraJkr/Dissidia-012-HD-Textures",
+      "license": "not stated",
+      "notes": "Portraits and menus; built for the European release, other regions untested."
+    },
+    {
+      "id": "fate-extra-hd",
+      "emulator": "ppsspp",
+      "title": "Fate/Extra",
+      "gameIds": [
+        "ULUS10576"
+      ],
+      "name": "Fate/Extra Texture Pack",
+      "author": "Ezehokadrim",
+      "version": "git c38a91c",
+      "url": "https://codeload.github.com/Ezehokadrim/fate-extra-texturepack/zip/c38a91c8644198031da4a02f877e2615b6c0bd96",
+      "sizeBytes": 26390426,
+      "format": "zip",
+      "rootHint": "fate-extra-texturepack-c38a91c8644198031da4a02f877e2615b6c0bd96",
+      "sourcePage": "https://github.com/Ezehokadrim/fate-extra-texturepack",
+      "license": "not stated",
+      "notes": "About 2000 UI, menu and portrait textures."
+    },
+    {
+      "id": "fate-unlimited-codes-hd",
+      "emulator": "ppsspp",
+      "title": "Fate/unlimited codes Portable",
+      "gameIds": [
+        "NPUH10009",
+        "NPEH00007"
+      ],
+      "name": "UnlimitedCodes-HD",
+      "author": "Fate-AI-HD-Team",
+      "version": "git e1e6846",
+      "url": "https://codeload.github.com/Fate-AI-HD-Team/UnlimitedCodes-HD/zip/e1e6846ffbb4aa97b1510ac69712980f3b68fce2",
+      "sizeBytes": 367050866,
+      "format": "zip",
+      "rootHint": "UnlimitedCodes-HD-e1e6846ffbb4aa97b1510ac69712980f3b68fce2",
+      "sourcePage": "https://github.com/Fate-AI-HD-Team/UnlimitedCodes-HD",
+      "license": "not stated",
+      "notes": "AI-upscaled UI, stages and portraits; repo includes a few .xcf source files."
+    },
+    {
+      "id": "wipeout-pure-hd",
+      "emulator": "ppsspp",
+      "title": "WipEout Pure",
+      "gameIds": [
+        "UCUS98612",
+        "UCES00001",
+        "UCJS10007"
+      ],
+      "name": "WipEout Pure HD Texture Pack",
+      "author": "reTokyo",
+      "version": "git f91d55b",
+      "url": "https://codeload.github.com/reTokyo/WipEout-Pure-HD-Texture-Pack/zip/f91d55bbde515944edc6458ec9f0e58b217d7ce0",
+      "sizeBytes": 7823467,
+      "format": "zip",
+      "rootHint": "WipEout-Pure-HD-Texture-Pack-f91d55bbde515944edc6458ec9f0e58b217d7ce0",
+      "sourcePage": "https://github.com/reTokyo/WipEout-Pure-HD-Texture-Pack",
+      "license": "not stated",
+      "notes": "UI-focused pack; textures.ini also lists the demo IDs."
+    },
+    {
+      "id": "wipeout-pulse-hd",
+      "emulator": "ppsspp",
+      "title": "WipEout Pulse",
+      "gameIds": [
+        "UCUS98712",
+        "UCES00465"
+      ],
+      "name": "WipEout Pulse HD Texture Pack",
+      "author": "reTokyo",
+      "version": "git 33fd6a3",
+      "url": "https://codeload.github.com/reTokyo/WipEout-Pulse-Upscale-Version/zip/33fd6a3f1097284a9346310647d48f97ac132c49",
+      "sizeBytes": 928004173,
+      "format": "zip",
+      "rootHint": "WipEout-Pulse-Upscale-Version-33fd6a3f1097284a9346310647d48f97ac132c49",
+      "sourcePage": "https://github.com/reTokyo/WipEout-Pulse-Upscale-Version",
+      "license": "not stated",
+      "notes": "UI plus upscaled tracks and ships."
+    },
+    {
+      "id": "burnout-legends-hd",
+      "emulator": "ppsspp",
+      "title": "Burnout Legends",
+      "gameIds": [
+        "ULUS10025"
+      ],
+      "name": "Burnout Legends HD Texture Pack",
+      "author": "TestieTendie",
+      "version": "git af07adb",
+      "url": "https://codeload.github.com/TestieTendie/Burnout-Legends-HD-Texture-Pack/zip/af07adbdbdf25b2d88f365de77f334c1a723e2d1",
+      "sizeBytes": 1700468,
+      "format": "zip",
+      "rootHint": "Burnout-Legends-HD-Texture-Pack-af07adbdbdf25b2d88f365de77f334c1a723e2d1",
+      "sourcePage": "https://github.com/TestieTendie/Burnout-Legends-HD-Texture-Pack",
+      "license": "not stated",
+      "notes": "Small UI-only pack."
+    },
+    {
+      "id": "ssm5-special-hd",
+      "emulator": "ppsspp",
+      "title": "Shin Sangoku Musou 5 Special",
+      "gameIds": [
+        "ULJM05524"
+      ],
+      "name": "SSM5 HD Texture Pack",
+      "author": "Saramagrean",
+      "version": "git 42bbd6f",
+      "url": "https://codeload.github.com/Saramagrean/SSM5-HD-Texture-Pack/zip/42bbd6fb23776befd4bf3dac71b71c3d1b425edd",
+      "sizeBytes": 134475175,
+      "format": "zip",
+      "rootHint": "SSM5-HD-Texture-Pack-42bbd6fb23776befd4bf3dac71b71c3d1b425edd",
+      "sourcePage": "https://github.com/Saramagrean/SSM5-HD-Texture-Pack",
+      "license": "not stated",
+      "notes": "ZIM-format pack for the Japanese release."
+    },
+    {
+      "id": "patapon-3-hd",
+      "emulator": "ppsspp",
+      "title": "Patapon 3",
+      "gameIds": [
+        "UCUS98751",
+        "UCES01421",
+        "NPJG00122",
+        "UCAS40318"
+      ],
+      "name": "Patapon 3 HD Texture Pack",
+      "author": "Lin-zl522 (based on WallSoGB's Patapon3Textures)",
+      "version": "git 68ef73e",
+      "url": "https://codeload.github.com/Lin-zl522/Patapon-3-HD-Texture-Pack/zip/68ef73e7172f6d07917c954d3a8ce67a8d2f804b",
+      "sizeBytes": 812735063,
+      "format": "zip",
+      "rootHint": "Patapon-3-HD-Texture-Pack-68ef73e7172f6d07917c954d3a8ce67a8d2f804b",
+      "sourcePage": "https://github.com/Lin-zl522/Patapon-3-HD-Texture-Pack",
+      "license": "not stated",
+      "notes": "About 99% of textures, largely manually remastered; set Upscale Level OFF."
+    },
+    {
+      "id": "7th-dragon-2020-ii-hd",
+      "emulator": "ppsspp",
+      "title": "7th Dragon 2020-II",
+      "gameIds": [
+        "NPJH50716"
+      ],
+      "name": "7th Dragon 2020-II HD Texture Pack",
+      "author": "KotoM511",
+      "version": "git 2cda423",
+      "url": "https://codeload.github.com/KotoM511/7th_Dragon_2020-II_HD_Texture_Pack/zip/2cda42372bbd59be8f43ce65267a6304efb827ce",
+      "sizeBytes": 118832767,
+      "format": "zip",
+      "rootHint": "7th_Dragon_2020-II_HD_Texture_Pack-2cda42372bbd59be8f43ce65267a6304efb827ce",
+      "sourcePage": "https://github.com/KotoM511/7th_Dragon_2020-II_HD_Texture_Pack",
+      "license": "not stated",
+      "notes": "Made for the Cavespeak English patch v1.00."
+    },
+    {
+      "id": "gundam-age-hd",
+      "emulator": "ppsspp",
+      "title": "Mobile Suit Gundam AGE: Universe Accel / Cosmic Drive",
+      "gameIds": [
+        "NPJH50566",
+        "NPJH50567"
+      ],
+      "name": "Gundam AGE PSP HD Texture Pack",
+      "author": "SIEBEN5106",
+      "version": "git 237c825",
+      "url": "https://codeload.github.com/SIEBEN5106/Gundam-AGE-PSP-Texture-Pack/zip/237c8257dccfcad51487dd1607892ea11117aef5",
+      "sizeBytes": 211053944,
+      "format": "zip",
+      "rootHint": "Gundam-AGE-PSP-Texture-Pack-237c8257dccfcad51487dd1607892ea11117aef5",
+      "sourcePage": "https://github.com/SIEBEN5106/Gundam-AGE-PSP-Texture-Pack",
+      "license": "not stated",
+      "notes": "Mobile suits, weapons and UI."
+    },
+    {
+      "id": "tekken-6-hd",
+      "emulator": "ppsspp",
+      "title": "Tekken 6",
+      "gameIds": [
+        "ULUS10466",
+        "ULES01376"
+      ],
+      "name": "Tekken 6 HD Texture Pack",
+      "author": "kharij",
+      "version": "git 443b17f",
+      "url": "https://codeload.github.com/kharij/Tekken-6-HD-Texture-Pack/zip/443b17fad860c6e72c902bea403dbc1e2076afec",
+      "sizeBytes": 549375801,
+      "format": "zip",
+      "rootHint": "Tekken-6-HD-Texture-Pack-443b17fad860c6e72c902bea403dbc1e2076afec",
+      "sourcePage": "https://github.com/kharij/Tekken-6-HD-Texture-Pack",
+      "license": "not stated",
+      "notes": "KTX2 stage/effect/UI pack; author lists other-region support as a to-do."
+    },
+    {
+      "id": "mhfu-hd-retexture",
+      "emulator": "ppsspp",
+      "title": "Monster Hunter Freedom Unite",
+      "gameIds": [
+        "ULUS10391"
+      ],
+      "name": "MHFU HD Retexture",
+      "author": "three5media",
+      "version": "git 18b3ee4",
+      "url": "https://codeload.github.com/three5media/mfhu-hd-retexture/zip/18b3ee4f4c0074acd9e36ef4330a146cf59cbe2b",
+      "sizeBytes": 1248909926,
+      "format": "zip",
+      "rootHint": "mfhu-hd-retexture-18b3ee4f4c0074acd9e36ef4330a146cf59cbe2b/ULUS10391",
+      "sourcePage": "https://github.com/three5media/mfhu-hd-retexture",
+      "license": "not stated",
+      "notes": "Large upscale/retexture project for the US release."
+    },
+    {
+      "id": "ridge-racer-2-hd",
+      "emulator": "ppsspp",
+      "title": "Ridge Racers 2",
+      "gameIds": [
+        "UCES00422"
+      ],
+      "name": "Ridge Racer 2 HD (repacked)",
+      "author": "jcchikikomori (Abbanon & R-Type Leo textures)",
+      "version": "git 88555da",
+      "url": "https://codeload.github.com/jcchikikomori/RidgeRacer2-HD-repacked/zip/88555da1b72bf1c11349fcfb7cbf65ce6f335841",
+      "sizeBytes": 8999303,
+      "format": "zip",
+      "rootHint": "RidgeRacer2-HD-repacked-88555da1b72bf1c11349fcfb7cbf65ce6f335841/UCES00422",
+      "sourcePage": "https://github.com/jcchikikomori/RidgeRacer2-HD-repacked",
+      "license": "not stated",
+      "notes": "Combined HUD/UI packs."
+    },
+    {
+      "id": "tekken-5-dr-ps3-port",
+      "emulator": "ppsspp",
+      "title": "Tekken: Dark Resurrection",
+      "gameIds": [
+        "ULUS10139"
+      ],
+      "name": "Tekken 5 DR HD (PS3 texture port)",
+      "author": "IxNineHash",
+      "version": "archive.org",
+      "url": "https://archive.org/download/ulus-10139.7z/ULUS10139.7z",
+      "sizeBytes": 481720080,
+      "format": "7z",
+      "rootHint": "ULUS10139",
+      "sourcePage": "https://archive.org/details/ulus-10139.7z",
+      "license": "not stated",
+      "notes": "WIP port of the PS3 version's textures, for the USA release."
+    },
+    {
+      "id": "persona-2-is-hd",
+      "emulator": "ppsspp",
+      "title": "Persona 2: Innocent Sin",
+      "gameIds": [
+        "ULUS10584"
+      ],
+      "name": "Persona 2 Innocent Sin PSP HD Textures",
+      "author": "ryuubu",
+      "version": "archive.org",
+      "url": "https://archive.org/download/ulus-10584/ULUS10584.zip",
+      "sizeBytes": 209172226,
+      "format": "zip",
+      "rootHint": "",
+      "sourcePage": "https://archive.org/details/ulus-10584",
+      "license": "not stated",
+      "notes": "textures.ini at the archive root."
+    },
+    {
+      "id": "dino-crisis-icebullet",
+      "emulator": "duckstation",
+      "title": "Dino Crisis",
+      "gameIds": [
+        "SLUS-00922"
+      ],
+      "name": "Dino Crisis HD Texture Pack",
+      "author": "IceBullet",
+      "version": "v20241213",
+      "url": "https://archive.org/download/textures_duckstation/textures/Dino%20Crisis%20%28USA%29%20%5BHD%20Texture%20Pack%20by%20IceBullet%20v20241213%5D.7z",
+      "sizeBytes": 882232073,
+      "format": "7z",
+      "rootHint": "textures/SLUS-00922",
+      "sourcePage": "https://archive.org/details/textures_duckstation",
+      "license": "not stated",
+      "notes": "Uses DuckStation's replacements/ subfolder layout; third-party archive.org mirror."
+    },
+    {
+      "id": "silent-hill-icebullet",
+      "emulator": "duckstation",
+      "title": "Silent Hill",
+      "gameIds": [
+        "SLUS-00707"
+      ],
+      "name": "Silent Hill HD Texture Pack",
+      "author": "IceBullet",
+      "version": "v20241207",
+      "url": "https://archive.org/download/textures_duckstation/textures/Silent%20Hill%20%28USA%29%20%5BHD%20Texture%20Pack%20by%20IceBullet%20v20241207%5D.7z",
+      "sizeBytes": 1920644143,
+      "format": "7z",
+      "rootHint": "textures/SLUS-00707",
+      "sourcePage": "https://archive.org/details/textures_duckstation",
+      "license": "not stated",
+      "notes": "Includes the pack's config.yaml; third-party archive.org mirror."
+    },
+    {
+      "id": "re1-dc-crazy-ivan",
+      "emulator": "duckstation",
+      "title": "Resident Evil: Director's Cut",
+      "gameIds": [
+        "SLUS-00551"
+      ],
+      "name": "Resident Evil DC HD Texture Pack",
+      "author": "Crazy Ivan",
+      "version": "v20220726",
+      "url": "https://archive.org/download/textures_duckstation/textures/Resident%20Evil%20-%20Director%27s%20Cut%20%28USA%29%20%5BHD%20Texture%20Pack%20by%20Crazy%20Ivan%20v20220726%5D.7z",
+      "sizeBytes": 2111237096,
+      "format": "7z",
+      "rootHint": "textures/SLUS-00551",
+      "sourcePage": "https://archive.org/details/textures_duckstation",
+      "license": "not stated",
+      "notes": "Background (vram-write) replacements placed directly in the serial folder; third-party archive.org mirror."
+    },
+    {
+      "id": "mgs1-bl4ckh4nd",
+      "emulator": "duckstation",
+      "title": "Metal Gear Solid",
+      "gameIds": [
+        "SLUS-00594",
+        "SLUS-00776"
+      ],
+      "name": "Metal Gear Solid HD Texture Pack (Bl4ckH4nd)",
+      "author": "Bl4ckH4nd",
+      "version": "archive.org",
+      "url": "https://archive.org/download/bl4ckh4nd-psx/Metal%20Gear%20Solid%20%28Duckstation%29.7z",
+      "sizeBytes": 1312606445,
+      "format": "7z",
+      "rootHint": "Metal Gear Solid/SLUS-00594",
+      "sourcePage": "https://archive.org/details/bl4ckh4nd-psx",
+      "license": "not stated",
+      "notes": "Two-disc game: rootHint is disc 1 (SLUS-00594); disc 2 textures are in 'Metal Gear Solid/SLUS-00776' and must be installed to textures/SLUS-00776."
+    },
+    {
+      "id": "spider-man-bl4ckh4nd",
+      "emulator": "duckstation",
+      "title": "Spider-Man",
+      "gameIds": [
+        "SLUS-00875"
+      ],
+      "name": "Spider-Man HD Texture Pack (Bl4ckH4nd)",
+      "author": "Bl4ckH4nd",
+      "version": "archive.org",
+      "url": "https://archive.org/download/bl4ckh4nd-psx/Spider-Man%20%28Duckstation%29.7z",
+      "sizeBytes": 629857995,
+      "format": "7z",
+      "rootHint": "Spider-Man/SLUS-00875",
+      "sourcePage": "https://archive.org/details/bl4ckh4nd-psx",
+      "license": "not stated",
+      "notes": "Author-uploaded DuckStation build (replacements/ subfolder plus config.yaml)."
+    },
+    {
+      "id": "tekken-3-bl4ckh4nd",
+      "emulator": "duckstation",
+      "title": "Tekken 3",
+      "gameIds": [
+        "SLUS-00402"
+      ],
+      "name": "Tekken 3 HD Texture Pack (Bl4ckH4nd)",
+      "author": "Bl4ckH4nd",
+      "version": "archive.org",
+      "url": "https://archive.org/download/bl4ckh4nd-psx/Tekken%203%20%28Duckstation%29.7z",
+      "sizeBytes": 766232801,
+      "format": "7z",
+      "rootHint": "Tekken 3/SLUS-00402",
+      "sourcePage": "https://archive.org/details/bl4ckh4nd-psx",
+      "license": "not stated",
+      "notes": "Author-uploaded DuckStation build (replacements/ subfolder plus config.yaml)."
+    },
+    {
+      "id": "tekken-2-bl4ckh4nd",
+      "emulator": "duckstation",
+      "title": "Tekken 2",
+      "gameIds": [
+        "SLUS-00213"
+      ],
+      "name": "Tekken 2 HD Texture Pack (Bl4ckH4nd)",
+      "author": "Bl4ckH4nd",
+      "version": "archive.org",
+      "url": "https://archive.org/download/bl4ckh4nd-psx/Tekken%202%20%28Duckstation%29.7z",
+      "sizeBytes": 415887736,
+      "format": "7z",
+      "rootHint": "Tekken 2/SLUS-00213",
+      "sourcePage": "https://archive.org/details/bl4ckh4nd-psx",
+      "license": "not stated",
+      "notes": "Author-uploaded DuckStation build (replacements/ subfolder plus config.yaml)."
+    },
+    {
+      "id": "nfs3-bl4ckh4nd",
+      "emulator": "duckstation",
+      "title": "Need for Speed III: Hot Pursuit",
+      "gameIds": [
+        "SLUS-00620"
+      ],
+      "name": "Need for Speed III: Hot Pursuit HD Texture Pack (Bl4ckH4nd)",
+      "author": "Bl4ckH4nd",
+      "version": "archive.org",
+      "url": "https://archive.org/download/bl4ckh4nd-psx/Need%20for%20Speed%20III%20Hot%20Pursuit%20%28Duckstation%29.7z",
+      "sizeBytes": 458682663,
+      "format": "7z",
+      "rootHint": "Need for Speed III Hot Pursuit/SLUS-00620",
+      "sourcePage": "https://archive.org/details/bl4ckh4nd-psx",
+      "license": "not stated",
+      "notes": "Author-uploaded DuckStation build (replacements/ subfolder plus config.yaml)."
+    },
+    {
+      "id": "gex-2-bl4ckh4nd",
+      "emulator": "duckstation",
+      "title": "Gex: Enter the Gecko",
+      "gameIds": [
+        "SLUS-00598"
+      ],
+      "name": "Gex: Enter the Gecko HD Texture Pack (Bl4ckH4nd)",
+      "author": "Bl4ckH4nd",
+      "version": "archive.org",
+      "url": "https://archive.org/download/bl4ckh4nd-psx/Gex%202%20Enter%20the%20Gecko%20%28Duckstation%29.7z",
+      "sizeBytes": 980074075,
+      "format": "7z",
+      "rootHint": "Gex 2 Enter the Gecko/SLUS-00598",
+      "sourcePage": "https://archive.org/details/bl4ckh4nd-psx",
+      "license": "not stated",
+      "notes": "Author-uploaded DuckStation build (replacements/ subfolder plus config.yaml)."
+    }
+  ]
+}

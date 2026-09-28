@@ -1,0 +1,90 @@
+<Page x:Class="GameOp.Pages.ExtrasPage" Foreground="{DynamicResource TextFillColorPrimaryBrush}" ScrollViewer.CanContentScroll="False"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      Title="Extras">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="24,12,24,24">
+            <TextBlock Text="Extras" FontSize="28" FontWeight="SemiBold" />
+            <TextBlock Style="{StaticResource Caption}" Margin="0,2,0,0"
+                       Text="Upscaling and sharpening filters, widescreen patches, HD texture packs and official community add-ons. Enhancements are written into every profile GameOp creates; add-ons and texture packs download and update automatically." />
+
+            <!-- Enhancements -->
+            <TextBlock Text="Enhancements" Style="{StaticResource SectionHeader}" />
+            <StackPanel x:Name="EnhancementHost" />
+
+            <!-- Add-ons -->
+            <TextBlock Text="Add-ons &amp; patches" Style="{StaticResource SectionHeader}" />
+            <ui:Card Padding="16" Margin="0,0,0,8">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <ui:ToggleSwitch x:Name="AutoAddons" Content="Install and update add-ons automatically" Click="OnAutoAddons" />
+                    <ui:Button Grid.Column="1" Content="Check now" Click="OnCheckAddons">
+                        <ui:Button.Icon><ui:SymbolIcon Symbol="ArrowSync24" /></ui:Button.Icon>
+                    </ui:Button>
+                </Grid>
+            </ui:Card>
+            <StackPanel x:Name="AddonHost" />
+
+            <!-- Texture packs -->
+            <TextBlock Text="HD texture packs" Style="{StaticResource SectionHeader}" />
+            <ui:Card Padding="16" Margin="0,0,0,8">
+                <StackPanel>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <ui:ToggleSwitch x:Name="AutoPacks" Content="Download packs automatically for games in my library" Click="OnAutoPacks" VerticalAlignment="Center" />
+                        <TextBlock Grid.Column="1" Text="Max size (GB)" VerticalAlignment="Center" Margin="12,0,8,0" />
+                        <ui:NumberBox x:Name="MaxGb" Grid.Column="2" Width="120" Minimum="0.5" Maximum="100" SmallChange="0.5" ValueChanged="OnMaxGb" />
+                    </Grid>
+                    <TextBlock Style="{StaticResource Caption}" Margin="0,8,0,0"
+                               Text="A game counts as in your library when the emulator's game list has it, or when you've applied a GameOp profile to it. Packs are extracted into the emulator's texture folder, and texture loading is switched on for you." />
+                </StackPanel>
+            </ui:Card>
+
+            <!-- Install from file -->
+            <ui:CardExpander Header="Install a pack you downloaded yourself (Google Drive, Mega, forums…)" Margin="0,0,0,8">
+                <ui:CardExpander.Icon><ui:SymbolIcon Symbol="FolderZip24" /></ui:CardExpander.Icon>
+                <StackPanel>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="200" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <ComboBox x:Name="FileEmu" SelectionChanged="OnFileEmu" />
+                        <ComboBox x:Name="FileGame" Grid.Column="1" Margin="8,0,0,0" IsEditable="True" />
+                    </Grid>
+                    <TextBlock Style="{StaticResource Caption}" Margin="0,6,0,8"
+                               Text="Pick the emulator and the game (or type its serial / game ID), then choose the pack's .zip / .7z / .rar or an already-extracted folder." />
+                    <StackPanel Orientation="Horizontal">
+                        <ui:Button Content="Choose archive…" Appearance="Primary" Click="OnPackFile">
+                            <ui:Button.Icon><ui:SymbolIcon Symbol="FolderZip24" /></ui:Button.Icon>
+                        </ui:Button>
+                        <ui:Button Content="Choose folder…" Margin="8,0,0,0" Click="OnPackFolder">
+                            <ui:Button.Icon><ui:SymbolIcon Symbol="FolderOpen24" /></ui:Button.Icon>
+                        </ui:Button>
+                        <ui:Button Content="Import pack catalog (JSON / URL)…" Margin="8,0,0,0" Click="OnImportCatalog">
+                            <ui:Button.Icon><ui:SymbolIcon Symbol="Open24" /></ui:Button.Icon>
+                        </ui:Button>
+                    </StackPanel>
+                </StackPanel>
+            </ui:CardExpander>
+
+            <Grid Margin="0,4,0,8">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <TextBlock x:Name="PackSummary" Style="{StaticResource Caption}" VerticalAlignment="Center" />
+                <ComboBox x:Name="PackFilter" Grid.Column="1" Width="200" SelectionChanged="OnPackFilter" />
+            </Grid>
+            <StackPanel x:Name="PackHost" />
+        </StackPanel>
+    </ScrollViewer>
+</Page>

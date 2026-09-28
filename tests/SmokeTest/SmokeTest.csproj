@@ -14,6 +14,9 @@
     <Compile Include="..\..\Services\GameDatabase.cs" />
     <Compile Include="..\..\Services\Ps2Iso.cs" />
     <Compile Include="..\..\Services\Updater.cs" />
+    <Compile Include="..\..\Services\Downloads.cs" />
+    <Compile Include="..\..\Services\Extras.cs" />
+    <Compile Include="..\..\Services\DiscIds.cs" />
     <PackageReference Include="SharpCompress" Version="0.50.4" />
     <None Include="..\..\Data\*.json" CopyToOutputDirectory="PreserveNewest" LinkBase="Data" />
   </ItemGroup>

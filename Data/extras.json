@@ -1,0 +1,256 @@
+{
+  "_comment": "Enhancements use each emulator's native keys (verified against source, see Data/research/enhancements.md). 'perGame' replaces 'on' inside per-game profiles. Ids ending in .hdtextures are switched on automatically when a texture pack is installed.",
+  "enhancements": [
+    {
+      "id": "pcsx2.nointerlace",
+      "emulator": "pcsx2",
+      "name": "No-interlacing patches",
+      "description": "Removes interlacing flicker and softness in games that have a patch. Cheap, and sharper on a small screen.",
+      "category": "Display",
+      "on": { "EmuCore": { "EnableNoInterlacingPatches": true } },
+      "off": { "EmuCore": { "EnableNoInterlacingPatches": false } },
+      "perGame": { "Patches": { "Enable": ["No-Interlacing"] } },
+      "perGameOff": { "Patches": { "!Enable": ["No-Interlacing"] } },
+      "default": true
+    },
+    {
+      "id": "pcsx2.widescreen",
+      "emulator": "pcsx2",
+      "name": "Widescreen 16:9 patches",
+      "description": "Real 16:9 rendering for games with a widescreen patch (fills the Ally's screen without stretching). A few games show HUD or culling glitches.",
+      "category": "Display",
+      "on": { "EmuCore": { "EnableWideScreenPatches": true } },
+      "off": { "EmuCore": { "EnableWideScreenPatches": false } },
+      "perGame": { "Patches": { "Enable": ["Widescreen 16:9"] } },
+      "perGameOff": { "Patches": { "!Enable": ["Widescreen 16:9"] } },
+      "default": false
+    },
+    {
+      "id": "pcsx2.cas",
+      "emulator": "pcsx2",
+      "name": "AMD CAS sharpening",
+      "description": "Contrast Adaptive Sharpening on the final image. Makes upscaled PS2 games look crisper at very little cost.",
+      "category": "Upscaling",
+      "on": { "EmuCore/GS": { "CASMode": 1, "CASSharpness": 50 } },
+      "off": { "EmuCore/GS": { "CASMode": 0 } },
+      "default": true
+    },
+    {
+      "id": "pcsx2.fxaa",
+      "emulator": "pcsx2",
+      "name": "FXAA anti-aliasing",
+      "description": "Smooths jagged edges. Softens the image a little; best combined with CAS sharpening.",
+      "category": "Upscaling",
+      "on": { "EmuCore/GS": { "fxaa": true } },
+      "off": { "EmuCore/GS": { "fxaa": false } },
+      "default": false
+    },
+    {
+      "id": "pcsx2.hdtextures",
+      "emulator": "pcsx2",
+      "name": "Load HD texture packs",
+      "description": "Loads replacement textures from textures\\<serial>\\replacements (switched on automatically when you install a pack).",
+      "category": "HD textures",
+      "on": { "EmuCore/GS": { "LoadTextureReplacements": true, "LoadTextureReplacementsAsync": true } },
+      "off": { "EmuCore/GS": { "LoadTextureReplacements": false } },
+      "default": false
+    },
+    {
+      "id": "pcsx2.precache",
+      "emulator": "pcsx2",
+      "name": "Preload HD textures into RAM",
+      "description": "Loads a whole texture pack when the game starts to avoid pop-in. Uses a lot of memory; better on 24 GB models.",
+      "category": "HD textures",
+      "on": { "EmuCore/GS": { "PrecacheTextureReplacements": true } },
+      "off": { "EmuCore/GS": { "PrecacheTextureReplacements": false } },
+      "default": false,
+      "heavy": true
+    },
+
+    {
+      "id": "duckstation.widescreen",
+      "emulator": "duckstation",
+      "name": "Widescreen hack (16:9)",
+      "description": "Renders 3D games in 16:9 instead of stretching. Works well for most 3D titles; 2D backgrounds stay 4:3.",
+      "category": "Display",
+      "on": { "GPU": { "WidescreenHack": true }, "Display": { "AspectRatio": "16:9" } },
+      "off": { "GPU": { "WidescreenHack": false }, "Display": { "AspectRatio": "Auto (Game Native)" } },
+      "default": false
+    },
+    {
+      "id": "duckstation.sharpen",
+      "emulator": "duckstation",
+      "name": "Sharpening shader",
+      "description": "DuckStation's built-in simple-sharpen post-processing shader (DuckStation has no FSR/CAS). Replaces your first post-processing stage.",
+      "category": "Upscaling",
+      "on": { "PostProcessing": { "Enabled": true, "StageCount": 1 }, "PostProcessing/Stage1": { "ShaderName": "simple-sharpen", "StageEnabled": true } },
+      "off": { "PostProcessing": { "Enabled": false } },
+      "default": false
+    },
+    {
+      "id": "duckstation.hdtextures",
+      "emulator": "duckstation",
+      "name": "Load HD texture packs",
+      "description": "Enables the texture cache and texture/background replacements from textures\\<serial>\\replacements. Needs a hardware renderer (the default).",
+      "category": "HD textures",
+      "on": { "GPU": { "EnableTextureCache": true }, "TextureReplacements": { "EnableTextureReplacements": true, "EnableVRAMWriteReplacements": true } },
+      "off": { "TextureReplacements": { "EnableTextureReplacements": false, "EnableVRAMWriteReplacements": false } },
+      "default": false
+    },
+    {
+      "id": "duckstation.precache",
+      "emulator": "duckstation",
+      "name": "Preload HD textures",
+      "description": "Loads the whole texture pack up front to avoid stutter when new textures appear.",
+      "category": "HD textures",
+      "on": { "TextureReplacements": { "PreloadTextures": true } },
+      "off": { "TextureReplacements": { "PreloadTextures": false } },
+      "default": false,
+      "heavy": true
+    },
+
+    {
+      "id": "ppsspp.fsr",
+      "emulator": "ppsspp",
+      "name": "AMD FSR 1 upscaling + sharpening",
+      "description": "PPSSPP's built-in FSR-EASU upscaler followed by FSR-RCAS sharpening. Gives a sharp 1080p image even from a lower internal resolution.",
+      "category": "Upscaling",
+      "on": { "PostShaderList": { "PostShader1": "FSR-EASU", "PostShader2": "FSR-RCAS" }, "PostShaderSetting": { "FSR-RCASSettingCurrentValue1": 0.5 } },
+      "off": { "PostShaderList": { "PostShader1": "Off", "PostShader2": "Off" } },
+      "default": false
+    },
+    {
+      "id": "ppsspp.texupscale",
+      "emulator": "ppsspp",
+      "name": "Texture upscaling (4x xBRZ on the GPU)",
+      "description": "Smooths low-resolution PSP textures with a GPU xBRZ shader. Looks great in 2D/anime games; costs some GPU time.",
+      "category": "Upscaling",
+      "on": { "Graphics": { "TextureShader": "Tex4xBRZ" } },
+      "off": { "Graphics": { "TextureShader": "Off" } },
+      "default": false,
+      "heavy": true
+    },
+    {
+      "id": "ppsspp.hdtextures",
+      "emulator": "ppsspp",
+      "name": "Load HD texture packs",
+      "description": "Loads packs from PSP\\TEXTURES\\<game id> (on by default in PPSSPP).",
+      "category": "HD textures",
+      "on": { "Graphics": { "ReplaceTextures": true } },
+      "off": { "Graphics": { "ReplaceTextures": false } },
+      "default": true
+    },
+
+    {
+      "id": "dolphin.widescreen",
+      "emulator": "dolphin",
+      "name": "Widescreen hack (16:9)",
+      "description": "Forces 16:9 rendering in games without native widescreen. Can cause culling at the screen edges; games with a 16:9 option don't need it.",
+      "category": "Display",
+      "on": { "Video_Settings": { "wideScreenHack": true, "AspectRatio": 1 } },
+      "off": { "Video_Settings": { "wideScreenHack": false, "AspectRatio": 0 } },
+      "default": false
+    },
+    {
+      "id": "dolphin.sharpresample",
+      "emulator": "dolphin",
+      "name": "Sharp output resampling",
+      "description": "Uses Sharp Bilinear when scaling the rendered image to the screen: crisper than the default when the internal resolution doesn't match 1080p.",
+      "category": "Upscaling",
+      "on": { "Video_Enhancements": { "OutputResampling": 5 } },
+      "off": { "Video_Enhancements": { "OutputResampling": 0 } },
+      "default": true
+    },
+    {
+      "id": "dolphin.fxaa",
+      "emulator": "dolphin",
+      "name": "FXAA post-processing",
+      "description": "Dolphin's built-in FXAA shader to smooth edges (Dolphin doesn't ship an FSR/CAS shader).",
+      "category": "Upscaling",
+      "on": { "Video_Enhancements": { "PostProcessingShader": "FXAA" } },
+      "off": { "Video_Enhancements": { "PostProcessingShader": "" } },
+      "default": false
+    },
+    {
+      "id": "dolphin.hdtextures",
+      "emulator": "dolphin",
+      "name": "Load HD texture packs",
+      "description": "Loads custom textures from Load\\Textures\\<game id> (switched on automatically when you install a pack).",
+      "category": "HD textures",
+      "on": { "Video_Settings": { "HiresTextures": true } },
+      "off": { "Video_Settings": { "HiresTextures": false } },
+      "default": false
+    },
+    {
+      "id": "dolphin.precache",
+      "emulator": "dolphin",
+      "name": "Prefetch HD textures",
+      "description": "Loads the entire texture pack into RAM at boot so textures never pop in. Big packs need a lot of memory.",
+      "category": "HD textures",
+      "on": { "Video_Settings": { "CacheHiresTextures": true } },
+      "off": { "Video_Settings": { "CacheHiresTextures": false } },
+      "default": false,
+      "heavy": true
+    },
+
+    {
+      "id": "rpcs3.fsr",
+      "emulator": "rpcs3",
+      "name": "AMD FSR 1 upscaling + CAS sharpening",
+      "description": "Upscales RPCS3's output with FidelityFX Super Resolution (Vulkan) and sharpens it. A cheap way to get a crisp 1080p image from a 720p render.",
+      "category": "Upscaling",
+      "on": { "Video": { "Output Scaling Mode": "FidelityFX Super Resolution", "FidelityFX CAS Sharpening Intensity": 50 } },
+      "off": { "Video": { "Output Scaling Mode": "Bilinear" } },
+      "default": true
+    },
+
+    {
+      "id": "xenia.patches",
+      "emulator": "xenia",
+      "name": "Apply game patches",
+      "description": "Lets Xenia load the community game patches (60 FPS, resolution, fixes). Turn individual patches on per game in the Game Library.",
+      "category": "Patches",
+      "on": { "General": { "apply_patches": true } },
+      "off": { "General": { "apply_patches": false } },
+      "default": true
+    }
+  ],
+  "addons": [
+    {
+      "id": "rpcs3.patches",
+      "emulator": "rpcs3",
+      "name": "RPCS3 official game patches",
+      "description": "The patch database from rpcs3.net (60 FPS unlocks, resolution fixes, bug fixes) – the same file RPCS3's Patch Manager downloads. Turn patches on in RPCS3 → Manage → Game Patches.",
+      "kind": "rpcs3-patches",
+      "url": "https://rpcs3.net/compatibility?patch&api=v1&v=1.2",
+      "installTo": "patches/patch.yml",
+      "isArchive": false,
+      "default": true
+    },
+    {
+      "id": "cemu.graphicpacks",
+      "emulator": "cemu",
+      "name": "Cemu community graphic packs",
+      "description": "Resolution upscaling, 60 FPS, widescreen and fix packs for Wii U games from the official cemu_graphic_packs project. Pick a pack and preset per game in Cemu → Options → Graphic packs.",
+      "kind": "github-release",
+      "repo": "cemu-project/cemu_graphic_packs",
+      "asset": "^graphicPacks.*\\.zip$",
+      "installTo": "graphicPacks/downloadedGraphicPacks",
+      "default": true
+    },
+    {
+      "id": "xenia.gamepatches",
+      "emulator": "xenia",
+      "name": "Xenia Canary game patches",
+      "description": "Community patches for ~500 Xbox 360 games (60 FPS, resolution, bug fixes) from xenia-canary/game-patches. Patches you've turned on stay on when the pack updates.",
+      "kind": "github-release",
+      "repo": "xenia-canary/game-patches",
+      "asset": "^game-patches\\.7z$",
+      "subDir": "patches",
+      "installTo": "patches",
+      "enables": "xenia.patches",
+      "preserveEnabledPatches": true,
+      "default": true
+    }
+  ]
+}

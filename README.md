@@ -4,12 +4,14 @@ A native Windows 11 app (Fluent design, Mica, dark/light) that tunes ROG Ally ha
 
 ## Download
 
+Get the latest build from the [Releases page](https://github.com/nahalewski/GameOp/releases), or build it yourself (see below).
+
 | Version | File | Notes |
 |---|---|---|
-| **Installer** | [`releases/v1.0.0/GameOp-Setup-v1.0.0.exe`](releases/v1.0.0/GameOp-Setup-v1.0.0.exe) | Installs to Program Files and adds Start menu and optional desktop shortcuts. Uninstall from Windows Settings. |
-| **Portable** | [`releases/v1.0.0/GameOp-Portable-v1.0.0.zip`](releases/v1.0.0/GameOp-Portable-v1.0.0.zip) | Unzip anywhere, even a microSD card. Settings and backups stay in the `UserData` folder next to `GameOp.exe`. |
+| **Installer** | `GameOp-Setup-v1.1.0.exe` | Installs to Program Files and adds Start menu and optional desktop shortcuts. Uninstall from Windows Settings. |
+| **Portable** | `GameOp-Portable-v1.1.0.exe` | A single file you can run from anywhere, even a microSD card. Settings and backups stay in a `GameOp-Data` folder next to it. |
 
-Both are self-contained (no .NET install needed), 64-bit, Windows 10 2004 / Windows 11. GameOp asks for admin rights because TDP and power settings need them.
+Both are self-contained (no .NET install needed), 64-bit, Windows 10 2004 / Windows 11. GameOp asks for admin rights because TDP and power settings need them. The game database and texture-pack catalog refresh themselves from this repo, so new games and packs arrive without reinstalling.
 
 ---
 
@@ -45,7 +47,7 @@ Both are self-contained (no .NET install needed), 64-bit, Windows 10 2004 / Wind
 ### Per-game settings database (143 games, 8 emulator families)
 - **Contents:** games are sourced from official emulator sources:
   - RPCS3 wiki + live compatibility API: 32 PS3 games
-  - PCSX2 GameIndex + wiki: 31 PS2 games
+  - PCSX2 GameIndex + wiki: 37 PS2 games, including Genji and the whole Onimusha series
   - DuckStation gamedb: 11 PS1 games
   - Dolphin's shipped GameSettings: 14 GameCube/Wii games
   - PPSSPP compat.ini: 12 PSP games
@@ -80,6 +82,7 @@ Both are self-contained (no .NET install needed), 64-bit, Windows 10 2004 / Wind
 - **Surgical edits:** only the keys GameOp sets are changed. Comments, ordering and every other setting are kept.
 
 ### Automatic emulator updates
+- **Safe updates:** an update is checked again right before copying and undone automatically if it fails partway. Rolling back removes files the update added, and a rolled-back release isn't offered again.
 - **Checks:** at start-up and every 6 hours, against each emulator's **official GitHub releases**:
   - PCSX2
   - RPCS3
@@ -98,6 +101,25 @@ Both are self-contained (no .NET install needed), 64-bit, Windows 10 2004 / Wind
   - configs next to the exe (`portable.ini/txt`, `settings.ini`, `*.toml`, `config\`, `inis\`, `gamesettings\` …)
 - **Rollback:** every replaced program file is backed up first. **Roll back update** restores the previous version.
 - **Built-in updaters:** Dolphin, Ryujinx and the yuzu forks use their own updaters; GameOp tells you where to find them.
+
+### Extras: upscaling, HD textures and add-ons
+- **Enhancements:** switches written into the global config and every per-game profile GameOp creates. Every key is verified against each emulator's source code.
+  - **PCSX2:** no-interlacing and widescreen patches (as per-game patch lists), AMD CAS sharpening, FXAA, HD texture loading and preloading.
+  - **RPCS3:** AMD FSR 1 upscaling with CAS sharpening.
+  - **PPSSPP:** FSR 1 (EASU and RCAS), GPU texture upscaling (4x xBRZ), HD textures.
+  - **DuckStation:** widescreen hack, sharpening shader, HD textures and preloading.
+  - **Dolphin:** widescreen hack, sharp output resampling, FXAA, HD textures and prefetch.
+  - **Xenia:** game patches switch.
+  - Heavier options are skipped automatically on Battery Saver.
+- **Official add-ons, installed and kept updated automatically:**
+  - **RPCS3 patches:** the official patch database from rpcs3.net (60 FPS, resolution fixes), checksum-verified.
+  - **Cemu graphic packs:** the community packs for resolution, 60 FPS and widescreen.
+  - **Xenia Canary patches:** community patches for about 500 games. Turn individual patches on per game in the Game Library; your choices survive updates.
+- **HD texture packs:** a catalog of 69 verified direct-download packs (16 PCSX2, 22 Dolphin, 22 PPSSPP, 9 DuckStation).
+  - **Automatic download:** packs download for games in your library, up to a size limit you set.
+  - **Placement:** each pack is extracted into the exact folder the emulator reads, and texture loading is switched on for you.
+- **Install from file:** installs packs from Google Drive, Mega or forums from a .zip, .7z or .rar, or an extracted folder.
+- **Library scan:** reads PCSX2, Dolphin (ISO/GCM/RVZ/WIA/WBFS) and PPSSPP (UMD ISO) game folders, so auto-downloads know what you own.
 
 ### Auto power per game
 - Watches the foreground window, recognises the running game by its serial / title ID or title in the emulator's window, and switches TDP to that game's level.

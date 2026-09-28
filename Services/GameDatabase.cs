@@ -28,8 +28,8 @@ public sealed class GameDatabase
     {
         var db = new GameDatabase
         {
-            Devices = Json.Load<DevicesFile>(Path.Combine(AppPaths.BundledData, "devices.json"))?.Devices ?? [],
-            Emulators = Json.Load<EmulatorsFile>(Path.Combine(AppPaths.BundledData, "emulators.json"))?.Emulators ?? [],
+            Devices = Json.LoadBundled<DevicesFile>("devices.json")?.Devices ?? [],
+            Emulators = Json.LoadBundled<EmulatorsFile>("emulators.json")?.Emulators ?? [],
         };
         db.LoadGames();
         return db;
@@ -37,7 +37,7 @@ public sealed class GameDatabase
 
     private void LoadGames()
     {
-        var bundled = ReadGameFile(Path.Combine(AppPaths.BundledData, "gamedb.json"));
+        var bundled = Prepare(Json.LoadBundled<GameDbFile>("gamedb.json"));
         var user = File.Exists(AppPaths.UserGameDb) ? ReadGameFile(AppPaths.UserGameDb) : null;
 
         // Downloaded/imported entries override bundled ones for the same emulator + id.
@@ -53,20 +53,37 @@ public sealed class GameDatabase
         Version = user?.Version ?? bundled?.Version ?? "?";
     }
 
+    private static GameDbFile? Prepare(GameDbFile? file)
+    {
+        if (file?.Emulator is { } emu)
+            foreach (var g in file.Games.Where(g => string.IsNullOrEmpty(g.Emulator))) g.Emulator = emu;
+        if (file is not null) Sanitize(file.Games);
+        return file;
+    }
+
     private static GameDbFile? ReadGameFile(string path)
     {
         try
         {
-            var file = Json.Load<GameDbFile>(path);
-            if (file?.Emulator is { } emu)
-                foreach (var g in file.Games.Where(g => string.IsNullOrEmpty(g.Emulator))) g.Emulator = emu;
-            return file;
+            return Prepare(Json.Load<GameDbFile>(path));
         }
         catch (Exception ex)
         {
             Log.Warn($"Couldn't read {Path.GetFileName(path)}: {ex.Message}");
             return null;
         }
+    }
+
+    /// <summary>Game ids become file names, so anything that isn't a plain token is dropped (and games left without ids).</summary>
+    private static void Sanitize(List<GameEntry> games)
+    {
+        foreach (var g in games)
+        {
+            var bad = g.Ids.Where(id => !SafeId.IsValid(id)).ToList();
+            if (bad.Count > 0) Log.Warn($"{g.Title}: ignored invalid id(s) {string.Join(", ", bad)}");
+            g.Ids = g.Ids.Where(SafeId.IsValid).ToList();
+        }
+        games.RemoveAll(g => g.Ids.Count == 0);
     }
 
     public EmulatorDef? Emulator(string id) => Emulators.FirstOrDefault(e => e.Id == id);
@@ -108,6 +125,7 @@ public sealed class GameDatabase
                        ?? throw new InvalidDataException("Empty database file.");
         if (incoming.Emulator is { } emu)
             foreach (var g in incoming.Games.Where(g => string.IsNullOrEmpty(g.Emulator))) g.Emulator = emu;
+        Sanitize(incoming.Games);
         if (incoming.Games.Count == 0 || incoming.Games.Any(g => string.IsNullOrWhiteSpace(g.Emulator) || g.Ids.Count == 0))
             throw new InvalidDataException("Every game needs an 'emulator' and at least one id.");
 

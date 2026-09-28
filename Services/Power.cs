@@ -115,7 +115,8 @@ public static class PowerService
                 var a = acpi.DeviceSet(AsusAcpi.PptSpl, plan.Spl);
                 var b = acpi.DeviceSet(AsusAcpi.PptSppt, plan.Sppt);
                 var c = acpi.DeviceSet(AsusAcpi.PptFppt, plan.Fppt);
-                if (a >= 0 && b >= 0 && c >= 0)
+                // The firmware returns 1 for success (same check G-Helper uses); anything else falls back to RyzenAdj.
+                if (a == 1 && b == 1 && c == 1)
                     return $"TDP {plan.Spl} W (boost {plan.Sppt}/{plan.Fppt} W) via ASUS ACPI";
             }
         }
@@ -198,36 +199,91 @@ public static class DisplayService
     [DllImport("user32.dll", CharSet = CharSet.Unicode)] private static extern bool EnumDisplaySettings(string? device, int mode, ref DevMode dm);
     [DllImport("user32.dll", CharSet = CharSet.Unicode)] private static extern int ChangeDisplaySettingsEx(string? device, ref DevMode dm, IntPtr hwnd, int flags, IntPtr param);
 
+    /// <summary>Refresh rate of the built-in panel (0 if there is none, e.g. a desktop PC).</summary>
     public static int CurrentRefresh()
     {
+        if (InternalDisplay() is not { } dev) return 0;
         var dm = New();
-        return EnumDisplaySettings(null, EnumCurrentSettings, ref dm) ? dm.dmDisplayFrequency : 0;
+        return EnumDisplaySettings(dev, EnumCurrentSettings, ref dm) ? dm.dmDisplayFrequency : 0;
     }
 
-    public static IReadOnlyList<int> SupportedRefreshRates()
+    private static IReadOnlyList<int> SupportedRefreshRates(string dev)
     {
         var current = New();
-        if (!EnumDisplaySettings(null, EnumCurrentSettings, ref current)) return [];
+        if (!EnumDisplaySettings(dev, EnumCurrentSettings, ref current)) return [];
         var rates = new SortedSet<int>();
         var dm = New();
-        for (var i = 0; EnumDisplaySettings(null, i, ref dm); i++)
+        for (var i = 0; EnumDisplaySettings(dev, i, ref dm); i++)
             if (dm.dmPelsWidth == current.dmPelsWidth && dm.dmPelsHeight == current.dmPelsHeight) rates.Add(dm.dmDisplayFrequency);
         return rates.ToList();
     }
 
-    /// <summary>Sets the closest supported refresh rate at the current resolution.</summary>
+    /// <summary>
+    /// Sets the closest supported refresh rate on the built-in panel only. External monitors (docked Ally, desktop
+    /// PCs) are never touched. Returns the rate set, or 0 if nothing changed.
+    /// </summary>
     public static int SetRefresh(int hz)
     {
-        var rates = SupportedRefreshRates();
+        if (InternalDisplay() is not { } dev) return 0;
+        var rates = SupportedRefreshRates(dev);
         if (rates.Count == 0) return 0;
         var target = rates.MinBy(r => Math.Abs(r - hz));
         var dm = New();
-        EnumDisplaySettings(null, EnumCurrentSettings, ref dm);
+        EnumDisplaySettings(dev, EnumCurrentSettings, ref dm);
         if (dm.dmDisplayFrequency == target) return target;
         dm.dmDisplayFrequency = target;
         dm.dmFields = DmDisplayFrequency;
-        return ChangeDisplaySettingsEx(null, ref dm, IntPtr.Zero, 0x1 /* CDS_UPDATEREGISTRY */, IntPtr.Zero) == 0 ? target : 0;
+        return ChangeDisplaySettingsEx(dev, ref dm, IntPtr.Zero, 0x1 /* CDS_UPDATEREGISTRY */, IntPtr.Zero) == 0 ? target : 0;
     }
 
     private static DevMode New() => new() { dmSize = (short)Marshal.SizeOf<DevMode>() };
+
+    // ── Find the internal (eDP) panel's GDI device name via the Display Configuration API ──
+
+    [StructLayout(LayoutKind.Sequential)]
+    private struct PathInfo
+    {
+        public uint SrcAdapterLo, SrcAdapterHi; public uint SrcId, SrcModeIdx, SrcFlags;
+        public uint TgtAdapterLo, TgtAdapterHi; public uint TgtId, TgtModeIdx, OutputTechnology, Rotation, Scaling, RefreshNum, RefreshDen, ScanLine, TargetAvailable, TgtFlags;
+        public uint Flags;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    private struct ModeInfo
+    {
+        public uint InfoType, Id, AdapterLo, AdapterHi;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 48)] public byte[] Data;
+    }
+
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
+    private struct SourceName
+    {
+        public uint Type, Size, AdapterLo, AdapterHi, Id;
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 32)] public string GdiName;
+    }
+
+    [DllImport("user32.dll")] private static extern int GetDisplayConfigBufferSizes(uint flags, out uint paths, out uint modes);
+    [DllImport("user32.dll")] private static extern int QueryDisplayConfig(uint flags, ref uint numPaths, [Out] PathInfo[] paths, ref uint numModes, [Out] ModeInfo[] modes, IntPtr topology);
+    [DllImport("user32.dll")] private static extern int DisplayConfigGetDeviceInfo(ref SourceName request);
+
+    private static string? InternalDisplay()
+    {
+        try
+        {
+            const uint QdcOnlyActivePaths = 2;
+            if (GetDisplayConfigBufferSizes(QdcOnlyActivePaths, out var np, out var nm) != 0) return null;
+            var paths = new PathInfo[np];
+            var modes = new ModeInfo[nm];
+            if (QueryDisplayConfig(QdcOnlyActivePaths, ref np, paths, ref nm, modes, IntPtr.Zero) != 0) return null;
+            foreach (var p in paths.Take((int)np))
+            {
+                // INTERNAL (0x80000000), DISPLAYPORT_EMBEDDED (11), UDI_EMBEDDED (13)
+                if (p.OutputTechnology is not (0x80000000 or 11 or 13)) continue;
+                var req = new SourceName { Type = 1 /* GET_SOURCE_NAME */, Size = (uint)Marshal.SizeOf<SourceName>(), AdapterLo = p.SrcAdapterLo, AdapterHi = p.SrcAdapterHi, Id = p.SrcId };
+                if (DisplayConfigGetDeviceInfo(ref req) == 0 && !string.IsNullOrEmpty(req.GdiName)) return req.GdiName;
+            }
+        }
+        catch { /* older Windows or no panel */ }
+        return null;
+    }
 }

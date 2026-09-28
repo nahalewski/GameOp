@@ -62,7 +62,7 @@
                     </StackPanel>
                     <WrapPanel Margin="0,12,0,0">
                         <ui:Button Content="Import JSON file" Click="OnImport" Margin="0,0,8,0">
-                            <ui:Button.Icon><ui:SymbolIcon Symbol="DocumentArrowUp24" /></ui:Button.Icon>
+                            <ui:Button.Icon><ui:SymbolIcon Symbol="Open24" /></ui:Button.Icon>
                         </ui:Button>
                         <ui:Button Content="Reset to built-in database" Click="OnResetDb" Margin="0,0,8,0" />
                         <ui:Button Content="Open GameOp data folder" Click="OnOpenData" />

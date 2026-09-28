@@ -24,6 +24,8 @@ public abstract class EmulatorAdapter
     public abstract bool SupportsPerGame { get; }
 
     public string? ExePath { get; set; }
+    /// <summary>Set while writing many profiles at once, so adapters can skip per-game expensive work.</summary>
+    public bool BulkMode { get; set; }
     public string? ConfigRoot { get; protected set; }
     public bool IsDetected => ConfigRoot is not null;
     public string ExeDir => ExePath is null ? "" : Path.GetDirectoryName(ExePath)!;
@@ -38,6 +40,27 @@ public abstract class EmulatorAdapter
 
     /// <summary>Ids of games the emulator knows about locally (for highlighting in the library).</summary>
     public virtual IEnumerable<string> ScanInstalledIds() => [];
+
+    /// <summary>Folder an HD texture pack for this game belongs in, or null if the emulator doesn't load texture packs.</summary>
+    public virtual string? TextureDir(string gameId) => null;
+
+    /// <summary>Game-folder scan that skips inaccessible folders and junctions instead of failing the whole scan.</summary>
+    protected static IEnumerable<string> FilesIn(string dir, bool recursive, params string[] extensions)
+    {
+        if (!Directory.Exists(dir)) return [];
+        try
+        {
+            var options = new EnumerationOptions
+            {
+                RecurseSubdirectories = recursive, IgnoreInaccessible = true,
+                AttributesToSkip = FileAttributes.ReparsePoint | FileAttributes.System, MaxRecursionDepth = 8
+            };
+            return Directory.EnumerateFiles(dir, "*", options)
+                .Where(f => extensions.Contains(Path.GetExtension(f), StringComparer.OrdinalIgnoreCase))
+                .Take(5000).ToList();
+        }
+        catch { return []; }
+    }
 
     protected static string? FirstExisting(params string?[] dirs) =>
         dirs.FirstOrDefault(d => !string.IsNullOrEmpty(d) && Directory.Exists(d));
@@ -56,8 +79,9 @@ public sealed partial class Pcsx2Adapter : EmulatorAdapter
     public override string[] ExeNames => ["pcsx2-qt.exe", "pcsx2-qtx64-avx2.exe", "pcsx2-qtx64.exe", "pcsx2.exe"];
     public override bool SupportsPerGame => true;
 
-    /// <summary>serial → CRCs found in the user's library (ISO scan + existing gamesettings files).</summary>
-    private readonly Dictionary<string, HashSet<uint>> _crcs = new(StringComparer.OrdinalIgnoreCase);
+    /// <summary>serial → CRCs found in the user's library (ISO scan + existing gamesettings files). Swapped atomically.</summary>
+    private volatile Dictionary<string, HashSet<uint>> _crcs = new(StringComparer.OrdinalIgnoreCase);
+    private readonly object _scanGate = new();
 
     private string Ini => Path.Combine(ConfigRoot!, "inis", "PCSX2.ini");
 
@@ -80,12 +104,14 @@ public sealed partial class Pcsx2Adapter : EmulatorAdapter
     public override ApplyResult ApplyGame(GameEntry game, JsonObject settings)
     {
         RequireRoot();
-        // Rescan if the game isn't known yet (new ISOs or gamesettings files since the last scan).
-        if (!game.Ids.Any(_crcs.ContainsKey)) ScanInstalledIds().ToList();
+        // Rescan if the game isn't known yet (new ISOs since the last scan). During a bulk install the library is
+        // scanned once up front instead of once per game the user doesn't own.
+        if (!game.Ids.Any(_crcs.ContainsKey) && !BulkMode) ScanInstalledIds();
+        var known = _crcs;
         var result = ApplyResult.Empty();
         foreach (var serial in game.Ids)
         {
-            if (!_crcs.TryGetValue(serial, out var crcs)) continue;
+            if (!known.TryGetValue(serial, out var crcs)) continue;
             foreach (var crc in crcs)
             {
                 var path = Path.Combine(ConfigRoot!, "gamesettings", $"{serial}_{crc:X8}.ini");
@@ -103,39 +129,39 @@ public sealed partial class Pcsx2Adapter : EmulatorAdapter
     public override IEnumerable<string> ScanInstalledIds()
     {
         if (ConfigRoot is null) return [];
-        _crcs.Clear();
-
-        var gs = Path.Combine(ConfigRoot, "gamesettings");
-        if (Directory.Exists(gs))
-            foreach (var f in Directory.EnumerateFiles(gs, "*.ini"))
-            {
-                var m = GameSettingsName().Match(Path.GetFileNameWithoutExtension(f));
-                if (m.Success) AddCrc(m.Groups[1].Value, Convert.ToUInt32(m.Groups[2].Value, 16));
-            }
-
-        if (File.Exists(Ini))
+        lock (_scanGate)
         {
-            var ini = new IniFile(Ini);
-            var dirs = ini.GetAll("GameList", "RecursivePaths").Select(p => (p, true))
-                .Concat(ini.GetAll("GameList", "Paths").Select(p => (p, false)));
-            foreach (var (dir, recursive) in dirs)
+            var found = new Dictionary<string, HashSet<uint>>(StringComparer.OrdinalIgnoreCase);
+            void Add(string serial, uint crc)
             {
-                if (!Directory.Exists(dir)) continue;
-                IEnumerable<string> isos;
-                try { isos = Directory.EnumerateFiles(dir, "*.iso", recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly).Take(2000).ToList(); }
-                catch { continue; }
-                foreach (var iso in isos)
-                    if (Ps2Iso.Read(iso) is { } id) AddCrc(id.Serial, id.Crc);
+                if (!found.TryGetValue(serial, out var set)) found[serial] = set = [];
+                set.Add(crc);
             }
+
+            var gs = Path.Combine(ConfigRoot, "gamesettings");
+            if (Directory.Exists(gs))
+                foreach (var f in Directory.EnumerateFiles(gs, "*.ini"))
+                {
+                    var m = GameSettingsName().Match(Path.GetFileNameWithoutExtension(f));
+                    if (m.Success) Add(m.Groups[1].Value, Convert.ToUInt32(m.Groups[2].Value, 16));
+                }
+
+            if (File.Exists(Ini))
+            {
+                var ini = new IniFile(Ini);
+                var dirs = ini.GetAll("GameList", "RecursivePaths").Select(p => (p, true))
+                    .Concat(ini.GetAll("GameList", "Paths").Select(p => (p, false)));
+                foreach (var (dir, recursive) in dirs)
+                    foreach (var iso in FilesIn(dir, recursive, ".iso"))
+                        if (Ps2Iso.Read(iso) is { } id) Add(id.Serial, id.Crc);
+            }
+            _crcs = found;
+            return found.Keys.ToList();
         }
-        return _crcs.Keys.ToList();
     }
 
-    private void AddCrc(string serial, uint crc)
-    {
-        if (!_crcs.TryGetValue(serial, out var set)) _crcs[serial] = set = [];
-        set.Add(crc);
-    }
+    public override string? TextureDir(string gameId) =>
+        ConfigRoot is null ? null : Path.Combine(ConfigRoot, "textures", gameId, "replacements");
 
     [GeneratedRegex(@"^([A-Z]{4}-\d{5})_([0-9A-Fa-f]{8})$")]
     private static partial Regex GameSettingsName();
@@ -245,6 +271,10 @@ public sealed class DuckStationAdapter : EmulatorAdapter
         }
         return result;
     }
+
+    // DuckStation: <user dir>\textures\<serial>\replacements\ (gpu_hw_texture_cache.cpp).
+    public override string? TextureDir(string gameId) =>
+        ConfigRoot is null ? null : Path.Combine(ConfigRoot, "textures", gameId, "replacements");
 }
 
 // ───────────────────────────── PPSSPP ─────────────────────────────
@@ -295,6 +325,23 @@ public sealed class PpssppAdapter : EmulatorAdapter
             result.Files.Add(path);
         }
         return result;
+    }
+
+    // ConfigRoot is PSP\SYSTEM; texture packs live in PSP\TEXTURES\<ID>.
+    public override string? TextureDir(string gameId) =>
+        ConfigRoot is null ? null : Path.Combine(Path.GetDirectoryName(ConfigRoot)!, "TEXTURES", gameId);
+
+    public override IEnumerable<string> ScanInstalledIds()
+    {
+        if (ConfigRoot is null) return [];
+        var ini = new IniFile(Path.Combine(ConfigRoot, "ppsspp.ini"));
+        var dirs = new List<string>();
+        if (ini.Get("General", "CurrentDirectory") is { Length: > 0 } cur) dirs.Add(cur);
+        for (var i = 0; i < 20; i++)
+            if (ini.Get("Recent", $"FileName{i}") is { Length: > 0 } recent && Path.GetDirectoryName(recent) is { } d) dirs.Add(d);
+        return dirs.Distinct(StringComparer.OrdinalIgnoreCase)
+            .SelectMany(d => FilesIn(d, false, ".iso"))
+            .Select(DiscIds.Psp).OfType<string>().Distinct().ToList();
     }
 }
 
@@ -353,6 +400,21 @@ public sealed class DolphinAdapter : EmulatorAdapter
             result.Files.Add(path);
         }
         return result;
+    }
+
+    public override string? TextureDir(string gameId) =>
+        ConfigRoot is null ? null : Path.Combine(ConfigRoot, "Load", "Textures", gameId);
+
+    public override IEnumerable<string> ScanInstalledIds()
+    {
+        if (ConfigRoot is null) return [];
+        var ini = new IniFile(Path.Combine(ConfigRoot, "Config", "Dolphin.ini"));
+        var recursive = string.Equals(ini.Get("General", "RecursiveISOPaths"), "True", StringComparison.OrdinalIgnoreCase);
+        var count = int.TryParse(ini.Get("General", "ISOPaths"), out var n) ? n : 0;
+        return Enumerable.Range(0, Math.Max(count, 10))
+            .Select(i => ini.Get("General", $"ISOPath{i}")).OfType<string>()
+            .SelectMany(d => FilesIn(d, recursive, ".iso", ".gcm", ".rvz", ".wia", ".wbfs"))
+            .Select(DiscIds.Dolphin).OfType<string>().Distinct().ToList();
     }
 }
 

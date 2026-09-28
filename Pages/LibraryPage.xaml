@@ -64,6 +64,11 @@
                         <TextBlock x:Name="DMeta" Style="{StaticResource Caption}" Margin="0,4,0,0" />
                         <TextBlock x:Name="DCompat" Margin="0,8,0,0" TextWrapping="Wrap" />
                         <TextBlock x:Name="DNotes" Margin="0,8,0,0" TextWrapping="Wrap" />
+                        <StackPanel x:Name="PackRow" Orientation="Horizontal" Margin="0,10,0,0" Visibility="Collapsed">
+                            <ui:SymbolIcon Symbol="ImageSparkle24" VerticalAlignment="Center" Margin="0,0,8,0" />
+                            <TextBlock x:Name="PackText" VerticalAlignment="Center" TextWrapping="Wrap" MaxWidth="360" />
+                            <ui:Button x:Name="PackBtn" Content="Download HD textures" Margin="12,0,0,0" Click="OnPack" />
+                        </StackPanel>
                         <TextBlock Margin="0,6,0,0">
                             <Hyperlink x:Name="DSource" RequestNavigate="OnSource"><Run Text="Source" /></Hyperlink>
                         </TextBlock>
@@ -102,6 +107,13 @@
                         </StackPanel>
                     </StackPanel>
                 </ui:Card>
+
+                <StackPanel x:Name="PatchSection" Visibility="Collapsed">
+                    <TextBlock Text="Game patches" Style="{StaticResource SectionHeader}" FontSize="16" />
+                    <ui:Card Padding="12">
+                        <StackPanel x:Name="PatchHost" />
+                    </ui:Card>
+                </StackPanel>
 
                 <TextBlock Text="Settings that will be written" Style="{StaticResource SectionHeader}" FontSize="16" />
                 <ui:Card Padding="12">

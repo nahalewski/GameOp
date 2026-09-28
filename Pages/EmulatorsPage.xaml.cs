@@ -28,7 +28,7 @@ public partial class EmulatorsPage : Page
 
     private async void OnCheckUpdates(object sender, RoutedEventArgs e)
     {
-        await _s.CheckUpdatesAsync(autoInstall: false);
+        await _s.CheckUpdatesAsync(autoInstall: false, waitIfBusy: true);
         var available = _s.Updates.Count(u => u.Value.State == UpdateState.Available);
         await Notify(available == 0 ? "All your emulators are up to date." : $"{available} update(s) available. Use Update now on each card, or turn on automatic updates in Settings.");
     }
@@ -41,11 +41,7 @@ public partial class EmulatorsPage : Page
 
     private async void Rollback(EmulatorAdapter e)
     {
-        var msg = EmulatorUpdater.Rollback(e);
-        _s.Settings.InstalledVersions.Remove(e.Id);
-        _s.SaveSettings();
-        Log.Info($"{e.Name}: {msg}");
-        await Notify(msg);
+        await Notify(await _s.RollbackAsync(e));
     }
 
     private Tier? Bulk => (BulkTier.SelectedItem as ComboBoxItem)?.Tag as Tier?;

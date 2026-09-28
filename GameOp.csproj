@@ -27,7 +27,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Data\*.json" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" ExcludeFromSingleFile="true" />
+    <!-- Data files are embedded so GameOp is a single .exe (a Data\ folder next to the exe still overrides them). -->
+    <EmbeddedResource Include="Data\*.json" LogicalName="GameOp.Data.%(Filename)%(Extension)" />
     <None Remove="Data\research\**" />
     <Compile Remove="tests\**" />
     <Page Remove="tests\**" />

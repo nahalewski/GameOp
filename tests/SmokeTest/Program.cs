@@ -181,6 +181,52 @@ var restored = Backup.RestoreOriginals(rp);
 Check(File.ReadAllText(Path.Combine(rp, "config", "config.yml")).Contains("Resolution Scale: 100") &&
       !Directory.EnumerateFiles(Path.Combine(rp, "config", "custom_configs")).Any(), $"RPCS3 restore ({restored} files)");
 
+// ── Extras: catalog, per-game patch lists, Xenia patch toggles ──
+var extras = ExtrasCatalog.Load();
+Check(extras.Enhancements.Count >= 15 && extras.Addons.Count == 3, $"extras.json: {extras.Enhancements.Count} enhancements, {extras.Addons.Count} add-ons");
+var ws = extras.Enhancements.First(x => x.Id == "pcsx2.widescreen");
+var ni = extras.Enhancements.First(x => x.Id == "pcsx2.nointerlace");
+var merged = new System.Text.Json.Nodes.JsonObject();
+Json.DeepMerge(merged, ni.PerGame);
+Json.DeepMerge(merged, ws.PerGame);
+var pini = Path.Combine(root, "patches-test.ini");
+var pf = new IniFile(pini);
+pf.Apply(merged, Formatters.Lower);
+pf.Apply(merged, Formatters.Lower); // idempotent
+pf.Save();
+var ptxt = File.ReadAllText(pini);
+Check(ptxt.Contains("Enable = No-Interlacing") && ptxt.Contains("Enable = Widescreen 16:9") &&
+      ptxt.Split("Enable =").Length == 3, "PCSX2 per-game [Patches] Enable list (both, no duplicates)");
+
+// Turning the enhancement off removes the per-game Enable line again.
+var offIni = new IniFile(pini);
+offIni.Apply(ws.PerGameOff!, Formatters.Lower);
+offIni.Save();
+ptxt = File.ReadAllText(pini);
+Check(!ptxt.Contains("Widescreen 16:9") && ptxt.Contains("Enable = No-Interlacing"), "PCSX2 per-game widescreen switched back off");
+
+// Bug-check fixes
+Check(!SafeId.IsValid(@"..\..\Windows") && !SafeId.IsValid(@"C:\evil") && !SafeId.IsValid("a/b") && SafeId.IsValid("SLUS-20694") && SafeId.IsValid("0100F2C0115B6000"),
+    "SafeId rejects path-like ids");
+var qy = Path.Combine(root, "quote.yml");
+var yq = new YamlFile(qy);
+yq.Apply(new System.Text.Json.Nodes.JsonObject { ["Video"] = new System.Text.Json.Nodes.JsonObject { ["Odd"] = "[x]: y", ["Plain"] = "Recompiler (LLVM)" } });
+yq.Save();
+var ytxt = File.ReadAllText(qy);
+Check(ytxt.Contains("Odd: '[x]: y'") && ytxt.Contains("Plain: Recompiler (LLVM)"), "YAML quotes only when needed");
+Check(Formatters.Toml(System.Text.Json.Nodes.JsonValue.Create(@"C:\a""b")) == @"""C:\\a\""b""", "TOML escapes backslashes and quotes");
+
+string[] xtoml =
+[
+    "title_name = \"Test\"", "title_id = \"4D5307E6\"", "hash = \"ABC\"",
+    "[[patch]]", "    name = \"60 FPS\"", "    author = \"x\"", "    is_enabled = false", "    [[patch.be32]]", "        address = 0x1", "        value = 0x2",
+    "[[patch]]", "    name = \"1080p\"", "    is_enabled = false",
+];
+var pl = XeniaPatches.Patches(xtoml).ToList();
+Check(pl.Count == 2 && pl[0].Name == "60 FPS" && !pl[0].Enabled, "Xenia patch parser");
+var toggled = XeniaPatches.SetEnabled(xtoml, new HashSet<string> { "60 FPS" }, true);
+Check(XeniaPatches.EnabledNames(toggled).SetEquals(["60 FPS"]), "Xenia patch toggle");
+
 // ── Updater: protection rules ──
 foreach (var (path, want) in new[]
 {
@@ -214,6 +260,10 @@ if (args.Contains("--download"))
     Console.WriteLine("      " + EmulatorUpdater.Rollback(duckA));
     Check(File.ReadAllText(Path.Combine(inst, "duckstation-qt-x64-ReleaseLTCG.exe")) == "OLD EXE", "rollback restored old exe");
     Check(File.Exists(Path.Combine(inst, "bios", "scph5501.bin")), "BIOS still there after rollback");
+    Check(!Directory.Exists(Path.Combine(inst, "resources")) || !Directory.EnumerateFiles(Path.Combine(inst, "resources"), "*", SearchOption.AllDirectories).Any(),
+        "rollback removed files the update added");
+    Check(File.ReadAllText(Path.Combine(inst, "settings.ini")).Contains("ResolutionScale = 7") &&
+          File.ReadAllText(Path.Combine(inst, "memcards", "shared_card_1.mcd")) == "MY SAVE", "settings + memory card intact after rollback");
 
     // PCSX2 ships .7z – exercise that path too.
     var p2u = Path.Combine(root, "pcsx2-update");
@@ -226,6 +276,74 @@ if (args.Contains("--download"))
     var p2exe = await EmulatorUpdater.InstallAsync(p2A, p2info!, p2u, new Progress<string>(m => Console.WriteLine("      " + m)));
     Check(File.Exists(p2exe) && Directory.Exists(Path.Combine(p2u, "resources")), $"PCSX2 .7z extracted → {Path.GetFileName(p2exe)}");
     Check(File.ReadAllText(Path.Combine(p2u, "bios", "SCPH-70012.bin")) == "MY PS2 BIOS" && File.Exists(Path.Combine(p2u, "portable.ini")), "PCSX2 BIOS + portable.ini untouched");
+
+    // ── Add-ons: real downloads ──
+    foreach (var a in extras.Addons)
+    {
+        var fakeRoot = Path.Combine(root, "addon-" + a.Id);
+        Directory.CreateDirectory(fakeRoot);
+        File.WriteAllText(Path.Combine(fakeRoot, a.Emulator == "cemu" ? "Cemu.exe" : a.Emulator == "xenia" ? "xenia_canary.exe" : "rpcs3.exe"), "");
+        EmulatorAdapter ad = a.Emulator switch { "cemu" => new CemuAdapter(), "xenia" => new XeniaAdapter(), _ => new Rpcs3Adapter() };
+        ad.ExePath = Directory.GetFiles(fakeRoot, "*.exe")[0];
+        if (a.Emulator == "cemu") File.WriteAllText(Path.Combine(fakeRoot, "settings.xml"), "<content/>");
+        ad.ResolveConfigRoot();
+
+        // Pretend the user had turned a Xenia patch on before the update.
+        string? userPatch = null;
+        if (a.PreserveEnabledPatches)
+        {
+            var rel0 = await ExtrasService.CheckAddonAsync(a);
+            await ExtrasService.InstallAddonAsync(a, rel0, ad);
+            userPatch = Directory.GetFiles(Path.Combine(ad.ConfigRoot!, "patches"), "*.patch.toml")
+                .First(f => XeniaPatches.Patches(File.ReadAllLines(f)).Any());
+            var first = XeniaPatches.Patches(File.ReadAllLines(userPatch)).First().Name;
+            File.WriteAllLines(userPatch, XeniaPatches.SetEnabled(File.ReadAllLines(userPatch), new HashSet<string> { first }, true));
+        }
+
+        var rel = await ExtrasService.CheckAddonAsync(a);
+        var msg = await ExtrasService.InstallAddonAsync(a, rel, ad);
+        var dest = Path.Combine(ad.ConfigRoot!, a.InstallTo);
+        var ok = a.IsArchive ? Directory.Exists(dest) && Directory.EnumerateFiles(dest, "*", SearchOption.AllDirectories).Count() > 20 : new FileInfo(dest).Length > 100_000;
+        Check(ok, $"{a.Name} {rel.Version} → {msg}");
+        if (userPatch is not null)
+            Check(XeniaPatches.EnabledNames(File.ReadAllLines(userPatch)).Count > 0, "Xenia: user-enabled patch kept after update");
+    }
+    if (a_cemuCheck(root)) Check(true, "Cemu graphic packs contain rules.txt files");
+
+    static bool a_cemuCheck(string r) =>
+        Directory.EnumerateFiles(Path.Combine(r, "addon-cemu.graphicpacks"), "rules.txt", SearchOption.AllDirectories).Any();
+}
+
+// ── Texture packs: real install of the smallest pack per emulator ──
+if (args.Contains("--packs"))
+{
+    Check(extras.Packs.Count >= 60, $"texture catalog loaded: {extras.Packs.Count} packs");
+    foreach (var (emu, packId) in new[] { ("pcsx2", "mgs2-hd-ui"), ("dolphin", "scaler-uhd"), ("ppsspp", "la-pucelle-textures") })
+    {
+        var pack = extras.Packs.First(p => p.Id == packId);
+        var dir = Path.Combine(root, "tp-" + emu);
+        Directory.CreateDirectory(dir);
+        EmulatorAdapter ad = emu switch
+        {
+            "pcsx2" => new Pcsx2Adapter(),
+            "dolphin" => new DolphinAdapter(),
+            _ => new PpssppAdapter()
+        };
+        File.WriteAllText(Path.Combine(dir, ad.ExeNames[0]), "");
+        if (emu == "pcsx2") File.WriteAllText(Path.Combine(dir, "portable.ini"), "");
+        if (emu == "dolphin") { File.WriteAllText(Path.Combine(dir, "portable.txt"), ""); Directory.CreateDirectory(Path.Combine(dir, "User", "Config")); }
+        if (emu == "ppsspp") Directory.CreateDirectory(Path.Combine(dir, "memstick", "PSP", "SYSTEM"));
+        ad.ExePath = Path.Combine(dir, ad.ExeNames[0]);
+        ad.ResolveConfigRoot();
+        var id = pack.GameIds[0];
+        var msg = await ExtrasService.InstallPackAsync(pack, ad, id);
+        var target = ad.TextureDir(id)!;
+        var files = Directory.EnumerateFiles(target, "*", SearchOption.AllDirectories).ToList();
+        var images = files.Count(f => f.EndsWith(".png", StringComparison.OrdinalIgnoreCase) || f.EndsWith(".dds", StringComparison.OrdinalIgnoreCase));
+        var nested = Directory.Exists(Path.Combine(target, "replacements")) || Directory.Exists(Path.Combine(target, id));
+        Check(images > 0 && !nested, $"{emu}: {pack.Name} → {images} images directly in {Path.GetRelativePath(root, target)}" +
+                                    (emu == "ppsspp" ? $" (textures.ini: {File.Exists(Path.Combine(target, "textures.ini"))})" : ""));
+    }
 }
 
 Console.WriteLine(fails == 0 ? "\nALL PASS" : $"\n{fails} FAILED");

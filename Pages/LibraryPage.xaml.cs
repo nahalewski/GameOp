@@ -77,7 +77,62 @@ public partial class LibraryPage : Page
         _loading = false;
 
         UpdatePreview();
+        UpdatePack();
+        UpdatePatches();
         if (g.Emulator == "rpcs3") _ = LoadRpcs3CompatAsync(g);
+    }
+
+    private void UpdatePack()
+    {
+        var pack = _game is null ? null : _s.PacksFor(_game).FirstOrDefault();
+        PackRow.Visibility = pack is null ? Visibility.Collapsed : Visibility.Visible;
+        if (pack is null) return;
+        PackText.Text = _s.IsPackInstalled(pack)
+            ? $"HD texture pack installed: {pack.Name}"
+            : $"HD texture pack available: {pack.Name} ({pack.SizeText})";
+        PackBtn.Content = _s.IsPackInstalled(pack) ? "Reinstall" : "Download HD textures";
+        PackBtn.IsEnabled = _s.AdapterFor(pack.Emulator) is not null;
+        PackBtn.Tag = pack;
+    }
+
+    /// <summary>Xenia Canary: list this game's community patches with on/off switches.</summary>
+    private void UpdatePatches()
+    {
+        PatchHost.Children.Clear();
+        PatchSection.Visibility = Visibility.Collapsed;
+        if (_game?.Emulator != "xenia" || _s.AdapterFor("xenia")?.ConfigRoot is not { } root) return;
+        var dir = System.IO.Path.Combine(root, "patches");
+        if (!System.IO.Directory.Exists(dir)) return;
+
+        var files = System.IO.Directory.EnumerateFiles(dir, "*.patch.toml")
+            .Where(f => _game.Ids.Any(id => System.IO.Path.GetFileName(f).StartsWith(id, StringComparison.OrdinalIgnoreCase)))
+            .ToList();
+        foreach (var file in files)
+        {
+            PatchHost.Children.Add(new TextBlock { Text = System.IO.Path.GetFileNameWithoutExtension(file).Replace(".patch", ""), FontSize = 12, Opacity = 0.7, Margin = new Thickness(0, 4, 0, 2) });
+            foreach (var p in XeniaPatches.Patches(System.IO.File.ReadAllLines(file)).ToList())
+            {
+                var sw = new Wpf.Ui.Controls.ToggleSwitch { Content = p.Name, IsChecked = p.Enabled, Margin = new Thickness(0, 2, 0, 2) };
+                var name = p.Name;
+                sw.Click += (_, _) =>
+                {
+                    var lines = System.IO.File.ReadAllLines(file);
+                    System.IO.File.WriteAllLines(file, XeniaPatches.SetEnabled(lines, new HashSet<string> { name }, sw.IsChecked == true));
+                    Log.Ok($"Xenia patch '{name}' {(sw.IsChecked == true ? "on" : "off")}");
+                };
+                PatchHost.Children.Add(sw);
+            }
+        }
+        if (PatchHost.Children.Count > 0) PatchSection.Visibility = Visibility.Visible;
+    }
+
+    private async void OnPack(object sender, RoutedEventArgs e)
+    {
+        if (PackBtn.Tag is not TexturePack pack) return;
+        PackBtn.IsEnabled = false;
+        try { ShowMessage("HD textures", await _s.InstallPackAsync(pack, _game)); }
+        catch (Exception ex) { ShowMessage("HD textures", ex.Message); }
+        finally { UpdatePack(); }
     }
 
     private async Task LoadRpcs3CompatAsync(GameEntry g)
@@ -112,7 +167,7 @@ public partial class LibraryPage : Page
             $"{t.Name} has no per-game configs, so this changes its global settings.";
         ApplyBtn.IsEnabled = MaxBtn.IsEnabled = t?.IsDetected == true;
 
-        var settings = _s.Db.BuildSettings(_game.Emulator, tier, _s.Device, _game);
+        var settings = _s.BuildSettings(_game.Emulator, tier, _game);
         SettingsPreview.ItemsSource = Json.Flatten(settings).Select(x => new SettingLine(x.Path, x.Value)).ToList();
     }
 

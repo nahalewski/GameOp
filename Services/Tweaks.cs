@@ -5,30 +5,31 @@ using Microsoft.Win32;
 namespace GameOp.Services;
 
 /// <summary>A registry-backed Windows tweak with a recorded original value so it can be reverted.</summary>
-public sealed record RegTweak(string Id, RegistryHive Hive, string Key, string Value, int On, bool NeedsReboot);
+/// <param name="Off">Value written when the user turns the tweak off and GameOp has no earlier value to restore.</param>
+public sealed record RegTweak(string Id, RegistryHive Hive, string Key, string Value, int On, int Off, bool NeedsReboot);
 
 public static class TweakService
 {
     public static readonly RegTweak[] GameMode =
     [
-        new("gamemode.auto", RegistryHive.CurrentUser, @"Software\Microsoft\GameBar", "AutoGameModeEnabled", 1, false),
-        new("gamemode.allow", RegistryHive.CurrentUser, @"Software\Microsoft\GameBar", "AllowAutoGameMode", 1, false),
+        new("gamemode.auto", RegistryHive.CurrentUser, @"Software\Microsoft\GameBar", "AutoGameModeEnabled", 1, 0, false),
+        new("gamemode.allow", RegistryHive.CurrentUser, @"Software\Microsoft\GameBar", "AllowAutoGameMode", 1, 0, false),
     ];
 
     public static readonly RegTweak[] DisableGameDvr =
     [
-        new("dvr.capture", RegistryHive.CurrentUser, @"Software\Microsoft\Windows\CurrentVersion\GameDVR", "AppCaptureEnabled", 0, false),
-        new("dvr.enabled", RegistryHive.CurrentUser, @"System\GameConfigStore", "GameDVR_Enabled", 0, false),
+        new("dvr.capture", RegistryHive.CurrentUser, @"Software\Microsoft\Windows\CurrentVersion\GameDVR", "AppCaptureEnabled", 0, 1, false),
+        new("dvr.enabled", RegistryHive.CurrentUser, @"System\GameConfigStore", "GameDVR_Enabled", 0, 1, false),
     ];
 
     public static readonly RegTweak[] Hags =
     [
-        new("hags", RegistryHive.LocalMachine, @"SYSTEM\CurrentControlSet\Control\GraphicsDrivers", "HwSchMode", 2, true),
+        new("hags", RegistryHive.LocalMachine, @"SYSTEM\CurrentControlSet\Control\GraphicsDrivers", "HwSchMode", 2, 1, true),
     ];
 
     public static readonly RegTweak[] DisableMemoryIntegrity =
     [
-        new("hvci", RegistryHive.LocalMachine, @"SYSTEM\CurrentControlSet\Control\DeviceGuard\Scenarios\HypervisorEnforcedCodeIntegrity", "Enabled", 0, true),
+        new("hvci", RegistryHive.LocalMachine, @"SYSTEM\CurrentControlSet\Control\DeviceGuard\Scenarios\HypervisorEnforcedCodeIntegrity", "Enabled", 0, 1, true),
     ];
 
     private sealed class Snapshot { public Dictionary<string, int?> Values { get; set; } = []; }
@@ -50,11 +51,18 @@ public static class TweakService
                 if (!snap.Values.ContainsKey(t.Id)) snap.Values[t.Id] = current;
                 if (current != t.On) { Write(t, t.On); reboot |= t.NeedsReboot; }
             }
-            else if (snap.Values.TryGetValue(t.Id, out var original))
+            else if (snap.Values.TryGetValue(t.Id, out var original) && original != t.On)
             {
+                // Put back what the user had before GameOp.
                 if (original is null) Delete(t); else Write(t, original.Value);
                 snap.Values.Remove(t.Id);
                 reboot |= t.NeedsReboot && current != original;
+            }
+            else
+            {
+                // No earlier value to restore (or it was already "on" before GameOp): write the explicit off value.
+                snap.Values.Remove(t.Id);
+                if (current != t.Off) { Write(t, t.Off); reboot |= t.NeedsReboot; }
             }
         }
         Json.Save(AppPaths.TweakBackupFile, snap);

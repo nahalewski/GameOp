@@ -132,7 +132,26 @@ public sealed class AppSettings
     public string EmulatorInstallRoot { get; set; } = @"C:\Emulators";
     /// <summary>Release key GameOp last installed (or confirmed) per emulator.</summary>
     public Dictionary<string, string> InstalledVersions { get; set; } = [];
+    /// <summary>Release key the user rolled back from; not offered again until a newer release appears.</summary>
+    public Dictionary<string, string> SkippedReleases { get; set; } = [];
     public DateTime LastUpdateCheck { get; set; }
+
+    // Extras
+    public HashSet<string> EnhancementsOn { get; set; } = [];
+    public HashSet<string> EnhancementsOff { get; set; } = [];
+    /// <summary>Emulators whose default enhancements have already been switched on once.</summary>
+    public HashSet<string> EnhancementDefaultsDone { get; set; } = [];
+    public bool AutoUpdateAddons { get; set; } = true;
+    public HashSet<string> AddonsDisabled { get; set; } = [];
+    public Dictionary<string, string> AddonVersions { get; set; } = [];
+    public bool AutoDownloadPacks { get; set; } = true;
+    /// <summary>Game database and texture-pack catalog are refreshed from here automatically (empty = off).</summary>
+    public string RemoteCatalogBase { get; set; } = "https://raw.githubusercontent.com/nahalewski/GameOp/main/Data/";
+    public double MaxAutoPackGb { get; set; } = 4;
+    /// <summary>packId → "gameId|version" of installed texture packs.</summary>
+    public Dictionary<string, string> InstalledPacks { get; set; } = [];
+    /// <summary>"emulator:id" of games the user has applied a profile to (counts as "owned" for auto-downloads).</summary>
+    public HashSet<string> ProfiledGames { get; set; } = [];
 
     /// <summary>Per-game tier chosen by the user, keyed "emulator:firstId".</summary>
     public Dictionary<string, string> GameTiers { get; set; } = [];

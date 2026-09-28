@@ -6,3 +6,4 @@ dist/
 .vs/
 tests/**/bin/
 tests/**/obj/
+releases/

@@ -8,12 +8,21 @@ namespace GameOp.Services;
 
 public static class AppPaths
 {
-    public static string ExeDir => AppContext.BaseDirectory;
+    /// <summary>Folder of the running GameOp.exe (not the single-file extraction folder).</summary>
+    public static string ExeDir { get; } = Path.GetDirectoryName(Environment.ProcessPath) ?? AppContext.BaseDirectory;
+    /// <summary>Optional Data\ override folder; otherwise the copies embedded in the exe are used.</summary>
     public static string BundledData => Path.Combine(ExeDir, "Data");
-    /// <summary>Portable builds (portable.txt next to the exe) keep everything in .\UserData.</summary>
-    public static bool IsPortable { get; } = File.Exists(Path.Combine(AppContext.BaseDirectory, "portable.txt"));
+
+    /// <summary>
+    /// Portable mode – the exe's name contains "Portable" or a portable.txt sits next to it – keeps settings,
+    /// backups and logs in GameOp-Data next to the exe instead of %LOCALAPPDATA%\GameOp.
+    /// </summary>
+    public static bool IsPortable { get; } =
+        (Path.GetFileName(Environment.ProcessPath) ?? "").Contains("portable", StringComparison.OrdinalIgnoreCase) ||
+        File.Exists(Path.Combine(ExeDir, "portable.txt"));
+
     public static string UserDir { get; } = IsPortable
-        ? Path.Combine(AppContext.BaseDirectory, "UserData")
+        ? Path.Combine(ExeDir, "GameOp-Data")
         : Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "GameOp");
     public static string SettingsFile => Path.Combine(UserDir, "settings.json");
     public static string UserGameDb => Path.Combine(UserDir, "gamedb.json");
@@ -39,6 +48,15 @@ public static class Json
     public static T? Load<T>(string path) =>
         File.Exists(path) ? JsonSerializer.Deserialize<T>(File.ReadAllText(path), Options) : default;
 
+    /// <summary>Loads a bundled data file: Data\&lt;name&gt; next to the exe if present, else the copy embedded in the exe.</summary>
+    public static T? LoadBundled<T>(string name)
+    {
+        var file = Path.Combine(AppPaths.BundledData, name);
+        if (File.Exists(file)) return Load<T>(file);
+        using var s = typeof(Json).Assembly.GetManifestResourceStream("GameOp.Data." + name);
+        return s is null ? default : JsonSerializer.Deserialize<T>(s, Options);
+    }
+
     public static void Save<T>(string path, T value)
     {
         Directory.CreateDirectory(Path.GetDirectoryName(path)!);
@@ -54,6 +72,12 @@ public static class Json
             if (key.StartsWith('_')) continue; // comments
             if (value is JsonObject srcObj && target[key] is JsonObject dstObj)
                 DeepMerge(dstObj, srcObj);
+            else if (value is JsonArray srcArr && target[key] is JsonArray dstArr)
+            {
+                // Lists (e.g. PCSX2 patch names) are unioned rather than replaced.
+                foreach (var item in srcArr)
+                    if (!dstArr.Any(d => d?.ToJsonString() == item?.ToJsonString())) dstArr.Add(item?.DeepClone());
+            }
             else
                 target[key] = value?.DeepClone();
         }
@@ -71,6 +95,15 @@ public static class Json
                 yield return (path, value?.ToJsonString().Trim('"') ?? "");
         }
     }
+}
+
+/// <summary>Game ids end up in file names, so ids from downloaded or typed data must be plain tokens.</summary>
+public static partial class SafeId
+{
+    [System.Text.RegularExpressions.GeneratedRegex("^[A-Za-z0-9][A-Za-z0-9_-]{1,31}$")]
+    private static partial System.Text.RegularExpressions.Regex Pattern();
+
+    public static bool IsValid(string? id) => id is not null && Pattern().IsMatch(id);
 }
 
 public static class Log
@@ -102,8 +135,12 @@ public static class Backup
     private static string CreatedListFile => Path.Combine(AppPaths.UserDir, "created-files.json");
     private static readonly object Gate = new();
 
-    private static HashSet<string> LoadCreated() =>
-        new(Json.Load<List<string>>(CreatedListFile) ?? [], StringComparer.OrdinalIgnoreCase);
+    private static string OriginalsListFile => Path.Combine(AppPaths.UserDir, "original-files.json");
+
+    private static HashSet<string> LoadList(string file) =>
+        new(Json.Load<List<string>>(file) ?? [], StringComparer.OrdinalIgnoreCase);
+
+    private static HashSet<string> LoadCreated() => LoadList(CreatedListFile);
 
     /// <summary>
     /// Call before writing any emulator config. The first time GameOp touches an existing file it keeps a
@@ -121,7 +158,11 @@ public static class Backup
                 return;
             }
             if (!created.Contains(Path.GetFullPath(file)) && !File.Exists(file + OriginalSuffix))
+            {
                 File.Copy(file, file + OriginalSuffix);
+                var originals = LoadList(OriginalsListFile);
+                if (originals.Add(Path.GetFullPath(file))) Json.Save(OriginalsListFile, originals.ToList());
+            }
 
             var stamp = DateTime.Now.ToString("yyyyMMdd-HHmm");
             var safeName = file.Replace(':', '_').Replace('\\', '_').Replace('/', '_');
@@ -138,17 +179,35 @@ public static class Backup
         {
             var count = 0;
             if (!Directory.Exists(root)) return 0;
-            foreach (var orig in Directory.EnumerateFiles(root, "*" + OriginalSuffix, SearchOption.AllDirectories))
+            var fullRoot = Path.TrimEndingDirectorySeparator(Path.GetFullPath(root)) + Path.DirectorySeparatorChar;
+
+            // Only files GameOp itself backed up (never a scan of the folder, which may be e.g. the Desktop).
+            var originals = LoadList(OriginalsListFile);
+            foreach (var file in originals.Where(f => f.StartsWith(fullRoot, StringComparison.OrdinalIgnoreCase)).ToList())
             {
-                File.Copy(orig, orig[..^OriginalSuffix.Length], overwrite: true);
-                File.Delete(orig);
-                count++;
+                var orig = file + OriginalSuffix;
+                if (File.Exists(orig))
+                {
+                    File.Copy(orig, file, overwrite: true);
+                    File.Delete(orig);
+                    count++;
+                }
+                originals.Remove(file);
             }
+            Json.Save(OriginalsListFile, originals.ToList());
+
             var created = LoadCreated();
-            var fullRoot = Path.GetFullPath(root);
+            var keep = Path.Combine(AppPaths.BackupDir, "removed-by-restore", DateTime.Now.ToString("yyyyMMdd-HHmmss"));
             foreach (var file in created.Where(f => f.StartsWith(fullRoot, StringComparison.OrdinalIgnoreCase)).ToList())
             {
-                if (File.Exists(file)) { File.Delete(file); count++; }
+                if (File.Exists(file))
+                {
+                    // Keep a copy: the user may have edited this profile in the emulator since GameOp created it.
+                    var dest = Path.Combine(keep, Path.GetRelativePath(fullRoot, file));
+                    Directory.CreateDirectory(Path.GetDirectoryName(dest)!);
+                    File.Move(file, dest, overwrite: true);
+                    count++;
+                }
                 created.Remove(file);
             }
             Json.Save(CreatedListFile, created.ToList());

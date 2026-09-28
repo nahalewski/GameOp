@@ -31,6 +31,9 @@
                 <ui:NavigationViewItem Content="Emulators" TargetPageType="{x:Type pages:EmulatorsPage}">
                     <ui:NavigationViewItem.Icon><ui:SymbolIcon Symbol="XboxController24" /></ui:NavigationViewItem.Icon>
                 </ui:NavigationViewItem>
+                <ui:NavigationViewItem Content="Extras" TargetPageType="{x:Type pages:ExtrasPage}">
+                    <ui:NavigationViewItem.Icon><ui:SymbolIcon Symbol="Sparkle24" /></ui:NavigationViewItem.Icon>
+                </ui:NavigationViewItem>
                 <ui:NavigationViewItem Content="System Tweaks" TargetPageType="{x:Type pages:TweaksPage}">
                     <ui:NavigationViewItem.Icon><ui:SymbolIcon Symbol="Options24" /></ui:NavigationViewItem.Icon>
                 </ui:NavigationViewItem>

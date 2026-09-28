@@ -16,6 +16,7 @@ public sealed partial class AppState : INotifyPropertyChanged
 
     public AppSettings Settings { get; private set; } = new();
     public GameDatabase Db { get; private set; } = new();
+    public ExtrasCatalog Extras { get; private set; } = new();
     public DeviceProfile Device { get; private set; } = new();
     public string HardwareModel { get; private set; } = "";
     public string HardwareCpu { get; private set; } = "";
@@ -36,6 +37,7 @@ public sealed partial class AppState : INotifyPropertyChanged
     {
         Settings = Json.Load<AppSettings>(AppPaths.SettingsFile) ?? new AppSettings();
         Db = GameDatabase.Load();
+        Extras = ExtrasCatalog.Load();
         (HardwareModel, HardwareCpu) = DeviceDetector.ReadHardware();
 
         var forced = Settings.ForcedDeviceId is { } fid ? Db.Devices.FirstOrDefault(d => d.Id == fid) : null;
@@ -67,15 +69,20 @@ public sealed partial class AppState : INotifyPropertyChanged
 
     public async Task DetectEmulatorsAsync()
     {
-        await Task.Run(() =>
+        // Scan on a worker thread into a new map, then publish it on the UI thread (pages read InstalledIds).
+        var scanned = await Task.Run(() =>
         {
             EmulatorRegistry.Detect(Emulators, Settings);
+            var ids = new Dictionary<string, HashSet<string>>();
             foreach (var e in Emulators.Where(e => e.IsDetected))
             {
-                try { InstalledIds[e.Id] = new HashSet<string>(e.ScanInstalledIds(), StringComparer.OrdinalIgnoreCase); }
+                try { ids[e.Id] = new HashSet<string>(e.ScanInstalledIds(), StringComparer.OrdinalIgnoreCase); }
                 catch (Exception ex) { Log.Warn($"{e.Name} library scan: {ex.Message}"); }
             }
+            return ids;
         });
+        InstalledIds.Clear();
+        foreach (var (k, v) in scanned) InstalledIds[k] = v;
         foreach (var e in Emulators.Where(e => e.ExePath is not null)) Settings.EmulatorPaths[e.Id] = e.ExePath!;
         SaveSettings();
         var found = Emulators.Where(e => e.IsDetected).Select(e => e.Name).ToList();
@@ -104,6 +111,8 @@ public sealed partial class AppState : INotifyPropertyChanged
     {
         var plan = PowerService.PlanFor(Device, tier);
         Log.Info($"{reason}: {PowerService.ApplyTdp(Device, plan, Settings.RyzenAdjPath)}");
+        // Power mode, CPU boost and refresh rate are handheld settings – never change them on a desktop PC.
+        if (!Device.IsAlly) return;
         foreach (var line in TweakService.ApplyTierSystem(tier, Settings)) Log.Info($"  {line}");
     }
 
@@ -124,7 +133,7 @@ public sealed partial class AppState : INotifyPropertyChanged
     {
         try
         {
-            var settings = Db.BuildSettings(e.DbKey, tier, Device, null);
+            var settings = BuildSettings(e.DbKey, tier, null);
             var r = e.ApplyGlobal(settings);
             Log.Ok($"{e.Name}: {tier.Label()} defaults → {string.Join(", ", r.Files.Select(System.IO.Path.GetFileName))}");
             foreach (var w in r.Warnings) Log.Warn(w);
@@ -134,8 +143,9 @@ public sealed partial class AppState : INotifyPropertyChanged
 
     public ApplyResult ApplyGame(EmulatorAdapter e, GameEntry g, Tier tier)
     {
-        var settings = Db.BuildSettings(e.DbKey, tier, Device, g);
+        var settings = BuildSettings(e.DbKey, tier, g);
         var r = e.ApplyGame(g, settings);
+        if (r.Files.Count > 0 && Settings.ProfiledGames.Add($"{g.Emulator}:{g.Ids[0]}")) SaveSettings();
         if (r.Files.Count > 0) Log.Ok($"{e.Name}: {g.Title} [{tier.Label()}] → {r.Files.Count} file(s)");
         foreach (var w in r.Warnings) Log.Warn(w);
         return r;
@@ -145,18 +155,289 @@ public sealed partial class AppState : INotifyPropertyChanged
     public (int Games, int Files) InstallAllProfiles(EmulatorAdapter e, Tier? forced)
     {
         int games = 0, files = 0;
-        foreach (var g in Db.GamesFor(e.DbKey))
+        e.ScanInstalledIds();
+        e.BulkMode = true;
+        try
+        {
+            foreach (var g in Db.GamesFor(e.DbKey))
+            {
+                try
+                {
+                    var settings = BuildSettings(e.DbKey, forced ?? TierForGame(g), g);
+                    var r = e.ApplyGame(g, settings);
+                    if (r.Files.Count > 0) { games++; files += r.Files.Count; }
+                }
+                catch (Exception ex) { Log.Warn($"{e.Name} / {g.Title}: {ex.Message}"); }
+            }
+        }
+        finally { e.BulkMode = false; }
+        Log.Ok($"{e.Name}: installed profiles for {games} games ({files} files)");
+        return (games, files);
+    }
+
+    // ─────────── Extras: enhancements ───────────
+
+    public event Action? ExtrasChanged;
+
+    public void ReloadExtras()
+    {
+        Extras = ExtrasCatalog.Load();
+        ExtrasChanged?.Invoke();
+    }
+
+    public bool IsOn(Enhancement x) => Settings.EnhancementsOn.Contains(x.Id);
+
+    /// <summary>Game database settings plus the enhancements the user switched on for this emulator.</summary>
+    public System.Text.Json.Nodes.JsonObject BuildSettings(string dbKey, Tier tier, GameEntry? game)
+    {
+        var s = Db.BuildSettings(dbKey, tier, Device, game);
+        foreach (var x in Extras.Enhancements.Where(x => x.Emulator == dbKey))
+        {
+            var on = IsOn(x) && !(x.Heavy && tier == Tier.Battery);
+            if (on) Json.DeepMerge(s, game is not null && x.PerGame is not null ? x.PerGame : x.On);
+            else if (Settings.EnhancementsOff.Contains(x.Id) || IsOn(x)) // only touch what the user (or a tier) turned off
+            {
+                var off = game is not null && x.PerGame is not null ? x.PerGameOff : x.Off;
+                if (off is not null) Json.DeepMerge(s, off);
+            }
+        }
+        // Game-specific fixes win over enhancements.
+        if (game is not null)
+        {
+            Json.DeepMerge(s, game.Settings);
+            if (game.TierSettings?.TryGetValue(tier.Key(), out var ts) == true) Json.DeepMerge(s, ts);
+        }
+        return s;
+    }
+
+    /// <summary>Turns an enhancement on/off in the global config and in every per-game profile GameOp wrote. Returns false if a write failed.</summary>
+    public bool SetEnhancement(Enhancement x, bool on)
+    {
+        if (on) { Settings.EnhancementsOn.Add(x.Id); Settings.EnhancementsOff.Remove(x.Id); }
+        else { Settings.EnhancementsOn.Remove(x.Id); Settings.EnhancementsOff.Add(x.Id); }
+        SaveSettings();
+        var ok = true;
+        // Heavy enhancements stay off globally while Battery Saver is active.
+        var payload = on && !(x.Heavy && CurrentTier == Tier.Battery) ? x.On : x.Off;
+        foreach (var e in Emulators.Where(e => e.DbKey == x.Emulator && e.IsDetected))
         {
             try
             {
-                var settings = Db.BuildSettings(e.DbKey, forced ?? TierForGame(g), Device, g);
-                var r = e.ApplyGame(g, settings);
-                if (r.Files.Count > 0) { games++; files += r.Files.Count; }
+                if (payload is not null) e.ApplyGlobal(payload);
+                ReapplyProfiles(e);
+                Log.Ok($"{e.Name}: {x.Name} {(on ? "on" : "off")}");
             }
-            catch (Exception ex) { Log.Warn($"{e.Name} / {g.Title}: {ex.Message}"); }
+            catch (Exception ex) { ok = false; Log.Warn($"{e.Name}: {x.Name}: {ex.Message}"); }
         }
-        Log.Ok($"{e.Name}: installed profiles for {games} games ({files} files)");
-        return (games, files);
+        ExtrasChanged?.Invoke();
+        return ok;
+    }
+
+    /// <summary>Rewrites the per-game profiles the user already has for this emulator (keeps them in sync with enhancements).</summary>
+    private void ReapplyProfiles(EmulatorAdapter e)
+    {
+        if (!e.SupportsPerGame) return;
+        e.BulkMode = true;
+        try
+        {
+            foreach (var key in Settings.ProfiledGames.Where(k => k.StartsWith(e.DbKey + ":")).ToList())
+            {
+                var id = key[(e.DbKey.Length + 1)..];
+                if (Db.GamesFor(e.DbKey).FirstOrDefault(g => g.Ids.Contains(id)) is { } g)
+                    e.ApplyGame(g, BuildSettings(e.DbKey, TierForGame(g), g));
+            }
+        }
+        finally { e.BulkMode = false; }
+    }
+
+    /// <summary>Switches on each emulator's default enhancements the first time it's found (retried until the writes succeed).</summary>
+    public void ApplyDefaultEnhancements()
+    {
+        foreach (var key in Emulators.Where(e => e.IsDetected).Select(e => e.DbKey).Distinct().ToList())
+        {
+            if (Settings.EnhancementDefaultsDone.Contains(key)) continue;
+            var ok = true;
+            foreach (var x in Extras.Enhancements.Where(x => x.Emulator == key && x.Default && !Settings.EnhancementsOff.Contains(x.Id)))
+                ok &= SetEnhancement(x, true);
+            if (ok) Settings.EnhancementDefaultsDone.Add(key);
+        }
+        SaveSettings();
+    }
+
+    // ─────────── Extras: add-ons and texture packs ───────────
+
+    public Dictionary<string, (string Status, ExtrasService.AddonRelease? Latest)> AddonStatus { get; } = [];
+    public Dictionary<string, string> PackStatus { get; } = [];
+
+    public EmulatorAdapter? AdapterFor(string emulatorId) =>
+        Emulators.FirstOrDefault(e => e.Id == emulatorId && e.IsDetected) ?? Emulators.FirstOrDefault(e => e.DbKey == emulatorId && e.IsDetected);
+
+    public async Task CheckAddonsAsync(bool autoInstall)
+    {
+        foreach (var a in Extras.Addons)
+        {
+            if (AdapterFor(a.Emulator) is null) { AddonStatus[a.Id] = ($"Needs {a.Emulator}", null); continue; }
+            try
+            {
+                var rel = await ExtrasService.CheckAddonAsync(a);
+                var installed = Settings.AddonVersions.GetValueOrDefault(a.Id);
+                AddonStatus[a.Id] = (installed is null ? $"Not installed (latest {rel.Version})"
+                                   : installed == rel.Key ? $"Up to date ({rel.Version})" : $"Update available: {rel.Version}", rel);
+                var wanted = a.Default && !Settings.AddonsDisabled.Contains(a.Id);
+                if (autoInstall && wanted && installed != rel.Key) await InstallAddonAsync(a);
+            }
+            catch (Exception ex) { AddonStatus[a.Id] = ($"Couldn't check: {ex.Message}", null); }
+        }
+        ExtrasChanged?.Invoke();
+    }
+
+    /// <summary>Add-ons / packs being installed right now (manual clicks and the background job share this).</summary>
+    private readonly HashSet<string> _busy = [];
+
+    public async Task<string> InstallAddonAsync(Addon a)
+    {
+        var e = AdapterFor(a.Emulator) ?? throw new InvalidOperationException($"Install {a.Emulator} first.");
+        if (!_busy.Add(a.Id)) return $"{a.Name} is already being installed.";
+        try { return await InstallAddonCoreAsync(a, e); }
+        finally { _busy.Remove(a.Id); }
+    }
+
+    private async Task<string> InstallAddonCoreAsync(Addon a, EmulatorAdapter e)
+    {
+        var rel = AddonStatus.GetValueOrDefault(a.Id).Latest ?? await ExtrasService.CheckAddonAsync(a);
+        AddonStatus[a.Id] = ("Installing…", rel);
+        ExtrasChanged?.Invoke();
+        try
+        {
+            var msg = await Task.Run(() => ExtrasService.InstallAddonAsync(a, rel, e));
+            Settings.AddonVersions[a.Id] = rel.Key;
+            Settings.AddonsDisabled.Remove(a.Id);
+            SaveSettings();
+            AddonStatus[a.Id] = ($"Up to date ({rel.Version})", rel);
+            if (a.Enables is not null && Extras.Enhancements.FirstOrDefault(x => x.Id == a.Enables) is { } enh && !IsOn(enh))
+                SetEnhancement(enh, true);
+            Log.Ok(msg);
+            return msg;
+        }
+        catch (Exception ex)
+        {
+            AddonStatus[a.Id] = ($"Failed: {ex.Message}", rel);
+            Log.Warn($"{a.Name}: {ex.Message}");
+            throw;
+        }
+        finally { ExtrasChanged?.Invoke(); }
+    }
+
+    /// <summary>Game ids the user owns for this emulator: found in the library scan or given a profile.</summary>
+    public HashSet<string> OwnedIds(EmulatorAdapter e)
+    {
+        var ids = new HashSet<string>(InstalledIds.GetValueOrDefault(e.Id) ?? [], StringComparer.OrdinalIgnoreCase);
+        foreach (var k in Settings.ProfiledGames.Where(k => k.StartsWith(e.DbKey + ":")))
+            ids.Add(k[(e.DbKey.Length + 1)..]);
+        return ids;
+    }
+
+    public bool IsPackInstalled(TexturePack p) => Settings.InstalledPacks.ContainsKey(p.Id);
+
+    public IEnumerable<TexturePack> PacksFor(GameEntry g) =>
+        Extras.Packs.Where(p => p.Emulator == g.Emulator && p.GameIds.Any(id => g.Ids.Contains(id, StringComparer.OrdinalIgnoreCase)
+            || (id.Length == 3 && g.Ids.Any(gid => gid.StartsWith(id, StringComparison.OrdinalIgnoreCase)))));
+
+    /// <summary>Installs a pack for <paramref name="forGame"/> (the game the user picked) or the pack's first owned id.</summary>
+    public async Task<string> InstallPackAsync(TexturePack p, GameEntry? forGame = null)
+    {
+        var e = AdapterFor(p.Emulator) ?? throw new InvalidOperationException($"Install {p.Emulator} first.");
+        var owned = OwnedIds(e);
+        var gameId = forGame?.Ids.FirstOrDefault(id => p.GameIds.Contains(id, StringComparer.OrdinalIgnoreCase))
+                     ?? p.GameIds.FirstOrDefault(owned.Contains) ?? p.GameIds[0];
+        if (gameId.Length == 3 && forGame is not null) gameId = forGame.Ids.FirstOrDefault(id => id.StartsWith(gameId)) ?? gameId;
+        if (!_busy.Add(p.Id)) return $"{p.Name} is already downloading.";
+        try { return await InstallPackCoreAsync(p, e, gameId); }
+        finally { _busy.Remove(p.Id); }
+    }
+
+    private async Task<string> InstallPackCoreAsync(TexturePack p, EmulatorAdapter e, string gameId)
+    {
+        PackStatus[p.Id] = "Downloading…";
+        ExtrasChanged?.Invoke();
+        try
+        {
+            var progress = new Progress<string>(m => { PackStatus[p.Id] = m; ExtrasChanged?.Invoke(); });
+            var msg = await Task.Run(() => ExtrasService.InstallPackAsync(p, e, gameId, progress));
+            Settings.InstalledPacks[p.Id] = $"{gameId}|{p.Version}";
+            SaveSettings();
+            EnableTextureLoading(e);
+            PackStatus[p.Id] = "Installed";
+            Log.Ok(msg);
+            return msg;
+        }
+        catch (Exception ex)
+        {
+            PackStatus[p.Id] = $"Failed: {ex.Message}";
+            Log.Warn($"{p.Name}: {ex.Message}");
+            throw;
+        }
+        finally { ExtrasChanged?.Invoke(); }
+    }
+
+    public async Task<string> InstallPackFromFileAsync(string path, EmulatorAdapter e, string gameId)
+    {
+        var msg = await ExtrasService.InstallPackFromFileAsync(path, e, gameId);
+        EnableTextureLoading(e);
+        Log.Ok(msg);
+        return msg;
+    }
+
+    /// <summary>Turns on the emulator's "load HD textures" enhancement (convention: "&lt;emulator&gt;.hdtextures").</summary>
+    private void EnableTextureLoading(EmulatorAdapter e)
+    {
+        if (Extras.Enhancements.FirstOrDefault(x => x.Id == $"{e.DbKey}.hdtextures") is { } x && !IsOn(x))
+            System.Windows.Application.Current.Dispatcher.Invoke(() => SetEnhancement(x, true));
+    }
+
+    /// <summary>Background job: keep add-ons current and fetch texture packs for games the user owns.</summary>
+    /// <summary>Pulls the latest game database and texture-pack catalog published in the GameOp repo.</summary>
+    private async Task RefreshRemoteCatalogsAsync()
+    {
+        if (string.IsNullOrWhiteSpace(Settings.RemoteCatalogBase) ||
+            !Uri.TryCreate(Settings.RemoteCatalogBase, UriKind.Absolute, out var b) || b.Scheme != Uri.UriSchemeHttps) return;
+        try
+        {
+            var n = await Db.UpdateFromUrlAsync(new Uri(b, "gamedb.json").ToString());
+            Log.Info($"Game database refreshed ({n} games, v{Db.Version})");
+        }
+        catch (Exception ex) { Log.Info($"Game database not refreshed: {ex.Message}"); }
+        try
+        {
+            var n = await ExtrasCatalog.ImportPacksAsync(new Uri(b, "texturepacks.json").ToString());
+            ReloadExtras();
+            Log.Info($"Texture-pack catalog refreshed ({n} packs)");
+        }
+        catch (Exception ex) { Log.Info($"Texture-pack catalog not refreshed: {ex.Message}"); }
+    }
+
+    private bool _extrasRunning;
+
+    public async Task RunExtrasAutoAsync()
+    {
+        if (_extrasRunning) return;
+        _extrasRunning = true;
+        try
+        {
+            await RefreshRemoteCatalogsAsync();
+            ApplyDefaultEnhancements();
+            await CheckAddonsAsync(Settings.AutoUpdateAddons);
+            if (!Settings.AutoDownloadPacks) return;
+            var maxBytes = (long)(Settings.MaxAutoPackGb * (1L << 30));
+            // Unknown sizes (0) are never downloaded unattended.
+            foreach (var p in Extras.Packs.Where(p => !IsPackInstalled(p) && p.SizeBytes > 0 && p.SizeBytes <= maxBytes).ToList())
+            {
+                if (AdapterFor(p.Emulator) is not { } e || !p.GameIds.Any(OwnedIds(e).Contains)) continue;
+                try { await InstallPackAsync(p); }
+                catch { /* logged; retried next cycle */ }
+            }
+        }
+        finally { _extrasRunning = false; }
     }
 
     // ─────────── Emulator updates ───────────
@@ -171,14 +452,19 @@ public sealed partial class AppState : INotifyPropertyChanged
     public void StartUpdateTimer()
     {
         _updateTimer = new DispatcherTimer { Interval = TimeSpan.FromHours(6) };
-        _updateTimer.Tick += async (_, _) => await CheckUpdatesAsync(Settings.AutoUpdateEmulators);
+        _updateTimer.Tick += async (_, _) =>
+        {
+            await CheckUpdatesAsync(Settings.AutoUpdateEmulators);
+            await RunExtrasAutoAsync();
+        };
         _updateTimer.Start();
     }
 
     /// <summary>Checks every supported emulator; installs updates for ones that aren't running when <paramref name="autoInstall"/>.</summary>
-    public async Task CheckUpdatesAsync(bool autoInstall)
+    public async Task CheckUpdatesAsync(bool autoInstall, bool waitIfBusy = false)
     {
-        if (!await _updateGate.WaitAsync(0)) return;
+        // Background checks skip if an install is running; a manual check waits for it.
+        if (!await _updateGate.WaitAsync(waitIfBusy ? Timeout.Infinite : 0)) return;
         try
         {
             foreach (var e in Emulators)
@@ -208,8 +494,31 @@ public sealed partial class AppState : INotifyPropertyChanged
             foreach (var e in Emulators.Where(e => Updates.TryGetValue(e.Id, out var u) && u.State == UpdateState.Available))
             {
                 if (EmulatorUpdater.IsRunning(e)) { Log.Info($"{e.Name} is running – its update will install next time."); continue; }
-                await InstallCoreAsync(e, Updates[e.Id].Info!);
+                try { await InstallCoreAsync(e, Updates[e.Id].Info!); }
+                catch { /* already logged and shown on the card; carry on with the other emulators */ }
             }
+        }
+        finally { _updateGate.Release(); }
+    }
+
+    /// <summary>Rolls back the last update and skips that release until a newer one comes out.</summary>
+    public async Task<string> RollbackAsync(EmulatorAdapter e)
+    {
+        await _updateGate.WaitAsync();
+        try
+        {
+            var msg = await Task.Run(() => EmulatorUpdater.Rollback(e));
+            if (msg.StartsWith("Restored"))
+            {
+                if (Updates.TryGetValue(e.Id, out var u) && u.Info is not null) Settings.SkippedReleases[e.Id] = u.Info.Key;
+                else if (Settings.InstalledVersions.TryGetValue(e.Id, out var k)) Settings.SkippedReleases[e.Id] = k;
+                Settings.InstalledVersions.Remove(e.Id);
+                SaveSettings();
+                Updates[e.Id] = new(UpdateState.UpToDate, null, "Rolled back – this release will be skipped");
+                UpdatesChanged?.Invoke();
+            }
+            Log.Info($"{e.Name}: {msg}");
+            return msg;
         }
         finally { _updateGate.Release(); }
     }
@@ -270,7 +579,18 @@ public sealed partial class AppState : INotifyPropertyChanged
 
     private async Task WatchTickAsync()
     {
-        if (!Settings.AutoPowerPerGame) { AutoStatus = "Auto power per game is off"; return; }
+        if (!Settings.AutoPowerPerGame)
+        {
+            AutoStatus = "Auto power per game is off";
+            if (_activeGame is not null)
+            {
+                // Switched off mid-game: go back to the user's level.
+                _activeGame = null;
+                var t = CurrentTier;
+                await Task.Run(() => ApplyPower(t, "Auto power off: restore"));
+            }
+            return;
+        }
         var (exe, title) = ForegroundWindow();
         var emu = exe is null ? null : Emulators.FirstOrDefault(e =>
             e.ExeNames.Contains(exe, StringComparer.OrdinalIgnoreCase) ||

@@ -37,8 +37,7 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 
 [Files]
 Source: "{#SourceDir}\GameOp.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#SourceDir}\Data\*"; DestDir: "{app}\Data"; Flags: ignoreversion recursesubdirs
-Source: "..\README.md"; DestDir: "{app}"; Flags: ignoreversion isreadme
+Source: "..\README.md"; DestDir: "{app}"; Flags: ignoreversion
 
 [Icons]
 Name: "{group}\GameOp"; Filename: "{app}\GameOp.exe"
